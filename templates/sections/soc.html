@@ -1,0 +1,23 @@
+{% load zt %}
+<section id="soc" class="section overflow-hidden" aria-labelledby="soc-title">
+  <div class="pointer-events-none absolute inset-x-0 top-0 h-[600px] glow-top" aria-hidden="true"></div>
+  <div class="container-site relative">
+    {% include "components/section_heading.html" with id="soc-title" eyebrow="SOC Operations Centre" title="Think like a" accent="SOC analyst." desc="Build real defensive security skills through alert triage, threat hunting, incident response and detection engineering." %}
+
+    <div class="reveal mt-12">
+      {% include "components/soc_preview.html" %}
+    </div>
+
+    <ul class="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {% for t in soc_tracks %}
+        <li class="reveal card card-hover flex items-start gap-4 p-5">
+          <span class="icon-tile">{% icon t.icon "size-5" %}</span>
+          <span><span class="block text-[15px] font-semibold text-zt-text">{{ t.title }}</span><span class="mt-1 block text-[13px] leading-relaxed text-zt-text2">{{ t.desc }}</span></span>
+        </li>
+      {% endfor %}
+    </ul>
+    <div class="reveal mt-10 flex justify-center">
+      <a href="{% url 'core:page-soc' %}" class="btn btn-primary">Enter SOC Academy {% icon "arrow-right" "size-4" %}</a>
+    </div>
+  </div>
+</section>

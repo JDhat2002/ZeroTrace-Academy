@@ -1,0 +1,12 @@
+{% comment %}
+Reusable section heading.
+Params: eyebrow, title, accent (optional, rendered in green on its own line), desc, id (heading id), align ("center" | "left"), badge (optional preview label)
+{% endcomment %}
+<div class="reveal {% if align == 'left' %}max-w-2xl{% else %}mx-auto max-w-3xl text-center{% endif %}">
+  <div class="flex flex-wrap items-center gap-3 {% if align != 'left' %}justify-center{% endif %}">
+    <p class="eyebrow">{{ eyebrow }}</p>
+    {% if badge %}<span class="preview-label">{{ badge }}</span>{% endif %}
+  </div>
+  <h2 id="{{ id }}" class="h-section mt-5">{{ title }}{% if accent %} <span class="text-gradient">{{ accent }}</span>{% endif %}</h2>
+  {% if desc %}<p class="lead mt-5 {% if align != 'left' %}mx-auto{% endif %} max-w-2xl">{{ desc }}</p>{% endif %}
+</div>

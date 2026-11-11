@@ -1,0 +1,26 @@
+{% load zt %}
+<div class="overflow-x-auto">
+  <table class="w-full min-w-[560px] text-left text-sm">
+    <caption class="sr-only">Comparison of proposed Free, Pro and Elite plans</caption>
+    <thead>
+      <tr class="border-b border-zt-border">
+        <th scope="col" class="px-6 py-4 font-mono text-[11px] font-medium uppercase tracking-wider text-zt-muted">Feature</th>
+        {% for plan in plans %}<th scope="col" class="px-4 py-4 font-mono text-[11px] font-semibold uppercase tracking-wider {% if plan.highlight %}text-zt-neon{% else %}text-zt-text{% endif %}">{{ plan.name }}</th>{% endfor %}
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-zt-border">
+      {% for row in plan_comparison %}
+        <tr>
+          <th scope="row" class="px-6 py-3.5 font-medium text-zt-text">{{ row.0 }}</th>
+          {% for cell in row|slice:"1:" %}
+            <td class="px-4 py-3.5 text-zt-text2">
+              {% if cell is True %}<span class="text-zt-neon">{% icon "check" "size-4" "2.25" %}</span><span class="sr-only">Included</span>
+              {% elif cell is False %}<span class="text-zt-muted">{% icon "minus" "size-4" %}</span><span class="sr-only">Not included</span>
+              {% else %}{{ cell }}{% endif %}
+            </td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

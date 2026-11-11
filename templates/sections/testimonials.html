@@ -1,0 +1,25 @@
+{% load zt %}
+<section id="testimonials" class="section border-y border-zt-border bg-zt-bg2" aria-labelledby="testimonials-title">
+  <div class="container-site">
+    {% include "components/section_heading.html" with id="testimonials-title" eyebrow="Learner Stories" badge="Placeholder" title="Real stories," accent="when they're real." desc="We'll only publish testimonials from verified learners, with their permission. Until then, this space shows the layout only." %}
+    <ul class="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
+      {% for i in "123" %}
+        <li class="reveal card relative flex flex-col border-dashed p-6">
+          <span class="text-zt-moss">{% icon "quote" "size-8" %}</span>
+          <div class="mt-4 flex-1 space-y-2.5" aria-hidden="true">
+            <div class="h-2.5 w-full rounded bg-zt-border/80"></div>
+            <div class="h-2.5 w-11/12 rounded bg-zt-border/80"></div>
+            <div class="h-2.5 w-4/5 rounded bg-zt-border/80"></div>
+          </div>
+          <div class="mt-6 flex items-center gap-3 border-t border-zt-border pt-5">
+            <span class="flex size-10 items-center justify-center rounded-full border border-dashed border-zt-border text-zt-muted">{% icon "user-round" "size-4" %}</span>
+            <div>
+              <p class="text-sm font-medium text-zt-text2">Sample placeholder</p>
+              <p class="font-mono text-[10.5px] uppercase tracking-wider text-zt-muted">Verified learner · coming soon</p>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+{% load zt %}
+<section id="forensics" class="section overflow-hidden border-y border-zt-border bg-zt-bg2" aria-labelledby="forensics-title">
+  <div class="pointer-events-none absolute -left-40 top-1/3 size-[520px] rounded-full bg-zt-neon/[.05] blur-[120px]" aria-hidden="true"></div>
+  <div class="container-site relative grid items-center gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14">
+    <div>
+      {% include "components/section_heading.html" with id="forensics-title" align="left" eyebrow="Digital Forensics Centre" title="Follow the evidence." accent="Uncover the truth." desc="Learn to identify, preserve, examine and analyse digital evidence through realistic forensic investigations." %}
+      <ul class="mt-10 grid grid-cols-1 gap-2.5 min-[420px]:grid-cols-2">
+        {% for c in forensic_categories %}
+          <li class="reveal card card-hover flex items-start gap-3 p-4">
+            <span class="mt-0.5 text-zt-neon">{% icon c.icon "size-5" %}</span>
+            <span><span class="block text-sm font-semibold text-zt-text">{{ c.title }}</span><span class="mt-0.5 block text-xs leading-snug text-zt-muted">{{ c.desc }}</span></span>
+          </li>
+        {% endfor %}
+      </ul>
+      <a href="{% url 'core:page-forensics' %}" class="btn btn-primary reveal mt-10">Explore Digital Forensics {% icon "arrow-right" "size-4" %}</a>
+    </div>
+
+    <div class="reveal min-w-0">
+      {% include "components/forensics_preview.html" %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,27 @@
+{% load zt %}
+<li class="relative" data-dropdown>
+  <button type="button" class="nav-link group aria-expanded:text-zt-text" aria-expanded="false" aria-controls="dd-{{ item.label|slugify }}" data-dropdown-toggle>
+    {{ item.label }}
+    {% icon "chevron-down" "size-3.5 text-zt-muted transition-transform duration-200 group-aria-expanded:rotate-180 group-aria-expanded:text-zt-neon" %}
+  </button>
+  <div id="dd-{{ item.label|slugify }}" class="absolute left-1/2 top-full w-[560px] -translate-x-1/2 pt-3" data-dropdown-panel hidden>
+    <div class="animate-slide-in overflow-hidden rounded-2xl border border-zt-border bg-zt-bg2/95 p-2 shadow-panel backdrop-blur-xl">
+      <ul class="grid grid-cols-2 gap-1">
+        {% for sub in item.children %}
+          <li>
+            <a href="{{ sub.url }}" class="group/link flex items-start gap-3 rounded-xl p-3 transition hover:bg-zt-card">
+              <span class="flex size-9 shrink-0 items-center justify-center rounded-lg border border-zt-border bg-zt-card text-zt-neon transition group-hover/link:border-zt-neon/40">{% icon sub.icon "size-4" %}</span>
+              <span>
+                <span class="block text-sm font-semibold text-zt-text">{{ sub.label }}</span>
+                <span class="mt-0.5 block text-xs leading-snug text-zt-muted">{{ sub.desc }}</span>
+              </span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+      <a href="{{ item.url }}" class="mt-1 flex items-center justify-between rounded-xl border-t border-zt-border px-4 py-3 font-mono text-[11px] uppercase tracking-[.16em] text-zt-text2 hover:text-zt-neon">
+        Explore {{ item.label }} {% icon "arrow-right" "size-4" %}
+      </a>
+    </div>
+  </div>
+</li>

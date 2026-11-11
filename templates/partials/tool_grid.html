@@ -1,0 +1,46 @@
+{% load zt %}
+<div id="tool-browser" data-collapsible>
+  <div class="-mx-5 overflow-x-auto px-5 scrollbar-none sm:mx-0 sm:px-0">
+    <div role="toolbar" aria-label="Filter tools by category" class="mx-auto flex w-max gap-1.5 rounded-xl border border-zt-border bg-zt-card/70 p-1.5">
+      {% for f in tool_filters %}
+        <a href="?category={{ f.key }}#tools"
+           hx-get="{% url 'core:tools_partial' %}?category={{ f.key }}"
+           hx-target="#tool-browser" hx-swap="outerHTML" hx-push-url="?category={{ f.key }}#tools"
+           class="tab {% if f.key == active_filter %}is-active{% endif %}"
+           {% if f.key == active_filter %}aria-current="true"{% endif %}>{{ f.label }}</a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <p class="mt-6 text-center font-mono text-[11px] uppercase tracking-[.16em] text-zt-muted" aria-live="polite">{{ tools|length }} tool{{ tools|length|pluralize }}{% if active_filter != "all" %} in this category{% endif %}</p>
+
+  <ul class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    {% for t in tools %}
+      <li class="{% if forloop.counter > 6 %}collapsible-extra{% endif %}">
+        <article class="card card-hover group flex h-full flex-col p-5">
+          <div class="flex items-start justify-between gap-3">
+            <span class="relative flex size-12 items-center justify-center rounded-xl border border-zt-border bg-gradient-to-br from-zt-moss/70 to-zt-bg text-zt-neon">
+              {% icon t.icon "size-[22px]" "1.6" %}
+              <span class="absolute -bottom-1 -right-1 size-2.5 rounded-full border-2 border-zt-card bg-zt-warn" aria-hidden="true"></span>
+            </span>
+            <span class="chip chip-warn">{{ t.status }}</span>
+          </div>
+          <h3 class="mt-4 text-base font-bold tracking-tight text-zt-text">{{ t.name }}</h3>
+          <p class="mt-0.5 font-mono text-[10.5px] uppercase tracking-wider text-zt-neon/80">{{ t.category }}</p>
+          <p class="mt-3 flex-1 text-[13px] leading-relaxed text-zt-text2">{{ t.desc }}</p>
+          <a href="{% url 'core:tool' t.slug %}" class="mt-5 inline-flex items-center gap-1.5 border-t border-zt-border pt-4 text-xs font-semibold uppercase tracking-wider text-zt-text2 transition hover:text-zt-neon group-hover:text-zt-neon">
+            View tool {% icon "arrow-right" "size-3.5" %}<span class="sr-only">: {{ t.name }}</span>
+          </a>
+        </article>
+      </li>
+    {% endfor %}
+  </ul>
+  {% if tools|length > 6 %}
+    <div class="collapsible-toggle mt-8 justify-center">
+      <button type="button" class="btn btn-ghost" data-collapsible-toggle aria-expanded="false">
+        <span data-label-closed>Show all {{ tools|length }} tools</span><span data-label-open hidden>Show fewer</span>
+        {% icon "chevron-down" "size-4 transition" %}
+      </button>
+    </div>
+  {% endif %}
+</div>

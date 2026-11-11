@@ -1,0 +1,92 @@
+{% load zt %}
+<figure class="window" aria-label="Illustrative SOC dashboard populated with demo data">
+  <div class="window-bar">
+    <div class="window-dots"><span></span><span></span><span></span></div>
+    <span class="hidden truncate font-mono text-[11px] text-zt-muted sm:inline">tracesiem / overview</span>
+    <span class="ml-auto flex items-center gap-2">
+      <span class="preview-label"><span class="size-1.5 animate-pulse-dot rounded-full bg-zt-warn"></span> Demo data · not live</span>
+    </span>
+  </div>
+
+  <div class="grid gap-3 p-3 sm:p-4 lg:grid-cols-12">
+    {# KPI row #}
+    <div class="grid grid-cols-2 gap-3 lg:col-span-12 lg:grid-cols-4">
+      <div class="panel"><p class="panel-title mb-1">Open alerts</p><p class="text-2xl font-bold text-zt-text">27</p><p class="font-mono text-[10px] text-zt-muted">sample value</p></div>
+      <div class="panel"><p class="panel-title mb-1">Critical</p><p class="text-2xl font-bold text-zt-error">3</p><p class="font-mono text-[10px] text-zt-muted">sample value</p></div>
+      <div class="panel"><p class="panel-title mb-1">Mean time to triage</p><p class="text-2xl font-bold text-zt-text">6<span class="text-base text-zt-muted">m</span></p><p class="font-mono text-[10px] text-zt-muted">sample value</p></div>
+      <div class="panel"><p class="panel-title mb-1">Detection rules</p><p class="text-2xl font-bold text-zt-neon">142</p><p class="font-mono text-[10px] text-zt-muted">sample value</p></div>
+    </div>
+
+    {# Event stream #}
+    <div class="panel min-w-0 lg:col-span-7">
+      <div class="panel-title"><span class="flex items-center gap-2">{% icon "radio" "size-3.5 text-zt-neon" %} Event stream</span><span class="text-zt-warn">demo</span></div>
+      <div class="overflow-x-auto scrollbar-none">
+        <table class="w-full min-w-[480px] text-left font-mono text-[11px]">
+          <thead class="text-zt-muted"><tr><th class="py-1.5 pr-3 font-medium">Time</th><th class="py-1.5 pr-3 font-medium">Sev</th><th class="py-1.5 pr-3 font-medium">Event</th><th class="py-1.5 font-medium">Host</th></tr></thead>
+          <tbody data-soc-stream class="text-zt-text2">
+            <tr class="border-t border-zt-border"><td class="py-1.5 pr-3 text-zt-muted">09:41:07</td><td class="py-1.5 pr-3 text-zt-error">CRIT</td><td class="py-1.5 pr-3">Credential dumping behaviour</td><td class="py-1.5">WS-014</td></tr>
+            <tr class="border-t border-zt-border"><td class="py-1.5 pr-3 text-zt-muted">09:40:52</td><td class="py-1.5 pr-3 text-zt-warn">HIGH</td><td class="py-1.5 pr-3">Encoded PowerShell command</td><td class="py-1.5">WS-014</td></tr>
+            <tr class="border-t border-zt-border"><td class="py-1.5 pr-3 text-zt-muted">09:40:31</td><td class="py-1.5 pr-3 text-zt-warn">HIGH</td><td class="py-1.5 pr-3">Multiple failed logons (4625)</td><td class="py-1.5">DC-01</td></tr>
+            <tr class="border-t border-zt-border"><td class="py-1.5 pr-3 text-zt-muted">09:39:58</td><td class="py-1.5 pr-3 text-zt-neon">MED</td><td class="py-1.5 pr-3">New service installed</td><td class="py-1.5">SRV-03</td></tr>
+            <tr class="border-t border-zt-border"><td class="py-1.5 pr-3 text-zt-muted">09:39:12</td><td class="py-1.5 pr-3 text-zt-muted">LOW</td><td class="py-1.5 pr-3">DNS query to rare domain</td><td class="py-1.5">WS-022</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    {# Severity + timeline #}
+    <div class="grid gap-3 lg:col-span-5">
+      <div class="panel">
+        <div class="panel-title"><span class="flex items-center gap-2">{% icon "chart-bar" "size-3.5 text-zt-neon" %} Alerts by severity</span></div>
+        <ul class="space-y-2 font-mono text-[11px]">
+          <li class="grid grid-cols-[52px_1fr_24px] items-center gap-2"><span class="text-zt-error">Critical</span><span class="h-1.5 rounded-full bg-zt-border"><span class="block h-full w-[12%] rounded-full bg-zt-error"></span></span><span class="text-right text-zt-muted">3</span></li>
+          <li class="grid grid-cols-[52px_1fr_24px] items-center gap-2"><span class="text-zt-warn">High</span><span class="h-1.5 rounded-full bg-zt-border"><span class="block h-full w-[30%] rounded-full bg-zt-warn"></span></span><span class="text-right text-zt-muted">8</span></li>
+          <li class="grid grid-cols-[52px_1fr_24px] items-center gap-2"><span class="text-zt-neon">Medium</span><span class="h-1.5 rounded-full bg-zt-border"><span class="block h-full w-[45%] rounded-full bg-zt-neon"></span></span><span class="text-right text-zt-muted">12</span></li>
+          <li class="grid grid-cols-[52px_1fr_24px] items-center gap-2"><span class="text-zt-text2">Low</span><span class="h-1.5 rounded-full bg-zt-border"><span class="block h-full w-[15%] rounded-full bg-zt-text2"></span></span><span class="text-right text-zt-muted">4</span></li>
+        </ul>
+      </div>
+      <div class="panel">
+        <div class="panel-title"><span class="flex items-center gap-2">{% icon "siren" "size-3.5 text-zt-neon" %} Incident INC-DEMO-07</span><span class="text-zt-warn">containment</span></div>
+        <ol class="flex items-center gap-1 font-mono text-[10px]">
+          <li class="flex-1 rounded bg-zt-neon/15 py-1 text-center text-zt-neon">Detect</li>
+          <li class="flex-1 rounded bg-zt-neon/15 py-1 text-center text-zt-neon">Triage</li>
+          <li class="flex-1 rounded bg-zt-warn/15 py-1 text-center text-zt-warn">Contain</li>
+          <li class="flex-1 rounded bg-zt-border py-1 text-center text-zt-muted">Eradicate</li>
+          <li class="hidden flex-1 rounded bg-zt-border py-1 text-center text-zt-muted sm:block">Recover</li>
+        </ol>
+      </div>
+    </div>
+
+    {# Network activity #}
+    <div class="panel lg:col-span-5">
+      <div class="panel-title"><span class="flex items-center gap-2">{% icon "activity" "size-3.5 text-zt-neon" %} Network activity</span><span>24h · demo</span></div>
+      <svg viewBox="0 0 300 80" class="h-24 w-full" preserveAspectRatio="none" aria-hidden="true">
+        <defs><linearGradient id="sg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#00FF75" stop-opacity=".3"/><stop offset="1" stop-color="#00FF75" stop-opacity="0"/></linearGradient></defs>
+        <g stroke="#1B2921" stroke-width="1"><path d="M0 20H300M0 40H300M0 60H300"/></g>
+        <path d="M0 60 C20 55 30 58 50 50 S80 52 100 44 S130 48 150 40 S170 18 190 30 S220 36 240 26 S270 30 300 22 V80 H0Z" fill="url(#sg)"/>
+        <path d="M0 60 C20 55 30 58 50 50 S80 52 100 44 S130 48 150 40 S170 18 190 30 S220 36 240 26 S270 30 300 22" fill="none" stroke="#00FF75" stroke-width="1.6"/>
+        <path d="M0 70 C30 68 60 66 90 64 S150 62 180 58 S240 60 300 54" fill="none" stroke="#FFB547" stroke-opacity=".6" stroke-width="1.2" stroke-dasharray="3 3"/>
+      </svg>
+    </div>
+
+    {# IOCs #}
+    <div class="panel min-w-0 lg:col-span-3">
+      <div class="panel-title"><span class="flex items-center gap-2">{% icon "crosshair" "size-3.5 text-zt-neon" %} IOCs</span></div>
+      <ul class="space-y-1.5 break-all font-mono text-[10.5px] text-zt-text2">
+        <li><span class="text-zt-muted">ip</span> 203.0.113.50</li>
+        <li><span class="text-zt-muted">dom</span> update-check.example</li>
+        <li><span class="text-zt-muted">sha</span> 41bd…0c93</li>
+      </ul>
+    </div>
+
+    {# Detection rule #}
+    <div class="panel min-w-0 lg:col-span-4">
+      <div class="panel-title"><span class="flex items-center gap-2">{% icon "anvil" "size-3.5 text-zt-neon" %} Detection rule</span><span>T1059.001</span></div>
+      <pre class="term overflow-x-auto scrollbar-none text-[10.5px] leading-[1.6]"><span class="c">title:</span> <span class="t">Encoded PowerShell</span>
+<span class="c">logsource:</span> windows / process_creation
+<span class="c">detection:</span>
+  <span class="p">sel:</span> CommandLine|contains: <span class="w">'-enc'</span>
+<span class="c">level:</span> <span class="w">high</span></pre>
+    </div>
+  </div>
+</figure>

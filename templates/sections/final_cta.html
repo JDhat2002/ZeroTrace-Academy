@@ -1,0 +1,19 @@
+{% load zt %}
+<section class="relative pb-24 pt-4 sm:pb-28" aria-labelledby="cta-title">
+  <div class="container-site">
+    <div class="reveal relative isolate overflow-hidden rounded-3xl border border-zt-neon/25 bg-zt-card px-6 py-16 text-center sm:px-12 sm:py-20 lg:py-24">
+      <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+        <div class="absolute inset-0 bg-grid mask-radial"></div>
+        <div class="absolute left-1/2 top-full h-[420px] w-[900px] max-w-[160%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-zt-neon/20 blur-[100px]"></div>
+        <div class="absolute inset-x-0 top-0 hairline"></div>
+      </div>
+      <p class="eyebrow justify-center">From learner to cybersecurity professional</p>
+      <h2 id="cta-title" class="h-section mx-auto mt-6 max-w-4xl">Your cybersecurity journey <span class="text-gradient">starts here.</span></h2>
+      <p class="lead mx-auto mt-6 max-w-2xl">Build practical skills. Explore security tools. Investigate threats. Defend systems. Become the professional the cybersecurity world needs.</p>
+      <div class="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+        <a href="{% url 'register' %}" class="btn btn-primary">Join ZeroTrace {% icon "arrow-right" "size-4" %}</a>
+        <a href="#departments" class="btn btn-ghost">Explore the Platform</a>
+      </div>
+    </div>
+  </div>
+</section>

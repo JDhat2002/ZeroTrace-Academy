@@ -1,0 +1,64 @@
+{% load zt %}
+<section id="ctf" class="section border-y border-zt-border bg-zt-bg2" aria-labelledby="ctf-title">
+  <div class="pointer-events-none absolute inset-0 bg-grid mask-radial opacity-40" aria-hidden="true"></div>
+  <div class="container-site relative">
+    <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+      {% include "components/section_heading.html" with id="ctf-title" align="left" eyebrow="CTF Arena" badge="Coming soon" title="Test your skills." accent="Solve the challenge." desc="Capture-the-flag challenges across seven categories, from beginner to advanced, hosted in isolated and authorised environments." %}
+      <a href="{% url 'core:page-ctf' %}" class="btn btn-primary reveal shrink-0 self-start lg:self-auto">Enter CTF Arena {% icon "arrow-right" "size-4" %}</a>
+    </div>
+
+    <ul class="reveal mt-10 flex flex-wrap gap-2" aria-label="Challenge categories">
+      {% for c in ctf_categories %}<li class="chip text-[11px]">{{ c }}</li>{% endfor %}
+    </ul>
+
+    <div class="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
+      <div class="reveal card min-w-0 overflow-hidden">
+        <div class="flex items-center justify-between border-b border-zt-border px-5 py-4">
+          <h3 class="flex items-center gap-2 text-sm font-semibold text-zt-text">{% icon "flag" "size-4 text-zt-neon" %} Challenges</h3>
+          <span class="preview-label">Sample data</span>
+        </div>
+        <ul class="divide-y divide-zt-border">
+          {% for ch in ctf_challenges %}
+            <li class="grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-1 px-5 py-3.5 sm:grid-cols-[1fr_130px_90px_70px]">
+              <span class="min-w-0">
+                <span class="block truncate text-sm font-medium text-zt-text">{{ ch.name }}</span>
+                <span class="block font-mono text-[10.5px] text-zt-muted">{{ ch.category }}</span>
+              </span>
+              <span class="hidden sm:block">
+                {% with bars=ch.difficulty|level_bars %}
+                  <span class="lvl {{ ch.difficulty|level_class }}"><i class="on"></i><i class="{% if bars >= 2 %}on{% endif %}"></i><i class="{% if bars >= 3 %}on{% endif %}"></i><span class="ml-1">{{ ch.difficulty }}</span></span>
+                {% endwith %}
+              </span>
+              <span class="hidden text-right font-mono text-xs text-zt-text sm:block">{{ ch.points }} pts</span>
+              <span class="row-span-2 flex justify-end sm:row-span-1">
+                {% if ch.status == "solved" %}<span class="chip chip-neon" title="Solved">{% icon "check" "size-3" %}<span class="sr-only sm:not-sr-only">Solved</span></span>
+                {% elif ch.status == "in-progress" %}<span class="chip chip-warn">Active</span>
+                {% elif ch.status == "locked" %}<span class="chip">{% icon "lock" "size-3" %}<span class="sr-only">Locked</span></span>
+                {% else %}<span class="chip">Open</span>{% endif %}
+              </span>
+              <span class="font-mono text-[10.5px] text-zt-text2 sm:hidden">{{ ch.difficulty }} · {{ ch.points }} pts</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="reveal card min-w-0 overflow-hidden">
+        <div class="flex items-center justify-between border-b border-zt-border px-5 py-4">
+          <h3 class="flex items-center gap-2 text-sm font-semibold text-zt-text">{% icon "trophy" "size-4 text-zt-neon" %} Leaderboard</h3>
+          <span class="preview-label">Sample data</span>
+        </div>
+        <ol class="space-y-1.5 p-3">
+          {% for row in ctf_leaderboard %}
+            <li class="flex items-center gap-3 rounded-xl px-3 py-3 {% if forloop.last %}border border-dashed border-zt-neon/30 bg-zt-neon/[.05]{% elif forloop.first %}bg-zt-elevated{% endif %}">
+              <span class="flex size-8 shrink-0 items-center justify-center rounded-lg font-mono text-xs font-bold {% if row.rank == 1 %}bg-zt-neon text-zt-bg{% elif row.rank <= 3 %}bg-zt-moss text-zt-neon{% else %}bg-zt-border text-zt-text2{% endif %}">{{ row.rank }}</span>
+              <span class="min-w-0 flex-1 truncate font-mono text-[13px] text-zt-text">{{ row.handle }}</span>
+              <span class="hidden font-mono text-[11px] text-zt-muted min-[400px]:block">{{ row.solves }} solves</span>
+              <span class="w-16 text-right font-mono text-[13px] font-semibold text-zt-neon">{{ row.points }}</span>
+            </li>
+          {% endfor %}
+        </ol>
+        <p class="border-t border-zt-border px-5 py-3 text-xs text-zt-muted">Placeholder handles for illustration. The real leaderboard launches with the CTF Arena.</p>
+      </div>
+    </div>
+  </div>
+</section>

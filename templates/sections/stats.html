@@ -1,0 +1,19 @@
+{% load zt %}
+<section class="relative py-16 sm:py-20" aria-labelledby="stats-title">
+  <div class="container-site">
+    <h2 id="stats-title" class="sr-only">Platform scope</h2>
+    <div class="reveal card overflow-hidden">
+      <div class="pointer-events-none absolute inset-0 glow-center" aria-hidden="true"></div>
+      <dl class="relative grid grid-cols-2 divide-zt-border lg:grid-cols-4 lg:divide-x">
+        {% for s in stats %}
+          <div class="flex flex-col border-zt-border p-6 text-center sm:p-8 {% if forloop.counter <= 2 %}border-b lg:border-b-0{% endif %} {% if forloop.counter|divisibleby:2 %}border-l lg:border-l-0{% endif %}">
+            <dt class="order-2 mt-2 text-sm font-semibold text-zt-text">{{ s.label }}</dt>
+            <dd class="order-1 text-4xl font-extrabold tracking-tight text-gradient sm:text-5xl" data-count="{{ s.value }}">{{ s.value }}</dd>
+            <dd class="order-3 mt-1 font-mono text-[10.5px] uppercase tracking-wider text-zt-muted">{{ s.note }}</dd>
+          </div>
+        {% endfor %}
+      </dl>
+    </div>
+    <p class="mt-4 text-center font-mono text-[10.5px] uppercase tracking-[.16em] text-zt-muted">Scope of the platform, not usage figures</p>
+  </div>
+</section>

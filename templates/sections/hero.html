@@ -1,0 +1,62 @@
+{% load zt %}
+<section class="relative isolate overflow-hidden pb-16 pt-32 sm:pb-20 sm:pt-40 lg:pt-44" aria-labelledby="hero-title">
+  <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+    <div class="absolute inset-0 glow-top"></div>
+    <div class="absolute inset-0 bg-grid mask-radial"></div>
+    <canvas data-hero-canvas class="absolute inset-0 h-full w-full opacity-70"></canvas>
+    <div class="absolute left-1/2 top-[38%] h-[420px] w-[820px] max-w-[120vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-zt-neon/[.07] blur-[110px]"></div>
+    <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-zt-bg"></div>
+  </div>
+
+  {# Minimal terminal accents, wide screens only #}
+  <div class="pointer-events-none absolute left-[max(1.5rem,calc(50%-43rem))] top-[60%] hidden w-64 -rotate-2 xl:block" aria-hidden="true">
+    <div class="window opacity-80">
+      <div class="window-bar py-2"><div class="window-dots"><span></span><span></span><span></span></div><span class="font-mono text-[10px] text-zt-muted">lab-01 · isolated</span></div>
+      <div class="term space-y-1 p-3 text-[11px]">
+        <p><span class="p">learner@zt</span>:<span class="t">~</span>$ nmap -sV 10.10.0.5</p>
+        <p class="c">22/tcp  open  ssh</p>
+        <p class="c">80/tcp  open  http</p>
+        <p><span class="p">learner@zt</span>:<span class="t">~</span>$ <span class="inline-block h-3 w-1.5 translate-y-0.5 animate-blink bg-zt-neon"></span></p>
+      </div>
+    </div>
+  </div>
+  <div class="pointer-events-none absolute right-[max(1.5rem,calc(50%-43rem))] top-[66%] hidden w-56 rotate-2 xl:block" aria-hidden="true">
+    <div class="window opacity-80">
+      <div class="window-bar py-2"><div class="window-dots"><span></span><span></span><span></span></div><span class="font-mono text-[10px] text-zt-muted">soc · triage</span></div>
+      <div class="term space-y-1.5 p-3 text-[11px]">
+        <p class="flex justify-between"><span class="e">● HIGH</span><span class="c">4625 · failed logon</span></p>
+        <p class="flex justify-between"><span class="w">● MED</span><span class="c">encoded powershell</span></p>
+        <p class="flex justify-between"><span class="p">● LOW</span><span class="c">new service</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-site relative text-center">
+    <a href="#cyber-range" class="reveal group mx-auto inline-flex max-w-full items-center gap-2.5 rounded-2xl border border-zt-neon/25 bg-zt-neon/[.06] py-1.5 pl-1.5 pr-4 text-left transition hover:border-zt-neon/50 sm:rounded-full">
+      <span class="shrink-0 rounded-full bg-zt-neon px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-zt-bg">New</span>
+      <span class="font-mono text-[10px] font-medium uppercase leading-snug tracking-[.12em] text-zt-text sm:text-[11px] sm:tracking-[.16em]">The next generation of cybersecurity learning</span>
+      {% icon "arrow-right" "size-3.5 shrink-0 text-zt-neon transition group-hover:translate-x-0.5" %}
+    </a>
+
+    <h1 id="hero-title" class="reveal mt-8 sm:mt-10">
+      <span class="h-display block text-[clamp(1.85rem,6.2vw,4.75rem)]">Master the art of</span>
+      <span class="h-display text-gradient text-glow block text-[clamp(2.6rem,10.5vw,8.25rem)]">Cybersecurity.</span>
+      <span class="mt-3 block font-mono text-[clamp(.8rem,2.4vw,1.3rem)] font-semibold uppercase tracking-[.28em] text-zt-text2 sm:mt-5">No shortcuts<span class="text-zt-neon">.</span> Real skills<span class="text-zt-neon">.</span></span>
+    </h1>
+
+    <p class="reveal lead mx-auto mt-7 max-w-2xl">
+      Go beyond theory. Learn cybersecurity through structured learning paths, professional security tools, real-time practical labs, SOC investigations and digital forensics.
+    </p>
+
+    <div class="reveal mt-9 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+      <a href="{% url 'register' %}" class="btn btn-primary">Start Learning {% icon "arrow-right" "size-4" %}</a>
+      <a href="#cyber-range" class="btn btn-ghost">{% icon "terminal" "size-4 text-zt-neon" %} Explore Cyber Range</a>
+    </div>
+
+    <ul class="reveal mx-auto mt-10 flex max-w-2xl flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-zt-text2" aria-label="What makes ZeroTrace different">
+      <li class="inline-flex items-center gap-2">{% icon "circle-check" "size-4 text-zt-neon" %}Practical Learning</li>
+      <li class="inline-flex items-center gap-2">{% icon "circle-check" "size-4 text-zt-neon" %}Real Security Tools</li>
+      <li class="inline-flex items-center gap-2">{% icon "circle-check" "size-4 text-zt-neon" %}Private Lab Environments</li>
+    </ul>
+  </div>
+</section>

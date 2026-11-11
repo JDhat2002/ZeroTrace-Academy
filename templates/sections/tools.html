@@ -1,0 +1,10 @@
+{% load zt %}
+<section id="tools" class="section" aria-labelledby="tools-title">
+  <div class="container-site">
+    {% include "components/section_heading.html" with id="tools-title" eyebrow="The ZeroTrace Toolkit" badge="Proposed tools" title="Your cybersecurity toolkit." accent="One ecosystem." desc="Explore the ZeroTrace family of security tools, designed to support practical security testing, investigations, monitoring and research." %}
+    <div class="mt-12">
+      {% include "partials/tool_grid.html" %}
+    </div>
+    <p class="reveal mt-6 flex items-start justify-center gap-2 text-center text-xs text-zt-muted">{% icon "info" "size-4 shrink-0" %}These tools are proposed and in planning or development. None of them is publicly available yet.</p>
+  </div>
+</section>
