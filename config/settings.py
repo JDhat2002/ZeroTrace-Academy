@@ -39,6 +39,9 @@ CSRF_TRUSTED_ORIGINS = env_list("DJANGO_CSRF_TRUSTED_ORIGINS")
 
 SITE_URL = env("SITE_URL", "http://127.0.0.1:8000").rstrip("/")
 
+# Set by `manage.py export_static`: templates drop server-only features (auth forms, CSRF header).
+STATIC_EXPORT = False
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",

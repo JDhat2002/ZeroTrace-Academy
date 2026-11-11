@@ -8,23 +8,23 @@
   <meta name="description" content="{% block meta_description %}Learn cybersecurity through structured learning paths, hands-on cyber-range labs, SOC investigations, digital forensics and a growing family of ZeroTrace security tools.{% endblock %}">
   <meta name="theme-color" content="#050807">
   <meta name="color-scheme" content="dark">
-  <link rel="canonical" href="{{ SITE_URL }}{{ request.path }}">
+  {% if SITE_URL %}<link rel="canonical" href="{{ SITE_URL }}{{ request.path }}">{% endif %}
   <link rel="icon" href="{% static 'img/logo-mark.svg' %}" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ZeroTrace Academy">
   <meta property="og:title" content="{% block og_title %}ZeroTrace Academy · From Learner to Cybersecurity Professional{% endblock %}">
   <meta property="og:description" content="{% block og_description %}The complete cybersecurity learning, tools and simulation ecosystem. Learn. Experiment. Investigate. Defend.{% endblock %}">
-  <meta property="og:url" content="{{ SITE_URL }}{{ request.path }}">
-  <meta property="og:image" content="{{ SITE_URL }}{% static 'img/og-image.png' %}">
+  {% if SITE_URL %}<meta property="og:url" content="{{ SITE_URL }}{{ request.path }}">{% endif %}
+  {% if SITE_URL %}<meta property="og:image" content="{{ SITE_URL }}{% static 'img/og-image.png' %}">{% endif %}
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="{% static 'fonts/inter-var.woff2' %}" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{% static 'css/app.css' %}">
-  <script type="application/ld+json">{% json_ld %}</script>
+  {% if SITE_URL or not STATIC_EXPORT %}<script type="application/ld+json">{% json_ld %}</script>{% endif %}
   {% block head %}{% endblock %}
 </head>
-<body class="min-h-screen bg-zt-bg" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+<body class="min-h-screen bg-zt-bg"{% if not STATIC_EXPORT %} hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'{% endif %}>
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-zt-neon focus:px-4 focus:py-2 focus:text-zt-bg">Skip to content</a>
   {% include "components/header.html" %}
   {% include "components/mobile_nav.html" %}

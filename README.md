@@ -15,6 +15,17 @@ python manage.py test core        # optional
 
 SQLite is used by default. Set `POSTGRES_DB` (plus `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_HOST`, `POSTGRES_PORT`) to switch to PostgreSQL. See `.env.example` for all settings; production requires `DJANGO_DEBUG=false` and `DJANGO_SECRET_KEY`.
 
+## Static export (hosted site)
+
+The public site is a static export committed in `site/`. Regenerate it after changing content, templates or static files:
+
+```bash
+python manage.py export_static                                # writes site/
+python manage.py export_static --site-url https://example.com # also emits canonical, Open Graph and JSON-LD URLs
+```
+
+Every page and HTMX fragment is pre-rendered, so the tool filter, roadmap tabs and AI mentor samples work without a server. Log-in and sign-up need Django, so the export shows a "coming with the platform launch" notice in their place.
+
 ## Front-end build (only when changing styles)
 
 ```bash

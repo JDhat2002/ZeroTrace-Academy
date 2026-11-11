@@ -52,8 +52,10 @@ def level_bars(level):
 
 @register.simple_tag(takes_context=True)
 def json_ld(context):
-    request = context["request"]
-    base = request.build_absolute_uri("/").rstrip("/")
+    if context.get("STATIC_EXPORT"):
+        base = context["SITE_URL"]
+    else:
+        base = context["request"].build_absolute_uri("/").rstrip("/")
     data = {
         "@context": "https://schema.org",
         "@graph": [

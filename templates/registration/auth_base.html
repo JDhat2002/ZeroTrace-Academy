@@ -13,6 +13,12 @@
         <p class="eyebrow">{% block auth_eyebrow %}{% endblock %}</p>
         <h1 class="mt-4 text-3xl font-extrabold tracking-tight">{% block auth_title %}{% endblock %}</h1>
         <p class="mt-2 text-sm text-zt-text2">{% block auth_desc %}{% endblock %}</p>
+        {% if STATIC_EXPORT %}
+        <div class="mt-8 rounded-lg border border-zt-neon/30 bg-zt-neon/10 px-4 py-3 text-sm text-zt-neon" role="status">
+          Accounts open with the platform launch. Sign-up and log-in aren't available on this preview site yet.
+        </div>
+        <a href="{% url 'core:home' %}" class="btn btn-ghost mt-5 w-full">Back to the homepage</a>
+        {% else %}
         <form method="post" class="mt-8 space-y-5" novalidate>
           {% csrf_token %}
           {% if form.non_field_errors %}
@@ -32,6 +38,7 @@
           {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
           <button type="submit" class="btn btn-primary w-full">{% block auth_submit %}{% endblock %}</button>
         </form>
+        {% endif %}
         <p class="mt-6 text-center text-sm text-zt-text2">{% block auth_switch %}{% endblock %}</p>
       </div>
     </div>
