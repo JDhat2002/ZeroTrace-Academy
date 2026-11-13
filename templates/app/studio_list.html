@@ -1,0 +1,22 @@
+{% extends "app/shell.html" %}
+{% block title %}Course studio — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<p class="eyebrow">Authoring</p>
+<h1>Course studio</h1>
+<p>Create a draft, then add modules and lessons. Only a platform administrator can approve and publish. No course is generated for you.</p>
+{% if notice %}<p class="alert" role="status">{{ notice }}</p>{% endif %}
+<form class="stack-form" method="post">
+  {% csrf_token %}
+  <label>Title <input class="field" name="title" required></label>
+  <label>Department
+    <select class="field" name="department">{% for row in departments %}<option value="{{ row.slug }}">{{ row.name }}</option>{% endfor %}</select>
+  </label>
+  <button class="btn btn-signal" type="submit">Create draft</button>
+</form>
+<h2>Your drafts</h2>
+<ul class="record-list">
+  {% for course in courses %}
+  <li><div><a class="text-link" href="/app/studio/courses/{{ course.slug }}/">{{ course.title }}</a><p class="fine">{{ course.get_status_display }}</p></div></li>
+  {% empty %}<li><p class="empty">You have not created a course.</p></li>{% endfor %}
+</ul>
+{% endblock %}

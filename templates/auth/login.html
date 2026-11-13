@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Sign in — ZeroTrace Academy{% endblock %}
+{% block body %}
+<div class="auth-shell">
+  <aside class="auth-aside">
+    <a href="/"><img class="auth-mark" src="/assets/logo.png" alt="ZeroTrace Academy"></a>
+    <div class="scene" aria-hidden="true">
+      <span class="scene-grid"></span>
+      <span class="scene-ring"></span>
+      <span class="scene-shield"></span>
+    </div>
+    <h1>YOUR SECURITY JOURNEY STARTS HERE.</h1>
+    <p>Sign in to your learning path, account security, and the member area. Labs and tools stay labelled as previews until they launch.</p>
+    <ul class="auth-points">
+      <li><span class="pulse"></span><span>Practical cybersecurity training.</span></li>
+      <li><span class="pulse"></span><span>Professional security tools.</span></li>
+      <li><span class="pulse"></span><span>Private cyber-range environments.</span></li>
+    </ul>
+  </aside>
+  <main id="main" class="auth-panel">
+    <div class="auth-card">
+      <p class="eyebrow">Member access</p>
+      <h2>Welcome back</h2>
+      <p class="lede">Use the email and password for your ZeroTrace account.</p>
+      {% if error %}
+      <p class="alert" id="login-error" role="alert">{{ error }}</p>
+      {% endif %}
+      <form class="auth-form" method="post" action="/login/" data-auth-form novalidate>
+        {% csrf_token %}
+        <label for="email">Email address
+          <input class="field" id="email" name="email" type="email" autocomplete="username" inputmode="email" required value="{{ email }}" {% if error %}aria-invalid="true" aria-describedby="login-error"{% endif %}>
+        </label>
+        <label for="password">Password
+          <span class="pw">
+            <input class="field" id="password" name="password" type="password" autocomplete="current-password" required>
+            <button type="button" data-toggle-password="password" aria-pressed="false">Show</button>
+          </span>
+        </label>
+        <div class="row-between">
+          <label class="check" for="remember"><input id="remember" name="remember" type="checkbox"> Remember me</label>
+          <a class="text-link" href="/forgot-password/">Forgot password</a>
+        </div>
+        <button class="btn btn-signal" type="submit" data-submit>Sign in</button>
+      </form>
+      {% include "auth/google_button.html" with intent="login" label="Sign in with Google" %}
+      <p class="fine">New to ZeroTrace? <a class="text-link" href="/register/">Create an account</a></p>
+    </div>
+  </main>
+</div>
+{% endblock %}

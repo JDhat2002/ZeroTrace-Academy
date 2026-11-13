@@ -1,0 +1,16 @@
+{% extends "app/shell.html" %}
+{% block title %}Grade submission — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<p class="eyebrow">{{ submission.assignment.course.title }}</p>
+<h1>{{ submission.assignment.title }}</h1>
+<p class="fine">{{ submission.user.full_name }} · {{ submission.get_status_display }}</p>
+{% if notice %}<p class="alert" role="status">{{ notice }}</p>{% endif %}
+<p>{{ submission.body }}</p>
+{% if submission.stored_name %}<p><a class="text-link" href="/app/assignments/submissions/{{ submission.pk }}/">Download the file</a></p>{% endif %}
+<form method="post" class="stack-form">
+  {% csrf_token %}
+  <label>Score, out of {{ submission.assignment.max_marks }} <input class="field" name="score" value="{{ submission.score|default_if_none:'' }}"></label>
+  <label>Feedback <textarea class="field" name="feedback">{{ submission.feedback }}</textarea></label>
+  <button class="btn btn-signal" type="submit">Save grade</button>
+</form>
+{% endblock %}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pricing · ZeroTrace Academy</title>
+  <meta name="description" content="ZeroTrace Academy, ZeroTrace Teams, and ZeroTrace Campus are separate subscriptions. Prices come from the catalogue.">
+  <meta name="theme-color" content="#050807">
+  <link rel="icon" href="assets/favicon-mark.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  {% include "header.html" %}
+  <main id="main">
+    <div class="wrap page-hero">
+      <p class="kicker">Pricing</p>
+      <h1>Three products. Separate subscriptions.</h1>
+      <p class="lede">Individual, team, and campus prices are configured independently. Annual prices are the amounts stored for the year. Nothing on this page applies a discount or starts a subscription.</p>
+    </div>
+
+    {% include "marketing/_plans.html" with heading="ZeroTrace Academy" kicker="Individual" anchor="individual" plans=individual_plans intro="Personal memberships. A member manages only their own subscription." %}
+    {% include "marketing/_plans.html" with heading="ZeroTrace Teams" kicker="Team" anchor="teams" plans=team_plans intro="Shared seats, instructors, group learning, and central billing. These are not college plans." %}
+    {% include "marketing/_plans.html" with heading="ZeroTrace Campus" kicker="Institutional" anchor="campus" plans=campus_plans intro="College administration, classrooms, and institutional billing. Cloud, on-premises, and hybrid deployment are campus capabilities." %}
+
+    <section class="section" style="padding-top: 0">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Questions</p>
+            <h2>Said plainly.</h2>
+          </div>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-products" id="faq-btn-products">Are team and campus the same subscription?</button></h3>
+            <div class="answer" id="faq-products" role="region" aria-labelledby="faq-btn-products" hidden>
+              <p>No. ZeroTrace Teams and ZeroTrace Campus are separate products, with separate seats, billing, and administration.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-annual" id="faq-btn-annual">How does annual billing work?</button></h3>
+            <div class="answer" id="faq-annual" role="region" aria-labelledby="faq-btn-annual" hidden>
+              <p>The annual amount is the price configured for that plan. It is not a percentage taken off the monthly price, and a renewal does not silently change it.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-checkout" id="faq-btn-checkout">Can I subscribe from this page?</button></h3>
+            <div class="answer" id="faq-checkout" role="region" aria-labelledby="faq-btn-checkout" hidden>
+              <p>No. Choosing a plan here does not create a subscription or a payment. A confirmed payment is required before access changes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  {% include "footer.html" %}
+  <script src="js/site.js"></script>
+</body>
+</html>

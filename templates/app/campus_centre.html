@@ -1,0 +1,167 @@
+{% extends "app/shell.html" %}
+{% load membership_tags %}
+{% block title %}{{ institution.name }} — ZeroTrace Campus{% endblock %}
+{% block workspace %}
+<p class="eyebrow">ZeroTrace Campus</p>
+<h1>{{ institution.name }}</h1>
+<p>Institutional administration for this college only. Individual memberships and team billing are not mixed into this record.</p>
+{% if notice %}<p class="alert" role="status">{{ notice }}</p>{% endif %}
+{% if institution.plan %}
+<p class="fine">Plan: {{ institution.plan.name }}. {% if institution.plan.quote_only %}Custom quotation.{% else %}{{ institution.plan.price_inr|inr }} / month · {{ institution.plan.annual_price_inr|inr }} / year.{% endif %}</p>
+<ul>{% for feature in institution.plan.features %}<li>{{ feature }}</li>{% endfor %}</ul>
+{% endif %}
+<p class="fine">Deployment preference: {{ institution.get_deployment_display }}. Saving a preference does not provision servers.</p>
+{% if subscription %}
+<p class="fine">Subscription {{ subscription.get_status_display }}. Contracted {{ subscription.get_billing_interval_display|lower }} price {{ subscription.contracted_price_inr|inr }}. {% if subscription.expires_at %}Expires {{ subscription.expires_at|date:"j M Y" }}.{% endif %}</p>
+{% else %}
+<p class="fine">No confirmed campus subscription payment is on file.</p>
+{% endif %}
+
+{% if can_manage %}
+<form class="stack-form" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="action" value="deployment">
+  <label>Deployment
+    <select class="field" name="deployment">
+      <option value="cloud" {% if institution.deployment == "cloud" %}selected{% endif %}>Cloud</option>
+      <option value="on_premises" {% if institution.deployment == "on_premises" %}selected{% endif %}>On-premises</option>
+      <option value="hybrid" {% if institution.deployment == "hybrid" %}selected{% endif %}>Hybrid</option>
+    </select>
+  </label>
+  <button class="btn btn-ghost" type="submit">Save deployment preference</button>
+</form>
+{% endif %}
+
+<section class="section-block">
+  <h2>Academic programmes</h2>
+  {% if programmes %}<ul class="record-list">{% for row in programmes %}<li><div><strong>{{ row.name }}</strong><p>{{ row.summary }}</p></div></li>{% endfor %}</ul>{% else %}<p class="empty">No academic programme is recorded.</p>{% endif %}
+  {% if can_manage %}
+  <form class="stack-form" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="programme">
+    <label>Programme name <input class="field" name="name" required></label>
+    <label>Summary <textarea class="field" name="summary"></textarea></label>
+    <button class="btn btn-ghost" type="submit">Save programme</button>
+  </form>
+  {% endif %}
+</section>
+
+<section class="section-block">
+  <h2>Departments, batches, and classrooms</h2>
+  <p class="fine">Students {{ students }} / {{ seat_cap|default_if_none:"not set" }}. Instructors {{ instructors }}.</p>
+  {% if departments %}<ul class="record-list">{% for row in departments %}<li><div><strong>{{ row.name }}</strong><p class="fine">Department</p></div></li>{% endfor %}</ul>{% else %}<p class="empty">No department is recorded.</p>{% endif %}
+  {% if batches %}<ul class="record-list">{% for row in batches %}<li><div><strong>{{ row.name }}</strong><p class="fine">Batch</p></div></li>{% endfor %}</ul>{% endif %}
+  {% if classrooms %}
+  <ul class="record-list">{% for row in classrooms %}<li><div><strong>{{ row.name }}</strong><p class="fine">{{ row.get_kind_display }}</p></div></li>{% endfor %}</ul>
+  {% else %}<p class="empty">No classroom is recorded.</p>{% endif %}
+  {% if can_manage %}
+  <form class="stack-form" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="department">
+    <label>Department <input class="field" name="name" required></label>
+    <button class="btn btn-ghost" type="submit">Add department</button>
+  </form>
+  <form class="stack-form" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="batch">
+    <label>Batch <input class="field" name="name" required></label>
+    <label>Department
+      <select class="field" name="department"><option value="">None</option>{% for row in departments %}<option value="{{ row.pk }}">{{ row.name }}</option>{% endfor %}</select>
+    </label>
+    <button class="btn btn-ghost" type="submit">Add batch</button>
+  </form>
+  {% endif %}
+  {% if can_teach %}
+  <form class="stack-form" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="classroom">
+    <label>Classroom <input class="field" name="name" required></label>
+    <label>Type
+      <select class="field" name="kind">
+        <option value="general">Classroom</option>
+        <option value="soc">SOC classroom</option>
+        <option value="forensics">Digital forensics classroom</option>
+      </select>
+    </label>
+    <button class="btn btn-ghost" type="submit">Add classroom</button>
+  </form>
+  {% endif %}
+</section>
+
+{% if can_manage %}
+<section class="section-block">
+  <h2>Student and instructor accounts</h2>
+  <ul class="record-list">{% for row in accounts %}<li><div><strong>{{ row.user.full_name }}</strong><p class="fine">{{ row.get_role_display }} · {{ row.user.username }}</p></div></li>{% endfor %}</ul>
+  <form class="stack-form" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="allocate">
+    <label>Username <input class="field" name="username" required></label>
+    <label>Role
+      <select class="field" name="role">
+        <option value="student">Student</option>
+        <option value="instructor">Instructor</option>
+      </select>
+    </label>
+    <button class="btn btn-signal" type="submit">Allocate account</button>
+  </form>
+</section>
+{% endif %}
+
+<section class="section-block">
+  <h2>VM controls</h2>
+  <p class="fine">Running VMs {{ vm_running }} / {{ vm_cap }}. VM-hours {{ vm_hours_used }} / {{ vm_hours_cap }}.</p>
+  {% if can_teach %}
+  <form class="stack-form" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="lab">
+    <label>Lab
+      <select class="field" name="lab">{% for lab in labs %}<option value="{{ lab.slug }}">{{ lab.name }}</option>{% endfor %}</select>
+    </label>
+    <button class="btn btn-ghost" type="submit">Record lab control</button>
+  </form>
+  {% endif %}
+  {% if lab_controls %}
+  <ul class="record-list">{% for row in lab_controls %}<li><div><strong>{{ row.lab.name }}</strong><p class="fine">{{ row.outcome }} · {{ row.detail }}</p></div></li>{% endfor %}</ul>
+  {% endif %}
+</section>
+
+<section class="section-block">
+  <h2>Examinations and competitions</h2>
+  {% for classroom in exams %}
+    {% for exam in classroom.exams.all %}
+    <p><strong>{{ exam.title }}</strong> <span class="fine">{{ classroom.name }}</span></p>
+    {% endfor %}
+  {% endfor %}
+  {% if can_teach and classrooms %}
+  <form class="stack-form" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="exam">
+    <label>Classroom
+      <select class="field" name="classroom">{% for row in classrooms %}<option value="{{ row.pk }}">{{ row.name }}</option>{% endfor %}</select>
+    </label>
+    <label>Examination title <input class="field" name="title" required></label>
+    <button class="btn btn-ghost" type="submit">Save examination</button>
+  </form>
+  <form class="stack-form" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="competition">
+    <label>Competition <input class="field" name="name" required></label>
+    <label>Type
+      <select class="field" name="kind"><option value="ctf">CTF</option><option value="teams">Team competition</option></select>
+    </label>
+    <button class="btn btn-ghost" type="submit">Save competition</button>
+  </form>
+  {% endif %}
+  {% if competitions %}<ul class="record-list">{% for row in competitions %}<li><div><strong>{{ row.name }}</strong><p class="fine">{{ row.get_kind_display }}</p></div></li>{% endfor %}</ul>{% endif %}
+</section>
+
+{% if can_bill %}
+<section class="section-block">
+  <h2>College billing and renewals</h2>
+  {% if payments %}
+  <ul class="record-list">{% for row in payments %}<li><div><strong>{{ row.get_status_display }}</strong><p class="fine">{{ row.amount_inr|inr }}</p></div></li>{% endfor %}</ul>
+  {% else %}<p class="empty">No campus payment has been recorded.</p>{% endif %}
+  <p class="fine">Invoices on this institution: {{ invoices|length }}.</p>
+</section>
+{% endif %}
+{% endblock %}

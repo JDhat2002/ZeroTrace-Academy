@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Onboarding — ZeroTrace Academy{% endblock %}
+{% block body %}
+<main id="main" class="auth-simple">
+  <a href="/"><img class="auth-mark" src="/assets/logo.png" alt="ZeroTrace Academy"></a>
+  <div class="auth-card auth-card-wide">
+    <p class="eyebrow">Step {{ step }} of 7</p>
+    {% if error %}<p class="alert" role="alert">{{ error }}</p>{% endif %}
+    <form method="post" class="auth-form" data-auth-form>
+      {% csrf_token %}
+      <input type="hidden" name="step" value="{{ step }}">
+      {% if step == 1 %}
+      <h2>WELCOME TO ZEROTRACE.</h2>
+      <p class="lede">ZeroTrace Academy is a learning and research workspace for authorised cybersecurity practice. You will pick a pace, then get a starting path. Courses, labs, and tools that are not live yet stay marked as previews.</p>
+      <button class="btn btn-signal" type="submit" data-submit>Continue</button>
+      {% elif step == 2 %}
+      <h2>What is your experience level?</h2>
+      <div class="choices">
+        {% for value, label in levels %}
+        <label class="choice"><input type="radio" name="experience_level" value="{{ value }}" {% if preference.experience_level == value %}checked{% endif %}> {{ label }}</label>
+        {% endfor %}
+      </div>
+      {% elif step == 3 %}
+      <h2>What do you want to study?</h2>
+      <p class="lede">Choose every area that fits. You can change this later.</p>
+      <div class="choices">
+        {% for value, label in topic_choices %}
+        <label class="choice"><input type="checkbox" name="interests" value="{{ value }}" {% if value in selected_topics %}checked{% endif %}> {{ label }}</label>
+        {% endfor %}
+      </div>
+      {% elif step == 4 %}
+      <h2>What is the objective?</h2>
+      <div class="choices">
+        {% for value, label in objectives %}
+        <label class="choice"><input type="radio" name="objective" value="{{ value }}" {% if preference.objective == value %}checked{% endif %}> {{ label }}</label>
+        {% endfor %}
+      </div>
+      {% elif step == 5 %}
+      <h2>How long can you study on a typical day?</h2>
+      <div class="choices">
+        {% for minutes in minutes %}
+        <label class="choice"><input type="radio" name="daily_minutes" value="{{ minutes }}" {% if preference.daily_minutes == minutes %}checked{% endif %}> {{ minutes }} minutes</label>
+        {% endfor %}
+      </div>
+      {% elif step == 6 %}
+      <h2>A starting recommendation</h2>
+      <section class="recommend">
+        <h3>{{ recommendation.title }}</h3>
+        <p>{{ recommendation.reason }}</p>
+        <p class="fine">{{ recommendation.duration }}</p>
+      </section>
+      <p class="lede">This is a study suggestion based on the answers so far. It is not a certification and it does not unlock a live lab.</p>
+      {% else %}
+      <h2>YOUR ZEROTrace JOURNEY BEGINS NOW.</h2>
+      <p class="lede">Your preferences are saved. The member dashboard is the next stop, and you can change these answers later from your profile.</p>
+      <button class="btn btn-signal" name="finish" value="1" type="submit" data-submit>Go to the dashboard</button>
+      {% endif %}
+      {% if step > 1 and step < 7 %}
+      <div class="row-between">
+        <button class="btn btn-ghost" type="submit" data-submit>Continue</button>
+        <button class="btn btn-ghost" name="skip" value="1" type="submit">Skip this step</button>
+      </div>
+      {% elif step == 6 %}
+      <button class="btn btn-signal" type="submit" data-submit>Continue</button>
+      {% endif %}
+      {% if step < 7 %}
+      <button class="text-link as-button" name="skip_all" value="1" type="submit">Skip onboarding for now</button>
+      {% endif %}
+    </form>
+  </div>
+</main>
+{% endblock %}

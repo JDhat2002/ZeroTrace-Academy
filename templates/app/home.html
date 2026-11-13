@@ -1,0 +1,115 @@
+{% extends "app/shell.html" %}
+{% block title %}Dashboard — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<section class="welcome">
+  <div>
+    <p class="eyebrow">Member workspace</p>
+    <h1>Welcome back, {{ first_name }}</h1>
+    <p>Your cybersecurity journey continues. Keep learning, practising and building real-world security skills.</p>
+    <p class="fine">{{ message }}</p>
+  </div>
+  <aside class="identity">
+    {% if request.user.profile.avatar %}
+    <img class="avatar" src="{{ request.user.profile.avatar.url }}" alt="">
+    {% else %}
+    <p class="avatar-fallback">{{ first_name|slice:":1" }}</p>
+    {% endif %}
+    <p><strong>{{ plan_name }}</strong></p>
+    <p class="fine">Streak {{ metrics.streak }} day{{ metrics.streak|pluralize }}</p>
+    <p class="fine">Last active {% if metrics.last_active %}{{ metrics.last_active|date:"j M, H:i" }} UTC{% else %}not recorded{% endif %}</p>
+    <p class="fine">{% if request.user.email_verified %}Email verified{% else %}Email not verified{% endif %}</p>
+    <a class="text-link" href="/app/preferences/">Learning target</a>
+  </aside>
+</section>
+
+<section class="metric-grid" aria-label="Your records">
+  {% include "app/metric.html" with label="Overall progress" value=metrics.overall_progress suffix="%" %}
+  {% include "app/metric.html" with label="Courses enrolled" value=metrics.courses_enrolled %}
+  {% include "app/metric.html" with label="Courses completed" value=metrics.courses_completed %}
+  {% include "app/metric.html" with label="Labs completed" value=metrics.labs_completed %}
+  {% include "app/metric.html" with label="Range minutes" value=metrics.range_minutes %}
+  {% include "app/metric.html" with label="Learning streak" value=metrics.streak %}
+  {% include "app/metric.html" with label="Certificates" value=metrics.certificates %}
+  {% include "app/metric.html" with label="CTF solved" value=metrics.ctf_solved %}
+</section>
+
+<section class="split-board">
+  <div>
+    <h2>Continue learning</h2>
+    {% if continue_rows %}
+      {% for row in continue_rows %}
+      <article class="course-row">
+        <p class="course-mark">{{ row.enrolment.course.department|slice:":2" }}</p>
+        <div>
+          <h3>{{ row.enrolment.course.title }}</h3>
+          <p class="fine">{{ row.enrolment.course.department }} · {% if row.enrolment.course.instructor %}{{ row.enrolment.course.instructor }}{% else %}Instructor not assigned{% endif %}</p>
+          <p class="fine">{{ row.percent }}% · Last opened {% if row.enrolment.last_accessed_at %}{{ row.enrolment.last_accessed_at|date:"j M" }}{% else %}not yet{% endif %}</p>
+          <p class="fine">Next: {% if row.next %}{{ row.next.title }}{% else %}Outline complete{% endif %}</p>
+          <a class="btn btn-signal" href="/app/courses/{{ row.enrolment.course.slug }}/">Resume learning</a>
+        </div>
+      </article>
+      {% endfor %}
+    {% else %}
+    <p class="empty">No course is enrolled. The preview catalogue is available under All Courses. New to computers or security? <a class="text-link" href="/app/foundations/">Start with Foundations</a>.</p>
+    {% endif %}
+  </div>
+  <div>
+    <h2>Recommended for you</h2>
+    <p class="fine">Matched from your saved interests and goals.</p>
+    {% for course in recommended %}
+    <article class="course-row">
+      <div>
+        <h3><a class="text-link" href="/app/courses/{{ course.slug }}/">{{ course.title }}</a></h3>
+        <p class="fine">{{ course.department }} · {{ course.get_level_display }} · {{ course.get_status_display }}</p>
+      </div>
+    </article>
+    {% empty %}
+    <p class="empty">Nothing further matches the catalogue.</p>
+    {% endfor %}
+    <h2>Pending assignments</h2>
+    {% for item in snapshot.pending_assignments %}
+    <p><a class="text-link" href="/app/courses/{{ item.course.slug }}/">{{ item.title }}</a></p>
+    {% empty %}<p class="empty">No assignment is waiting.</p>{% endfor %}
+    <h2>Upcoming assessments</h2>
+    {% for item in snapshot.upcoming_assessments %}
+    <p><a class="text-link" href="/app/assessments/{{ item.pk }}/">{{ item.title }}</a></p>
+    {% empty %}<p class="empty">No assessment is open.</p>{% endfor %}
+    <h2>Recent grades</h2>
+    {% for item in snapshot.recent_grades %}
+    <p class="fine">{{ item.assessment.title }} · {{ item.score }}</p>
+    {% empty %}<p class="empty">No graded attempt is recorded.</p>{% endfor %}
+    <h2>Today's target</h2>
+    {% if error %}<p class="alert" role="alert">{{ error }}</p>{% endif %}
+    <p>{{ goal.daily_minutes }} minutes today · {{ goal.weekly_days }} days this week.</p>
+    <p class="fine">Recorded today: {{ metrics.studied_today }} minutes. Week: {{ metrics.week_minutes }}. Month: {{ metrics.month_minutes }}.</p>
+    <form method="post" class="auth-form">
+      {% csrf_token %}
+      <label>Daily minutes
+        <select class="field" name="daily_minutes">
+          <option value="15" {% if goal.daily_minutes == 15 %}selected{% endif %}>15</option>
+          <option value="30" {% if goal.daily_minutes == 30 %}selected{% endif %}>30</option>
+          <option value="45" {% if goal.daily_minutes == 45 %}selected{% endif %}>45</option>
+          <option value="60" {% if goal.daily_minutes == 60 %}selected{% endif %}>60</option>
+          <option value="90" {% if goal.daily_minutes == 90 %}selected{% endif %}>90</option>
+          <option value="120" {% if goal.daily_minutes == 120 %}selected{% endif %}>120</option>
+        </select>
+      </label>
+      <label>Weekly days
+        <select class="field" name="weekly_days">
+          <option value="3" {% if goal.weekly_days == 3 %}selected{% endif %}>3</option>
+          <option value="4" {% if goal.weekly_days == 4 %}selected{% endif %}>4</option>
+          <option value="5" {% if goal.weekly_days == 5 %}selected{% endif %}>5</option>
+          <option value="6" {% if goal.weekly_days == 6 %}selected{% endif %}>6</option>
+          <option value="7" {% if goal.weekly_days == 7 %}selected{% endif %}>7</option>
+        </select>
+      </label>
+      <button class="btn btn-ghost" type="submit">Save target</button>
+    </form>
+    <div class="bars" aria-label="Minutes recorded over seven days">
+      {% for bar in bars %}
+      <div><span style="height: {{ bar.height }}%"></span><small>{{ bar.label }}</small></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

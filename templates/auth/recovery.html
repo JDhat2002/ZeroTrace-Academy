@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Account recovery — ZeroTrace Academy{% endblock %}
+{% block body %}
+<main id="main" class="auth-simple">
+  <a href="/"><img class="auth-mark" src="/assets/logo.png" alt="ZeroTrace Academy"></a>
+  <div class="auth-card">
+    <p class="eyebrow">Account recovery</p>
+    <h2>Get back into your account</h2>
+    <p class="lede">Recovery codes are created when two-factor authentication is turned on. Each code works once. ZeroTrace does not email those codes.</p>
+    <ul class="auth-points">
+      <li><span class="pulse"></span><span>Forgot the password: request a reset. The reply does not reveal whether the email is registered.</span></li>
+      <li><span class="pulse"></span><span>Still have a recovery code: enter it on the verification screen in place of the authenticator code.</span></li>
+      <li><span class="pulse"></span><span>Lost both the app and the codes: reset the password, then contact support from a channel you already trust. Support cannot read your password.</span></li>
+    </ul>
+    <p class="fine">
+      <a class="btn btn-signal" href="/forgot-password/">Reset password</a>
+    </p>
+    {% if challenge %}
+    <p class="fine"><a class="text-link" href="/login/mfa/">Enter a recovery code</a></p>
+    {% endif %}
+    <p class="fine"><a class="text-link" href="/login/">Back to sign in</a></p>
+  </div>
+</main>
+{% endblock %}

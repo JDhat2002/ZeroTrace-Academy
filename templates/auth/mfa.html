@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Two-factor authentication — ZeroTrace Academy{% endblock %}
+{% block body %}
+<main id="main" class="auth-simple">
+  <a href="/"><img class="auth-mark" src="/assets/logo.png" alt="ZeroTrace Academy"></a>
+  <div class="auth-card">
+    <p class="eyebrow">Two-factor authentication</p>
+    <h2>Enter your verification code</h2>
+    <p class="lede">Use the 6-digit code from your authenticator app, or one unused recovery code.</p>
+    {% if error %}
+    <p class="alert" role="alert">{{ error }}</p>
+    {% endif %}
+    <form class="auth-form" method="post" data-auth-form>
+      {% csrf_token %}
+      <label for="code">Verification code
+        <input class="field" id="code" name="code" inputmode="text" autocomplete="one-time-code" required autofocus>
+      </label>
+      <button class="btn btn-signal" type="submit" data-submit>Verify</button>
+    </form>
+    <p class="fine"><a class="text-link" href="/account/recovery/">Lost the authenticator app?</a> · <a class="text-link" href="/login/">Start over</a></p>
+  </div>
+</main>
+{% endblock %}

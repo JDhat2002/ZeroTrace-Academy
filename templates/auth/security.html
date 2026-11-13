@@ -1,0 +1,96 @@
+{% extends "app/shell.html" %}
+{% block title %}Security — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+  <div class="auth-card auth-card-wide">
+    <p class="eyebrow">Account security</p>
+    <h2>Two-factor authentication</h2>
+    {% if setup_required %}
+    <p class="alert" role="alert">This account must enroll an authenticator app before the dashboard opens.</p>
+    {% endif %}
+    {% if error %}<p class="alert" role="alert">{{ error }}</p>{% endif %}
+    {% if password_done %}<p class="ok" role="status">Password updated. Other sessions were signed out.</p>{% endif %}
+    {% if codes %}
+    <p class="ok" role="status">Two-factor authentication is on. Store these recovery codes now. They are shown once and are not emailed.</p>
+    <ul class="codes">
+      {% for code in codes %}
+      <li><code>{{ code }}</code></li>
+      {% endfor %}
+    </ul>
+    <a class="btn btn-signal" href="/dashboard/">Continue</a>
+    {% elif config and config.confirmed %}
+    <p class="lede">An authenticator app is required at sign-in. Recovery codes already issued stay valid until they are used.</p>
+    {% if not user.mfa_required and not user.is_staff %}
+    <form class="auth-form" method="post" data-auth-form>
+      {% csrf_token %}
+      <input type="hidden" name="action" value="disable">
+      <label for="password">Current password
+        <input class="field" id="password" name="password" type="password" autocomplete="current-password" required>
+      </label>
+      <label for="code">Current authenticator or recovery code
+        <input class="field" id="code" name="code" required>
+      </label>
+      <button class="btn btn-ghost" type="submit">Turn off two-factor authentication</button>
+    </form>
+    {% else %}
+    <p class="hint">Administrator accounts cannot turn this off.</p>
+    {% endif %}
+    {% else %}
+    <p class="lede">Install an authenticator app, scan the code, then enter the 6-digit code to confirm. You can also type the secret if the camera is unavailable.</p>
+    {% if enrollment %}
+    <img class="qr" src="{{ enrollment.qr }}" alt="Authenticator enrollment code">
+    <p class="fine">Manual secret: <code>{{ enrollment.secret }}</code></p>
+    <form class="auth-form" method="post" data-auth-form>
+      {% csrf_token %}
+      <input type="hidden" name="action" value="confirm">
+      <label for="code">6-digit code
+        <input class="field" id="code" name="code" inputmode="numeric" autocomplete="one-time-code" required>
+      </label>
+      <button class="btn btn-signal" type="submit" data-submit>Confirm authenticator</button>
+    </form>
+    {% else %}
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="begin">
+      <button class="btn btn-signal" type="submit">Start setup</button>
+    </form>
+    {% endif %}
+    {% endif %}
+
+    <h2>Password</h2>
+    <form class="auth-form" method="post" data-auth-form>
+      {% csrf_token %}
+      <input type="hidden" name="action" value="password">
+      <label for="current_password">Current password
+        <input class="field" id="current_password" name="current_password" type="password" autocomplete="current-password" required>
+      </label>
+      <label for="new_password">New password
+        <span class="pw">
+          <input class="field" id="new_password" name="password" type="password" autocomplete="new-password" required data-password>
+          <button type="button" data-toggle-password="new_password" aria-pressed="false">Show</button>
+        </span>
+      </label>
+      <div class="strength" data-strength-meter><span data-strength-bar></span></div>
+      <p class="hint" data-strength-label>Use 12 or more characters with upper and lower case, a number, and a symbol.</p>
+      <label for="confirm_password">Confirm new password
+        <input class="field" id="confirm_password" name="confirm_password" type="password" autocomplete="new-password" required>
+      </label>
+      <button class="btn btn-ghost" type="submit">Change password</button>
+    </form>
+
+    <h2>Recent security events</h2>
+    {% if events %}
+    <ul class="session-list">
+      {% for event in events %}
+      <li>
+        <div>
+          <strong>{{ event.get_kind_display }}</strong>
+          <p class="fine">{{ event.created_at|date:"j M Y, H:i" }} UTC · {{ event.ip_address|default:"No address" }}</p>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="lede">No security events yet.</p>
+    {% endif %}
+  </div>
+{% endblock %}

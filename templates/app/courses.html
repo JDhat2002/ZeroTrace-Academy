@@ -1,0 +1,70 @@
+{% extends "app/shell.html" %}
+{% block title %}Courses — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<h1>Course catalogue</h1>
+<p>Preview outlines and published courses. Drafts stay in the studio. Ratings appear only after a learner submits one.</p>
+<form method="get" class="stack-form">
+  <label>Search <input class="field" name="q" value="{{ params.q }}"></label>
+  <label>Department
+    <select class="field" name="department">
+      <option value="">All departments</option>
+      {% for row in filters.departments %}<option value="{{ row.slug }}" {% if params.department == row.slug %}selected{% endif %}>{{ row.name }}</option>{% endfor %}
+    </select>
+  </label>
+  <label>Level
+    <select class="field" name="level">
+      <option value="">Any level</option>
+      {% for value, label in filters.levels %}<option value="{{ value }}" {% if params.level == value %}selected{% endif %}>{{ label }}</option>{% endfor %}
+    </select>
+  </label>
+  <label>Access
+    <select class="field" name="access">
+      <option value="">Any</option>
+      <option value="free" {% if params.access == "free" %}selected{% endif %}>Free</option>
+      <option value="paid" {% if params.access == "paid" %}selected{% endif %}>Paid or membership</option>
+    </select>
+  </label>
+  <label>Duration
+    <select class="field" name="duration">
+      <option value="">Any</option>
+      <option value="short" {% if params.duration == "short" %}selected{% endif %}>Up to 2 hours</option>
+      <option value="medium" {% if params.duration == "medium" %}selected{% endif %}>2 to 10 hours</option>
+      <option value="long" {% if params.duration == "long" %}selected{% endif %}>Over 10 hours</option>
+    </select>
+  </label>
+  <label>Instructor <input class="field" name="instructor" value="{{ params.instructor }}"></label>
+  <label>Language
+    <select class="field" name="language">
+      <option value="">Any language</option>
+      {% for name in filters.languages %}<option value="{{ name }}" {% if params.language == name %}selected{% endif %}>{{ name }}</option>{% endfor %}
+    </select>
+  </label>
+  <label class="checkline"><input type="checkbox" name="certificate" value="yes" {% if params.certificate == "yes" %}checked{% endif %}> Certificate eligible</label>
+  <label class="checkline"><input type="checkbox" name="labs" value="yes" {% if params.labs == "yes" %}checked{% endif %}> Practical lab attached</label>
+  <label>Sort
+    <select class="field" name="sort">
+      <option value="title" {% if params.sort == "title" %}selected{% endif %}>Title</option>
+      <option value="recent" {% if params.sort == "recent" %}selected{% endif %}>Recently published</option>
+      <option value="rating" {% if params.sort == "rating" %}selected{% endif %}>Rating, where reviews exist</option>
+    </select>
+  </label>
+  <button class="btn btn-ghost" type="submit">Filter</button>
+</form>
+<ul class="record-list">
+  {% for course in courses %}
+  <li>
+    <div>
+      {% if course.thumbnail %}<img src="{{ course.thumbnail.url }}" alt="" width="96">{% endif %}
+      <strong><a class="text-link" href="/app/courses/{{ course.slug }}/">{{ course.title }}</a></strong>
+      <p class="fine">{{ course.department }} · {{ course.get_level_display }} · {{ course.language }} · {{ course.duration_minutes }} min</p>
+      <p class="fine">{{ course.module_count }} module{{ course.module_count|pluralize }} · {{ course.lesson_count }} lesson{{ course.lesson_count|pluralize }} · {% if course.certificate_eligible %}Certificate eligible{% else %}No certificate{% endif %}</p>
+      <p class="fine">{% if course.instructor %}{{ course.instructor }}{% else %}Instructor not assigned{% endif %} · {% if course.price_inr %}₹{{ course.price_inr }}{% else %}{{ course.membership_code }} membership{% endif %}</p>
+      <p class="fine">{% if course.review_count %}{{ course.review_average|floatformat:1 }} from {{ course.review_count }} review{{ course.review_count|pluralize }}{% else %}No reviews yet{% endif %}</p>
+      <p>{{ course.summary }}</p>
+    </div>
+  </li>
+  {% empty %}
+  <li><p class="empty">No course matches these filters.</p></li>
+  {% endfor %}
+</ul>
+{% endblock %}

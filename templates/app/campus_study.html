@@ -1,0 +1,15 @@
+{% extends "app/shell.html" %}
+{% block title %}{{ institution.name }} — ZeroTrace Campus{% endblock %}
+{% block workspace %}
+<p class="eyebrow">ZeroTrace Campus</p>
+<h1>{{ institution.name }}</h1>
+<p>Your student workspace. College billing and administration are not shown here.</p>
+<h2>Classrooms</h2>
+{% if classrooms %}
+<ul class="record-list">{% for row in classrooms %}<li><div><strong>{{ row.name }}</strong><p class="fine">{{ row.get_kind_display }}</p></div></li>{% endfor %}</ul>
+{% else %}<p class="empty">No classroom is assigned yet.</p>{% endif %}
+<h2>Competitions</h2>
+{% if competitions %}
+<ul class="record-list">{% for row in competitions %}<li><div><strong>{{ row.name }}</strong><p class="fine">{{ row.get_kind_display }}</p></div></li>{% endfor %}</ul>
+{% else %}<p class="empty">No competition is scheduled.</p>{% endif %}
+{% endblock %}

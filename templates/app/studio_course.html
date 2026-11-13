@@ -1,0 +1,159 @@
+{% extends "app/shell.html" %}
+{% block title %}{{ course.title }} — Studio{% endblock %}
+{% block workspace %}
+<p class="eyebrow">{{ course.get_status_display }}</p>
+<h1>{{ course.title }}</h1>
+{% if notice %}<p class="alert" role="status">{{ notice }}</p>{% endif %}
+{% if course.review_note %}<p class="fine">Review note: {{ course.review_note }}</p>{% endif %}
+<form class="stack-form" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="hidden" name="action" value="save">
+  <label>Title <input class="field" name="title" value="{{ course.title }}"></label>
+  <label>Department
+    <select class="field" name="department">{% for row in departments %}<option value="{{ row.slug }}" {% if course.department_key == row.slug %}selected{% endif %}>{{ row.name }}</option>{% endfor %}</select>
+  </label>
+  <label>Description <textarea class="field" name="summary">{{ course.summary }}</textarea></label>
+  <label>Level
+    <select class="field" name="level">{% for value, label in levels %}<option value="{{ value }}" {% if course.level == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>
+  </label>
+  <label>Prerequisites <textarea class="field" name="prerequisites">{{ course.prerequisites }}</textarea></label>
+  <label>Learning objectives, one per line <textarea class="field" name="outcomes">{% for item in course.outcomes %}{{ item }}
+{% endfor %}</textarea></label>
+  <label>Estimated minutes <input class="field" name="duration" value="{{ course.duration_minutes }}"></label>
+  <label>Language
+    <select class="field" name="language">
+      {% for code, name in languages %}<option value="{{ name }}" {% if course.language == name %}selected{% endif %}>{{ name }}</option>{% endfor %}
+      {% if course.language not in language_names %}<option value="{{ course.language }}" selected>{{ course.language }}</option>{% endif %}
+    </select>
+  </label>
+  <label>Membership code <input class="field" name="membership" value="{{ course.membership_code }}"></label>
+  <label>Practical requirements <textarea class="field" name="practical">{{ course.practical_requirements }}</textarea></label>
+  <label>Assessment structure <textarea class="field" name="assessment">{{ course.assessment_summary }}</textarea></label>
+  <label>Certificate conditions <textarea class="field" name="certificate_rule">{{ course.certificate_rule }}</textarea></label>
+  <label class="checkline"><input type="checkbox" name="certificate" {% if course.certificate_eligible %}checked{% endif %}> Certificate eligible after the published completion rule</label>
+  <label>Lesson weight <input class="field" name="weight_lesson" value="{{ course.weight_lesson|default_if_none:weights.weight_lesson }}"></label>
+  <label>Quiz weight <input class="field" name="weight_quiz" value="{{ course.weight_quiz|default_if_none:weights.weight_quiz }}"></label>
+  <label>Lab weight <input class="field" name="weight_lab" value="{{ course.weight_lab|default_if_none:weights.weight_lab }}"></label>
+  <label>Assignment weight <input class="field" name="weight_assignment" value="{{ course.weight_assignment|default_if_none:weights.weight_assignment }}"></label>
+  <label>Final assessment weight <input class="field" name="weight_final" value="{{ course.weight_final|default_if_none:weights.weight_final }}"></label>
+  <label>Thumbnail <input class="field" type="file" name="thumbnail" accept="image/png,image/jpeg,image/webp"></label>
+  <button class="btn btn-signal" type="submit">Save draft</button>
+</form>
+<p class="fine">Each save is kept in the revision history. Completion uses these weights only for components that exist. Opening a lesson or watching a video does not finish the course.</p>
+
+<h2>Curriculum</h2>
+{% for module in course.modules.all %}
+<section>
+  <h3>{{ module.title }}</h3>
+  <form method="post">{% csrf_token %}<input type="hidden" name="action" value="move"><input type="hidden" name="target" value="module-{{ module.pk }}"><button class="btn btn-ghost" name="direction" value="up" type="submit">Up</button> <button class="btn btn-ghost" name="direction" value="down" type="submit">Down</button></form>
+  <ul>{% for lesson in module.lessons.all %}
+    <li>{{ lesson.title }} · {{ lesson.get_kind_display }}
+      <form method="post">{% csrf_token %}<input type="hidden" name="action" value="move"><input type="hidden" name="target" value="lesson-{{ module.pk }}:{{ lesson.pk }}"><button class="btn btn-ghost" name="direction" value="up" type="submit">Up</button> <button class="btn btn-ghost" name="direction" value="down" type="submit">Down</button></form>
+    </li>
+  {% endfor %}</ul>
+  <form class="stack-form" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="lesson">
+    <input type="hidden" name="module" value="{{ module.pk }}">
+    <label>Lesson title <input class="field" name="title" required></label>
+    <label>Type
+      <select class="field" name="kind">
+        <option value="reading">Text</option>
+        <option value="video">Video</option>
+        <option value="interactive">Interactive tutorial</option>
+        <option value="code">Code exercise</option>
+        <option value="lab">Practical lab</option>
+        <option value="quiz">Quiz</option>
+        <option value="assignment">Assignment</option>
+        <option value="case">Case study</option>
+        <option value="download">Download</option>
+        <option value="external">External resource</option>
+      </select>
+    </label>
+    <label>Body <textarea class="field" name="body"></textarea></label>
+    <button class="btn btn-ghost" type="submit">Add lesson</button>
+  </form>
+</section>
+{% endfor %}
+<form class="stack-form" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="action" value="module">
+  <label>New module <input class="field" name="title" required></label>
+  <button class="btn btn-ghost" type="submit">Add module</button>
+</form>
+
+<h2>Attach a lab</h2>
+<form class="stack-form" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="action" value="attach-lab">
+  <label>Lesson
+    <select class="field" name="lesson">{% for module in course.modules.all %}{% for lesson in module.lessons.all %}<option value="{{ lesson.pk }}">{{ lesson.title }}</option>{% endfor %}{% endfor %}</select>
+  </label>
+  <label>Approved lab record
+    <select class="field" name="lab">{% for lab in labs %}<option value="{{ lab.slug }}">{{ lab.name }}</option>{% endfor %}</select>
+  </label>
+  <button class="btn btn-ghost" type="submit">Attach lab</button>
+</form>
+
+<h2>Question and assessment</h2>
+<form class="stack-form" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="action" value="question">
+  <label>Prompt <textarea class="field" name="prompt" required></textarea></label>
+  <label>Type
+    <select class="field" name="kind">
+      <option value="mcq">Multiple choice</option>
+      <option value="bool">True or false</option>
+      <option value="short">Short answer</option>
+      <option value="long">Long answer</option>
+      <option value="practical">Practical task</option>
+    </select>
+  </label>
+  <label>Option <input class="field" name="option"></label>
+  <label>Option <input class="field" name="option"></label>
+  <label>Correct option index <input class="field" name="correct" value="0"></label>
+  <label>Answer key for short or true/false <input class="field" name="answer_key"></label>
+  <label>Marks <input class="field" name="marks" value="1"></label>
+  <button class="btn btn-ghost" type="submit">Save question</button>
+</form>
+<form class="stack-form" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="action" value="assessment">
+  <label>Assessment title <input class="field" name="title"></label>
+  <label>Instructions <textarea class="field" name="instructions"></textarea></label>
+  <label>Pass percent <input class="field" name="pass_percent" value="70"></label>
+  <label>Attempt limit <input class="field" name="attempt_limit" value="1"></label>
+  <label>Time limit minutes <input class="field" name="time_limit"></label>
+  <label>Total marks <input class="field" name="total_marks" value="1"></label>
+  <label class="checkline"><input type="checkbox" name="randomise"> Randomise questions</label>
+  <label class="checkline"><input type="checkbox" name="negative"> Negative marking</label>
+  <label class="checkline"><input type="checkbox" name="final"> Final assessment</label>
+  <button class="btn btn-ghost" type="submit">Save assessment draft</button>
+</form>
+
+<h2>Assignment</h2>
+<form class="stack-form" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="action" value="assignment">
+  <label>Title <input class="field" name="title"></label>
+  <label>Instructions <textarea class="field" name="instructions"></textarea></label>
+  <label>Rubric <textarea class="field" name="rubric"></textarea></label>
+  <label>Maximum marks <input class="field" name="max_marks" value="100"></label>
+  <label>Allowed extensions <input class="field" name="extensions" value="pdf,txt,md,png,jpg,jpeg,docx"></label>
+  <label class="checkline"><input type="checkbox" name="allow_late"> Allow late submission</label>
+  <label class="checkline"><input type="checkbox" name="allow_resubmit"> Allow resubmission</label>
+  <button class="btn btn-ghost" type="submit">Save assignment</button>
+</form>
+
+<h2>Review</h2>
+<form method="post">{% csrf_token %}<input type="hidden" name="action" value="submit-review"><button class="btn btn-signal" type="submit">Submit for review</button></form>
+{% if can_publish %}
+<form method="post">{% csrf_token %}<input type="hidden" name="action" value="approve"><label>Note <input class="field" name="note"></label><button class="btn btn-ghost" type="submit">Approve</button></form>
+<form method="post">{% csrf_token %}<input type="hidden" name="action" value="reject"><label>Note <input class="field" name="note"></label><button class="btn btn-ghost" type="submit">Reject</button></form>
+<form method="post">{% csrf_token %}<input type="hidden" name="action" value="publish"><button class="btn btn-signal" type="submit">Publish</button></form>
+<form method="post">{% csrf_token %}<input type="hidden" name="action" value="archive"><button class="btn btn-ghost" type="submit">Archive</button></form>
+{% endif %}
+<p class="fine"><a class="text-link" href="/app/courses/{{ course.slug }}/">Preview</a></p>
+<h2>Revisions</h2>
+<ul>{% for row in revisions %}<li class="fine">{{ row.created_at|date:"j M Y, H:i" }} · {{ row.snapshot.status }}</li>{% empty %}<li>No revision yet.</li>{% endfor %}</ul>
+{% endblock %}

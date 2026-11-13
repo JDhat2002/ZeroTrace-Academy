@@ -1,0 +1,72 @@
+{% extends "app/shell.html" %}
+{% block title %}{{ lesson.title }} — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<p class="eyebrow"><a class="text-link" href="/app/courses/{{ course.slug }}/">{{ course.title }}</a></p>
+<h1>{{ lesson.title }}</h1>
+<p class="fine">{{ lesson.get_kind_display }} · {{ lesson.duration_minutes }} min{% if progress %} · Playback {{ progress.video_ratio }}%{% endif %}</p>
+{% if notice %}<p class="alert" role="status">{{ notice }}</p>{% endif %}
+<div class="split-board">
+  <div>
+    {% if video_ok %}
+    <video controls src="{{ lesson.video_reference }}" {% if progress.video_ratio %}data-resume="{{ progress.video_ratio }}"{% endif %}></video>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="video">
+      <label>Watched percent <input class="field" name="ratio" inputmode="numeric" value="{{ progress.video_ratio|default:0 }}"></label>
+      <button class="btn btn-ghost" type="submit">Save playback</button>
+    </form>
+    <p class="fine">Playback is recorded. It does not by itself complete a practical course.</p>
+    {% elif lesson.kind == "video" %}
+    <p class="empty">No authorised video is attached. Private storage addresses are not shown.</p>
+    {% endif %}
+    <p>{{ lesson.body }}</p>
+    {% if lesson.practical.objective %}
+    <h2>Practical exercise</h2>
+    <p>{{ lesson.practical.objective }}</p>
+    {% if lesson.practical.background %}<p>{{ lesson.practical.background }}</p>{% endif %}
+    {% if lesson.practical.instructions %}<p>{{ lesson.practical.instructions }}</p>{% endif %}
+    {% endif %}
+    {% if lesson.lab %}
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="lab">
+      <button class="btn btn-signal" type="submit">Request lab</button>
+    </form>
+    <p class="fine">The server checks enrolment, membership, and whether an environment is connected. No infrastructure password is sent to the browser.</p>
+    {% endif %}
+    <p class="fine">
+      {% if previous %}<a class="text-link" href="/app/courses/{{ course.slug }}/lessons/{{ previous.pk }}/">Previous</a>{% endif %}
+      {% if next %} · <a class="text-link" href="/app/courses/{{ course.slug }}/lessons/{{ next.pk }}/">Next</a>{% endif %}
+    </p>
+    {% if enrolment %}
+    <h2>Notes</h2>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="note">
+      <textarea class="field" name="body">{{ note.body }}</textarea>
+      <button class="btn btn-ghost" type="submit">Save note</button>
+    </form>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="bookmark">
+      <button class="btn btn-ghost" type="submit">{% if bookmarked %}Remove bookmark{% else %}Bookmark{% endif %}</button>
+    </form>
+    <h2>Discussion</h2>
+    {% for comment in comments %}<p><strong>{{ comment.user.full_name }}</strong> {{ comment.body }}</p>{% empty %}<p class="empty">No comment yet.</p>{% endfor %}
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="comment">
+      <textarea class="field" name="body"></textarea>
+      <button class="btn btn-ghost" type="submit">Comment</button>
+    </form>
+    {% endif %}
+  </div>
+  <aside>
+    <h2>Lessons</h2>
+    {% for module in modules %}
+    <p class="fine">{{ module.title }}</p>
+    <ul>{% for item in module.lessons.all %}<li><a class="text-link" href="/app/courses/{{ course.slug }}/lessons/{{ item.pk }}/">{{ item.title }}</a></li>{% endfor %}</ul>
+    {% endfor %}
+  </aside>
+</div>
+{% endblock %}

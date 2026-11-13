@@ -1,0 +1,10 @@
+<nav class="app-nav" aria-label="Member">
+  {% for section in nav_sections %}
+  <p class="app-nav-label">{{ section.label }}</p>
+  <ul>
+    {% for item in section.items %}
+    <li><a href="{{ item.href }}" {% if item.active %}aria-current="page"{% endif %}>{{ item.label }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endfor %}
+</nav>

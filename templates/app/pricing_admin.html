@@ -1,0 +1,47 @@
+{% extends "app/shell.html" %}
+{% load membership_tags %}
+{% block title %}Pricing — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<p class="eyebrow">Administration</p>
+<h1>Pricing configuration</h1>
+<p>Prices are stored per product. Saving a catalogue price does not change the contracted renewal price on an existing subscription, and it does not invent an annual discount.</p>
+{% if notice %}<p class="alert" role="status">{{ notice }}</p>{% endif %}
+{% for label, plans in groups %}
+<section class="section-block">
+  <h2>{{ label }}</h2>
+  {% for plan in plans %}
+  <form class="stack-form" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="plan" value="{{ plan.pk }}">
+    <h3>{{ plan.name }} <span class="fine">{{ plan.code }}</span></h3>
+    <label>Monthly price ({{ plan.currency }})
+      <input class="field" name="price_inr" inputmode="numeric" value="{{ plan.price_inr }}" required>
+    </label>
+    <label>Annual price
+      <input class="field" name="annual_price_inr" inputmode="numeric" value="{{ plan.annual_price_inr|default_if_none:'' }}">
+    </label>
+    <label>Currency
+      <input class="field" name="currency" maxlength="3" value="{{ plan.currency }}" required>
+    </label>
+    <label>Learner seat limit
+      <input class="field" name="learner_seats" inputmode="numeric" value="{{ plan.learner_seats|default_if_none:'' }}">
+    </label>
+    <label>Instructor account limit
+      <input class="field" name="instructor_limit" inputmode="numeric" value="{{ plan.instructor_limit }}" required>
+    </label>
+    <label>Concurrent VM limit
+      <input class="field" name="vm_concurrent" inputmode="numeric" value="{{ plan.vm_concurrent }}" required>
+    </label>
+    <label>VM-hour allowance
+      <input class="field" name="vm_hours" inputmode="numeric" value="{{ plan.vm_hours }}" required>
+    </label>
+    <label class="checkline"><input type="checkbox" name="quote_only" {% if plan.quote_only %}checked{% endif %}> Custom quotation</label>
+    <label class="checkline"><input type="checkbox" name="is_public" {% if plan.is_public %}checked{% endif %}> Visible on the public pricing page</label>
+    <label class="checkline"><input type="checkbox" name="checkout_enabled" {% if plan.checkout_enabled %}checked{% endif %}> Checkout enabled</label>
+    <p class="fine">Currently {{ plan.price_inr|inr }} / month{% if plan.annual_price_inr is not None %} · {{ plan.annual_price_inr|inr }} / year{% endif %}.</p>
+    <button class="btn btn-signal" type="submit">Save {{ plan.name }}</button>
+  </form>
+  {% endfor %}
+</section>
+{% endfor %}
+{% endblock %}

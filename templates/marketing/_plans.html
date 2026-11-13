@@ -1,0 +1,45 @@
+{% load membership_tags %}
+<section class="section" id="{{ anchor }}" {% if anchor != "individual" %}style="padding-top: 0"{% endif %}>
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="kicker">{{ kicker }}</p>
+        <h2>{{ heading }}</h2>
+        <p>{{ intro }}</p>
+      </div>
+    </div>
+    <div class="plan-grid">
+      {% for plan in plans %}
+      <article class="plan{% if plan.code == 'pro' or plan.code == 'team-growth' or plan.code == 'campus-standard' %} is-featured{% endif %}" id="{{ plan.code }}">
+        <span class="tag">{% if plan.quote_only %}Quotation{% else %}{{ plan.currency }}{% endif %}</span>
+        <h3>{{ plan.name }}</h3>
+        <p>{{ plan.summary }}</p>
+        {% if plan.quote_only %}
+        <p class="price">Custom <span>quotation</span></p>
+        {% else %}
+        <p class="price">{{ plan.price_inr|inr }} <span>/ month</span></p>
+        <p class="fine">{{ plan.annual_price_inr|inr }} / year</p>
+        {% endif %}
+        <ul>
+          {% if plan.category != "individual" %}<li>{{ plan.seat_label }}</li>{% endif %}
+          {% if plan.instructor_limit and not plan.quote_only %}<li>{{ plan.instructor_limit }} instructor accounts</li>{% endif %}
+          {% if not plan.quote_only %}
+          <li>{{ plan.vm_concurrent }} concurrent VM{{ plan.vm_concurrent|pluralize }}</li>
+          <li>{{ plan.vm_hours }} VM-hour allowance</li>
+          {% else %}
+          <li>Concurrent VMs and VM-hours are set on the quotation</li>
+          {% endif %}
+          {% for feature in plan.features %}<li>{{ feature }}</li>{% endfor %}
+        </ul>
+        {% if plan.quote_only %}
+        <a class="btn btn-ghost" href="contact.html">Request a quotation</a>
+        {% elif plan.category == "individual" %}
+        <a class="btn btn-ghost" href="/app/membership/">Review in the membership centre</a>
+        {% else %}
+        <a class="btn btn-ghost" href="contact.html">Talk to us</a>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>

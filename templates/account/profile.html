@@ -1,0 +1,92 @@
+{% extends "app/shell.html" %}
+{% block title %}Profile — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+  <div class="auth-card auth-card-wide">
+    <h2>Profile</h2>
+    <p class="lede">Membership and role are assigned on the server. Changing them in this form has no effect.</p>
+    {% if error %}<p class="alert" role="alert">{{ error }}</p>{% endif %}
+    {% if notice %}<p class="ok" role="status">{{ notice }}</p>{% endif %}
+    <dl class="meta">
+      <div><dt>Email status</dt><dd>{% if user.email_verified %}Verified{% else %}Not verified{% endif %}</dd></div>
+      <div><dt>Membership</dt><dd>{{ user.get_membership_display }}</dd></div>
+      <div><dt>Role</dt><dd>{{ user.get_role_display }}</dd></div>
+      <div><dt>Joined</dt><dd>{{ user.date_joined|date:"j M Y" }}</dd></div>
+    </dl>
+    {% if user.profile.avatar %}
+    <img class="avatar" src="{{ user.profile.avatar.url }}" alt="">
+    {% else %}
+    <p class="avatar-fallback" aria-hidden="true">{{ user.full_name|slice:":1" }}</p>
+    {% endif %}
+    <form class="auth-form" method="post" enctype="multipart/form-data" data-auth-form>
+      {% csrf_token %}
+      <label for="avatar">Profile photograph
+        <input class="field" id="avatar" name="avatar" type="file" accept="image/png,image/jpeg,image/webp">
+      </label>
+      <label for="full_name">Full name
+        <input class="field" id="full_name" name="full_name" value="{{ user.full_name }}" required>
+      </label>
+      <label for="username">Username
+        <input class="field" id="username" name="username" value="{{ user.username }}" required>
+      </label>
+      <label for="email">Email address
+        <input class="field" id="email" name="email" type="email" value="{{ user.email }}" required>
+      </label>
+      <p class="hint">Changing the username or email asks for your current password. The new email is used for sign-in only after you open the confirmation link.</p>
+      <label for="current_password">Current password
+        <input class="field" id="current_password" name="current_password" type="password" autocomplete="current-password">
+      </label>
+      <label for="phone">Phone <span class="hint">Optional</span>
+        <input class="field" id="phone" name="phone" value="{{ user.profile.phone }}" autocomplete="tel">
+      </label>
+      <label for="education">Education <span class="hint">Optional</span>
+        <input class="field" id="education" name="education" value="{{ user.profile.education }}" maxlength="150">
+      </label>
+      <label for="country">Country
+        <select class="field" id="country" name="country">
+          <option value="">Choose a country</option>
+          {% for code, name in countries %}
+          <option value="{{ code }}" {% if user.country == code %}selected{% endif %}>{{ name }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label for="learning_interest">Registration interest
+        <select class="field" id="learning_interest" name="learning_interest">
+          {% for value, label in interests %}
+          <option value="{{ value }}" {% if user.learning_interest == value %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label for="experience_level">Experience level
+        <select class="field" id="experience_level" name="experience_level">
+          <option value="">Not set</option>
+          {% for value, label in levels %}
+          <option value="{{ value }}" {% if user.preference.experience_level == value %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <fieldset class="choices">
+        <legend>Learning interests</legend>
+        {% for value, label in topic_choices %}
+        <label class="choice"><input type="checkbox" name="interests" value="{{ value }}" {% if value in selected_topics %}checked{% endif %}> {{ label }}</label>
+        {% endfor %}
+      </fieldset>
+      <label for="objective">Learning goal
+        <select class="field" id="objective" name="objective">
+          <option value="">Not set</option>
+          {% for value, label in objectives %}
+          <option value="{{ value }}" {% if user.preference.objective == value %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label for="daily_minutes">Daily learning time
+        <select class="field" id="daily_minutes" name="daily_minutes">
+          <option value="">Not set</option>
+          {% for amount in minutes %}
+          <option value="{{ amount }}" {% if user.preference.daily_minutes == amount %}selected{% endif %}>{{ amount }} minutes</option>
+          {% endfor %}
+        </select>
+      </label>
+      <button class="btn btn-signal" type="submit" data-submit>Save profile</button>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "app/shell.html" %}
+{% block title %}Glossary — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<p class="eyebrow"><a class="text-link" href="/app/foundations/">Foundations</a></p>
+<h1>Cybersecurity glossary</h1>
+<p>Short definitions and examples. Search, bookmark, and revise. The entries name what a word means. They are not instructions for harm.</p>
+<form method="get" class="stack-form">
+  <label>Search <input class="field" name="q" value="{{ query }}"></label>
+  <button class="btn btn-ghost" type="submit">Search</button>
+</form>
+<ul class="record-list">
+  {% for term in terms %}
+  <li>
+    <div>
+      <h2>{{ term.term }}</h2>
+      {% if term.pronunciation %}<p class="fine">Pronounced {{ term.pronunciation }}</p>{% endif %}
+      <p>{{ term.explanation }}</p>
+      {% if term.example %}<p class="fine">{{ term.example }}</p>{% endif %}
+      <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="term" value="{{ term.slug }}">
+        <button class="btn btn-ghost" type="submit">{% if term.pk in bookmarked %}Remove bookmark{% else %}Bookmark{% endif %}</button>
+      </form>
+    </div>
+  </li>
+  {% empty %}
+  <li><p class="empty">No term matches that search.</p></li>
+  {% endfor %}
+</ul>
+{% endblock %}

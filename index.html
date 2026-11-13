@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZeroTrace Academy — From Learner to Cybersecurity Professional</title>
+  <meta name="description" content="ZeroTrace Academy is a cybersecurity learning, tools, and simulation ecosystem. Structured paths, a private cyber range in development, and 24 proposed security tools.">
+  <meta name="theme-color" content="#050807">
+  <meta property="og:title" content="ZeroTrace Academy">
+  <meta property="og:description" content="Master cybersecurity through structured paths, practical labs, and a proposed security toolkit. From learner to cybersecurity professional.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ZeroTrace Academy">
+  <meta name="twitter:description" content="From learner to cybersecurity professional. Paths, a cyber range in development, and a proposed toolkit.">
+  <link rel="icon" href="assets/favicon-mark.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "ZeroTrace Academy",
+    "slogan": "From learner to cybersecurity professional.",
+    "description": "A pre-launch cybersecurity learning, tools, and simulation ecosystem for authorised practice."
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <!-- chrome:header -->
+  <header class="site-header" id="site-header">
+<div class="lang-switch" id="study-languages">
+    <button type="button" class="lang-toggle" aria-expanded="false" aria-controls="lang-menu" aria-haspopup="listbox">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 12h16M12 4c2.2 2.4 3.3 5.1 3.3 8s-1.1 5.6-3.3 8c-2.2-2.4-3.3-5.1-3.3-8s1.1-5.6 3.3-8z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      <span data-lang-label>English</span>
+      <span class="sr-only">Choose a language</span>
+    </button>
+    <div class="lang-menu" id="lang-menu" role="listbox" hidden>
+      <button type="button" class="lang-option" role="option" data-lang="en" data-name="English" data-native="English">English <span>English</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="zh" data-name="Mandarin Chinese" data-native="中文">中文 <span>Mandarin Chinese</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="hi" data-name="Hindi" data-native="हिन्दी">हिन्दी <span>Hindi</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="es" data-name="Spanish" data-native="Español">Español <span>Spanish</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="fr" data-name="French" data-native="Français">Français <span>French</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="ar" data-name="Arabic" data-native="العربية">العربية <span>Arabic</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="bn" data-name="Bengali" data-native="বাংলা">বাংলা <span>Bengali</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="pt" data-name="Portuguese" data-native="Português">Português <span>Portuguese</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="ru" data-name="Russian" data-native="Русский">Русский <span>Russian</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="ur" data-name="Urdu" data-native="اردو">اردو <span>Urdu</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="id" data-name="Indonesian" data-native="Indonesia">Bahasa Indonesia <span>Indonesian</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="de" data-name="German" data-native="Deutsch">Deutsch <span>German</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="ja" data-name="Japanese" data-native="日本語">日本語 <span>Japanese</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="pcm" data-name="Nigerian Pidgin" data-native="Naijá">Naijá <span>Nigerian Pidgin</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="mr" data-name="Marathi" data-native="मराठी">मराठी <span>Marathi</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="te" data-name="Telugu" data-native="తెలుగు">తెలుగు <span>Telugu</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="tr" data-name="Turkish" data-native="Türkçe">Türkçe <span>Turkish</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="ta" data-name="Tamil" data-native="தமிழ்">தமிழ் <span>Tamil</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="yue" data-name="Yue Chinese" data-native="粵語">粵語 <span>Yue Chinese</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="vi" data-name="Vietnamese" data-native="Việt">Tiếng Việt <span>Vietnamese</span></button>
+    </div>
+  </div>
+    <a class="brand" href="index.html">
+    <img class="logo" src="assets/logo.png" alt="ZeroTrace Academy">
+  </a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+    <span class="sr-only">Open menu</span>
+    <span class="burger" aria-hidden="true"></span>
+  </button>
+  <div class="nav-cluster" id="site-nav">
+    <nav class="primary-nav" aria-label="Primary">
+      <div class="nav-item">
+        <button class="nav-drop" type="button" aria-expanded="false" aria-controls="menu-academy" data-nav="catalog.html">
+          Academy
+          <svg class="caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+        <div class="dropdown" id="menu-academy">
+          <a href="catalog.html">All courses</a>
+          <a href="paths.html">Learning paths</a>
+          <a href="catalog.html#ethical-hacking">Ethical hacking</a>
+          <a href="catalog.html#soc-operations">SOC analyst</a>
+          <a href="catalog.html#digital-forensics">Digital forensics</a>
+          <a href="catalog.html#cloud-security">Cloud security</a>
+        </div>
+      </div>
+      <a href="paths.html" data-nav="paths.html">Roadmaps</a>
+      <div class="nav-item">
+        <button class="nav-drop" type="button" aria-expanded="false" aria-controls="menu-range" data-nav="range.html">
+          Cyber Range
+          <svg class="caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+        <div class="dropdown" id="menu-range">
+          <a href="range.html#virtual-machines">Virtual labs</a>
+          <a href="range.html#ctf">CTF arena</a>
+          <a href="range.html#red-blue">Attack &amp; defence</a>
+          <a href="range.html#soc">SOC simulation</a>
+          <a href="range.html#forensics">Forensic investigations</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-drop" type="button" aria-expanded="false" aria-controls="menu-tools" data-nav="tools.html">
+          Tools
+          <svg class="caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+        <div class="dropdown" id="menu-tools">
+          <a href="tools.html">All tools</a>
+          <a href="tools.html?filter=network">Network security</a>
+          <a href="tools.html?filter=web">Web security</a>
+          <a href="tools.html?filter=blue">SOC tools</a>
+          <a href="tools.html?filter=forensics">Forensics tools</a>
+          <a href="tools.html?filter=cloud">Cloud security</a>
+        </div>
+      </div>
+      <a href="research.html" data-nav="research.html">Research</a>
+      <a href="pricing.html" data-nav="pricing.html">Pricing</a>
+    </nav>
+    <div class="nav-end">
+      <a class="nav-login" href="/login/" data-nav="login">Log in</a>
+      <a class="btn btn-signal" href="/register/">Get Started</a>
+    </div>
+  </div>
+</header>
+  <!-- /chrome:header -->
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <span class="particle" style="top:18%;left:12%"></span>
+      <span class="particle" style="top:28%;left:78%;animation-delay:-4s"></span>
+      <span class="particle" style="top:62%;left:22%;animation-delay:-8s"></span>
+      <span class="particle" style="top:48%;left:88%;animation-delay:-2s"></span>
+      <span class="particle" style="top:72%;left:64%;animation-delay:-11s"></span>
+      <div class="hero-inner">
+        <p class="pill"><i aria-hidden="true"></i> The next generation of cybersecurity learning</p>
+        <h1 id="hero-title">
+          Master the art of
+          <span class="accent">Cybersecurity.</span>
+          <span class="quiet">No shortcuts. Real skills.</span>
+        </h1>
+        <p class="lede">Go beyond theory. Learn cybersecurity through structured learning paths, professional security tools, real-time practical labs, SOC investigations and digital forensics.</p>
+        <div class="hero-actions">
+          <a class="btn btn-signal" href="/register/">Start learning</a>
+          <a class="btn btn-ghost" href="range.html">Explore cyber range</a>
+        </div>
+        <div class="trust">
+          <span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 5.5A2.5 2.5 0 0 1 6.5 8H20" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            Practical learning
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6l-7-3z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            Real security tools
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m7 9 3 3-3 3M12 15h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            Private lab environments
+          </span>
+        </div>
+        <p class="fine">Enrolment is not open. The range, the 24 tools, and the AI mentor are previews until they launch.</p>
+      </div>
+
+      <div class="console" aria-label="Learning console preview">
+        <div class="console-top">
+          <span>academy console · sample layout</span>
+          <span class="tag tag-warn">Not a live account</span>
+        </div>
+        <div class="console-body">
+          <div class="console-side">
+            <a class="side-link is-on" href="catalog.html">Overview</a>
+            <a class="side-link" href="paths.html">Roadmap</a>
+            <a class="side-link" href="range.html">Cyber range</a>
+            <a class="side-link" href="tools.html">Tools</a>
+          </div>
+          <div class="console-main">
+            <p class="kicker">Preview</p>
+            <h2 style="font-size:1.45rem">Welcome to the academy console.</h2>
+            <p class="lede" style="margin-top:0.45rem">Progress, streaks, and lab sessions will appear here after sign-in. No learner session is connected on this page.</p>
+            <p class="fine">Progress</p>
+            <div class="progress-track" aria-hidden="true"><span></span></div>
+            <p class="fine">Sign in to track a path. <a class="text-link" href="/login/">Log in</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <form class="home-search" role="search" action="catalog.html" method="get">
+        <label class="sr-only" for="home-search">Search courses, paths, tools, and languages</label>
+      <svg class="home-search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m20 20-3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <input id="home-search" type="search" name="q" placeholder="Search courses, paths, tools, and languages" autocomplete="off" enterkeyhint="search" aria-autocomplete="list" aria-controls="home-search-results" aria-expanded="false">
+      <button class="btn btn-signal" type="submit">Search</button>
+      <ul class="home-search-results" id="home-search-results" role="listbox" hidden></ul>
+    </form>
+
+    <section class="section" id="highlights" aria-labelledby="highlights-title">
+      <div class="wrap">
+        <div class="hl-grid">
+          <article class="card reveal">
+            <span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 5.5A2.5 2.5 0 0 1 6.5 8H20"/></svg></span>
+            <h3>Comprehensive learning</h3>
+            <p>Structured cybersecurity courses and learning paths.</p>
+          </article>
+          <article class="card reveal">
+            <span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M12 15h5"/></svg></span>
+            <h3>Hands-on cyber range</h3>
+            <p>Isolated practical security environments.</p>
+          </article>
+          <article class="card reveal">
+            <span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.5"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg></span>
+            <h3>Professional tools</h3>
+            <p>Original ZeroTrace security tools and integrations.</p>
+          </article>
+          <article class="card reveal">
+            <span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m20 20-3.5-3.5"/><path d="M4 19c1.2-2 2.8-3 5-3"/></svg></span>
+            <h3>SOC &amp; forensics</h3>
+            <p>Investigate threats and analyse digital evidence.</p>
+          </article>
+          <article class="card reveal">
+            <span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="4.5"/><path d="m8.2 13.2-1.4 6.3L12 17l5.2 2.5-1.4-6.3"/></svg></span>
+            <h3>Career development</h3>
+            <p>Projects, assessments and professional preparation.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="departments" style="padding-top:0" aria-labelledby="dept-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Departments</p>
+            <h2 id="dept-title">Explore the world of cybersecurity</h2>
+            <p>One ecosystem. Every major cybersecurity discipline. One practical learning journey.</p>
+          </div>
+          <a href="catalog.html">Full catalog</a>
+        </div>
+        <div class="dept-grid">
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 12h8M8 15h5"/></svg></span><h3>Computer Science &amp; IT Fundamentals</h3><p>How computers, operating systems, and data work before a security tool is useful.</p><div class="card-foot"><span class="tag">Beginner</span><a class="text-link" href="catalog.html#cs-it-fundamentals">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="2.2"/><circle cx="18" cy="7" r="2.2"/><circle cx="18" cy="17" r="2.2"/><path d="M8.2 12h7.2M16.2 8.6 8.4 11M16.2 15.4 8.4 13"/></svg></span><h3>Networking</h3><p>Protocols, packets, routing, and the traffic both attackers and defenders have to read.</p><div class="card-foot"><span class="tag">Beginner</span><a class="text-link" href="catalog.html#networking">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M12 15h5"/></svg></span><h3>Linux Security</h3><p>Permissions, services, logs, and hardening on the system most labs run on.</p><div class="card-foot"><span class="tag">Beginner</span><a class="text-link" href="catalog.html#linux-security">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 20h8M12 17v3"/></svg></span><h3>Windows Security</h3><p>Accounts, services, event logs, and the controls a Windows estate depends on.</p><div class="card-foot"><span class="tag">Beginner</span><a class="text-link" href="catalog.html#windows-security">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13 6l-2 12"/></svg></span><h3>Programming &amp; Scripting</h3><p>Python, Bash, and PowerShell for investigation, automation, and reporting.</p><div class="card-foot"><span class="tag">Beginner</span><a class="text-link" href="catalog.html#programming-scripting">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><h3>Cryptography</h3><p>Hashes, encryption, certificates, and the places cryptographic controls fail.</p><div class="card-foot"><span class="tag">Intermediate</span><a class="text-link" href="catalog.html#cryptography">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6l-7-3z"/></svg></span><h3>Ethical Hacking</h3><p>Authorised testing method: scope, reconnaissance, findings, and a report someone can check.</p><div class="card-foot"><span class="tag">Beginner</span><a class="text-link" href="catalog.html#ethical-hacking">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M3 12h18M12 4c2.4 2.4 2.4 13.6 0 16M12 4c-2.4 2.4-2.4 13.6 0 16"/></svg></span><h3>Web Application Security</h3><p>How web applications fail, and how to test them only where you are allowed.</p><div class="card-foot"><span class="tag">Intermediate</span><a class="text-link" href="catalog.html#web-application-security">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8h8v8H8z"/><path d="M4 12h4M16 12h4M12 4v4M12 16v4"/></svg></span><h3>API Security</h3><p>Authentication, authorisation, and abuse cases on application interfaces.</p><div class="card-foot"><span class="tag">Intermediate</span><a class="text-link" href="catalog.html#api-security">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="2"/><circle cx="12" cy="7" r="2"/><circle cx="18" cy="14" r="2"/><path d="M8 11.2 10.2 8.2M13.6 8.4 16.2 12.4"/></svg></span><h3>Network Penetration Testing</h3><p>Assessing exposure on an approved lab network, then writing the result down.</p><div class="card-foot"><span class="tag">Intermediate</span><a class="text-link" href="catalog.html#network-penetration-testing">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 18a7 7 0 0 1 14 0"/><path d="M8 18a4 4 0 0 1 8 0"/><circle cx="12" cy="18" r="1"/></svg></span><h3>Wireless Security</h3><p>Wi-Fi protocols and wireless assessment inside isolated training environments.</p><div class="card-foot"><span class="tag">Intermediate</span><a class="text-link" href="catalog.html#wireless-security">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="2.4"/><circle cx="16" cy="8" r="2.4"/><circle cx="12" cy="16" r="2.4"/><path d="M10 9.4 11 14M14 9.4 13 14"/></svg></span><h3>Active Directory Security</h3><p>Identity, Kerberos, and the privilege paths that matter in a Windows domain.</p><div class="card-foot"><span class="tag">Advanced</span><a class="text-link" href="catalog.html#active-directory-security">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 7v5c0 4 3 7 7 9 4-2 7-5 7-9V7l-7-4z"/><path d="M9 12h6"/></svg></span><h3>Red Team Operations</h3><p>Adversary simulation that is planned, scoped, and kept inside the range.</p><div class="card-foot"><span class="tag">Advanced</span><a class="text-link" href="catalog.html#red-team-operations">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 7v5c0 4 3 7 7 9 4-2 7-5 7-9V7l-7-4z"/><path d="m9 12 2 2 4-4"/></svg></span><h3>Blue Team Operations</h3><p>Detection, hardening, and the daily work of defending a network.</p><div class="card-foot"><span class="tag">Intermediate</span><a class="text-link" href="catalog.html#blue-team-operations">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 6h10v12H7z"/><path d="M4 9h3M4 15h3M17 9h3M17 15h3"/></svg></span><h3>Purple Team Operations</h3><p>Attackers and defenders running one exercise so detections get better.</p><div class="card-foot"><span class="tag">Advanced</span><a class="text-link" href="catalog.html#purple-team-operations">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18V6M4 18h16"/><path d="m7 14 3-4 3 2 4-6"/></svg></span><h3>SOC Operations</h3><p>Alert queues, triage, and how a security operations centre is organised.</p><div class="card-foot"><span class="tag">Beginner</span><a class="text-link" href="catalog.html#soc-operations">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m20 20-3.5-3.5"/></svg></span><h3>Digital Forensics</h3><p>Identify, preserve, examine, and explain digital evidence.</p><div class="card-foot"><span class="tag">Intermediate</span><a class="text-link" href="catalog.html#digital-forensics">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6l1 3h3v13H5V7h3l1-3z"/><circle cx="12" cy="13" r="3"/></svg></span><h3>Malware Analysis</h3><p>Static and dynamic analysis of samples inside an isolated lab, not on a workstation you care about.</p><div class="card-foot"><span class="tag">Advanced</span><a class="text-link" href="catalog.html#malware-analysis">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></span><h3>Threat Intelligence</h3><p>Turn reports and indicators into decisions a defensive team can use.</p><div class="card-foot"><span class="tag">Intermediate</span><a class="text-link" href="catalog.html#threat-intelligence">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v4M12 16v4M6 8l2 2M16 14l2 2M4 12h4M16 12h4"/><circle cx="12" cy="12" r="3"/></svg></span><h3>Incident Response</h3><p>Containment, investigation, and recovery when something has already gone wrong.</p><div class="card-foot"><span class="tag">Intermediate</span><a class="text-link" href="catalog.html#incident-response">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17a4 4 0 0 1 0-8 5 5 0 0 1 9.5-1.5A3.5 3.5 0 0 1 17 17H7z"/></svg></span><h3>Cloud Security</h3><p>Identity, network, storage, and logging across cloud accounts.</p><div class="card-foot"><span class="tag">Intermediate</span><a class="text-link" href="catalog.html#cloud-security">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="18" cy="17" r="2"/><path d="M8 12h8M16.4 8.6v6.8"/></svg></span><h3>DevSecOps</h3><p>Security checks inside build pipelines, from review to secrets handling.</p><div class="card-foot"><span class="tag">Intermediate</span><a class="text-link" href="catalog.html#devsecops">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16v10H4z"/><path d="M8 8V6h8v2M9 13h6"/></svg></span><h3>Container &amp; Kubernetes Security</h3><p>Images, runtime policy, and cluster controls for container platforms.</p><div class="card-foot"><span class="tag">Advanced</span><a class="text-link" href="catalog.html#container-kubernetes-security">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="3" width="8" height="18" rx="2"/><path d="M11 18h2"/></svg></span><h3>Mobile Security</h3><p>Application and device risks on iOS and Android training targets.</p><div class="card-foot"><span class="tag">Intermediate</span><a class="text-link" href="catalog.html#mobile-security">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></span><h3>IoT &amp; Hardware Security</h3><p>Firmware, embedded devices, and hardware interfaces studied in a lab.</p><div class="card-foot"><span class="tag">Advanced</span><a class="text-link" href="catalog.html#iot-hardware-security">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18V8l8-4 8 4v10l-8 4-8-4z"/><path d="M12 10v8"/></svg></span><h3>OT/ICS Security</h3><p>Safety-aware security for industrial systems, taught on simulated environments.</p><div class="card-foot"><span class="tag">Advanced</span><a class="text-link" href="catalog.html#ot-ics-security">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg></span><h3>Database Security</h3><p>Access control, auditing, and exposure on the stores that hold the data.</p><div class="card-foot"><span class="tag">Intermediate</span><a class="text-link" href="catalog.html#database-security">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5a3 3 0 1 0 0 6 4 4 0 0 1 0 8M15 5a3 3 0 1 1 0 6 4 4 0 0 0 0 8"/></svg></span><h3>AI Security</h3><p>Risks in models, prompts, training data, and systems that call a model.</p><div class="card-foot"><span class="tag">Intermediate</span><a class="text-link" href="catalog.html#ai-security">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/><path d="M10 11h4M17 10v4"/></svg></span><h3>Blockchain Security</h3><p>Smart-contract and wallet risks studied on training networks.</p><div class="card-foot"><span class="tag">Intermediate</span><a class="text-link" href="catalog.html#blockchain-security">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M6 8h12M7 16h10"/><path d="M8 8 6 16l6 4 6-4-2-8"/></svg></span><h3>Governance, Risk &amp; Compliance</h3><p>Policies, risk registers, and the controls an organisation has to show.</p><div class="card-foot"><span class="tag">Beginner</span><a class="text-link" href="catalog.html#grc">Explore</a></div></article>
+          <article class="dept-card reveal"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18h16M6 18V9l6-4 6 4v9"/><path d="M10 18v-5h4v5"/></svg></span><h3>Security Architecture</h3><p>Designing systems that are defensible before they are built.</p><div class="card-foot"><span class="tag">Advanced</span><a class="text-link" href="catalog.html#security-architecture">Explore</a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="range" aria-labelledby="range-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Cyber range · in development</p>
+            <h2 id="range-title">Not just learning. Actual hands-on experience.</h2>
+            <p>Enter your private cybersecurity training environment. Launch virtual machines, perform authorised security testing, investigate incidents and learn through realistic scenarios.</p>
+          </div>
+        </div>
+        <div class="preview reveal" data-tabs>
+          <div class="preview-bar" role="tablist" aria-label="Range preview">
+            <button type="button" role="tab" data-tab="kali" aria-selected="true">Kali terminal</button>
+            <button type="button" role="tab" data-tab="ubuntu" aria-selected="false">Ubuntu server</button>
+            <button type="button" role="tab" data-tab="windows" aria-selected="false">Windows workstation</button>
+            <button type="button" role="tab" data-tab="topo" aria-selected="false">Network topology</button>
+            <button type="button" role="tab" data-tab="web" aria-selected="false">Training web app</button>
+            <button type="button" role="tab" data-tab="soc" aria-selected="false">SOC monitor</button>
+            <button type="button" role="tab" data-tab="time" aria-selected="false">Investigation timeline</button>
+            <span class="tag tag-warn">Illustrative · not connected</span>
+          </div>
+          <div class="preview-panel" data-panel="kali" role="tabpanel">
+            <pre class="term"><b>kali@range-lab</b>:~# hostname
+range-lab-01
+<b>kali@range-lab</b>:~# echo "Illustrative terminal. No lab is attached."
+Illustrative terminal. No lab is attached.</pre>
+          </div>
+          <div class="preview-panel" data-panel="ubuntu" role="tabpanel" hidden>
+            <pre class="term"><b>ubuntu@lab-server</b>:~$ hostname
+lab-server
+<b>ubuntu@lab-server</b>:~$ echo "Preview host. Not a running machine."
+Preview host. Not a running machine.</pre>
+          </div>
+          <div class="preview-panel" data-panel="windows" role="tabpanel" hidden>
+            <pre class="term"><b>PS C:\Training&gt;</b> hostname
+WIN-LAB-01
+<b>PS C:\Training&gt;</b> Write-Output "Preview workstation. Not a live host."
+Preview workstation. Not a live host.</pre>
+          </div>
+          <div class="preview-panel" data-panel="topo" role="tabpanel" hidden>
+            <svg class="topo" viewBox="0 0 640 220" role="img" aria-label="Sample lab network with four nodes">
+              <line x1="120" y1="110" x2="280" y2="60" stroke="#1B2921" stroke-width="2"/>
+              <line x1="280" y1="60" x2="460" y2="110" stroke="#1B2921" stroke-width="2"/>
+              <line x1="280" y1="60" x2="320" y2="170" stroke="#00FF75" stroke-width="1.4"/>
+              <circle cx="120" cy="110" r="22" fill="#0D1410" stroke="#00FF75"/>
+              <circle cx="280" cy="60" r="22" fill="#0D1410" stroke="#A1AAA4"/>
+              <circle cx="460" cy="110" r="22" fill="#0D1410" stroke="#A1AAA4"/>
+              <circle cx="320" cy="170" r="22" fill="#0D1410" stroke="#FFB547"/>
+              <text class="node-label" x="92" y="150">kali</text>
+              <text class="node-label" x="248" y="30">gateway</text>
+              <text class="node-label" x="430" y="150">ubuntu</text>
+              <text class="node-label" x="292" y="210">web target</text>
+            </svg>
+            <p class="fine">Sample diagram of a future lab network. Nothing here is provisioned.</p>
+          </div>
+          <div class="preview-panel" data-panel="web" role="tabpanel" hidden>
+            <div class="pane">
+              <h3>Training web application</h3>
+              <p>A deliberately vulnerable app will live on the range for authorised exercises. It is not deployed on this website.</p>
+              <p class="fine">Status: under development</p>
+            </div>
+          </div>
+          <div class="preview-panel" data-panel="soc" role="tabpanel" hidden>
+            <div class="pane">
+              <h3>Demo alerts · not live telemetry</h3>
+              <div class="alert-row"><span>Sample: failed sign-in burst</span><span class="sev sev-med">Medium</span></div>
+              <div class="alert-row"><span>Sample: new admin group member</span><span class="sev sev-high">High</span></div>
+              <div class="alert-row"><span>Sample: outbound connection noted</span><span class="sev sev-low">Low</span></div>
+            </div>
+          </div>
+          <div class="preview-panel" data-panel="time" role="tabpanel" hidden>
+            <div class="pane">
+              <h3>Demo timeline · training scenario</h3>
+              <div class="row-line"><span>14:27</span><span>Unauthorised access attempt blocked</span></div>
+              <div class="row-line"><span>14:29</span><span>Unusual traffic marked for review</span></div>
+              <div class="row-line"><span>14:33</span><span>Training case marked contained</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="mini-grid">
+          <article class="range-card reveal"><span class="tag tag-warn">Coming soon</span><h3>Virtual machines</h3><p>Launch isolated Linux and Windows environments.</p></article>
+          <article class="range-card reveal"><span class="tag tag-warn">Coming soon</span><h3>Penetration testing labs</h3><p>Practise on intentionally vulnerable training systems.</p></article>
+          <article class="range-card reveal"><span class="tag tag-warn">Coming soon</span><h3>SOC simulation</h3><p>Investigate real-time training telemetry and security alerts.</p></article>
+          <article class="range-card reveal"><span class="tag tag-warn">Coming soon</span><h3>Forensic investigations</h3><p>Examine prepared disk images, memory dumps and network captures.</p></article>
+          <article class="range-card reveal"><span class="tag tag-warn">Coming soon</span><h3>CTF arena</h3><p>Solve security challenges and compete through practical exercises.</p></article>
+          <article class="range-card reveal"><span class="tag tag-warn">Coming soon</span><h3>Red vs blue</h3><p>Practise controlled attack-and-defence scenarios.</p></article>
+        </div>
+        <p class="note">These capabilities are in development. Lab access, once it exists, will depend on eligibility and fair use. Unlimited virtual machines are not offered. Targets are provided for the exercise.</p>
+        <p style="margin-top:1rem"><a class="btn btn-signal" href="range.html">Explore the cyber range</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="tools" aria-labelledby="tools-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Toolkit · proposed</p>
+            <h2 id="tools-title">Your cybersecurity toolkit. One ecosystem.</h2>
+            <p>Explore the ZeroTrace family of security tools, designed to support practical security testing, investigations, monitoring and research.</p>
+          </div>
+        </div>
+        <div class="filters" role="toolbar" aria-label="Filter tools">
+          <button type="button" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" data-filter="network" aria-pressed="false">Network</button>
+          <button type="button" data-filter="web" aria-pressed="false">Web &amp; API</button>
+          <button type="button" data-filter="red" aria-pressed="false">Red Team</button>
+          <button type="button" data-filter="blue" aria-pressed="false">Blue Team</button>
+          <button type="button" data-filter="forensics" aria-pressed="false">Forensics</button>
+          <button type="button" data-filter="cloud" aria-pressed="false">Cloud</button>
+          <button type="button" data-filter="research" aria-pressed="false">Research</button>
+        </div>
+        <p class="count" data-count>Showing 24 of 24 proposed tools</p>
+        <div class="tool-grid">
+          <article class="tool" data-tags="network"><span class="tag">Proposed</span><h3>TraceScan</h3><p class="tool-cat">Network</p><p>Network discovery for ranges you are authorised to assess.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#tracescan">View tool</a></div></article>
+          <article class="tool" data-tags="network"><span class="tag">Proposed</span><h3>TraceMap</h3><p class="tool-cat">Network</p><p>Network visualisation of hosts and how they relate.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#tracemap">View tool</a></div></article>
+          <article class="tool" data-tags="web"><span class="tag">Proposed</span><h3>WebProbe</h3><p class="tool-cat">Web &amp; API</p><p>Web application testing against approved training targets.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#webprobe">View tool</a></div></article>
+          <article class="tool" data-tags="web"><span class="tag">Proposed</span><h3>API Sentinel</h3><p class="tool-cat">Web &amp; API</p><p>API authentication and authorisation review.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#api-sentinel">View tool</a></div></article>
+          <article class="tool" data-tags="red"><span class="tag">Proposed</span><h3>VulnMatrix</h3><p class="tool-cat">Red Team</p><p>Vulnerability tracking for findings from authorised labs.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#vulnmatrix">View tool</a></div></article>
+          <article class="tool" data-tags="red"><span class="tag">Proposed</span><h3>ADVision</h3><p class="tool-cat">Red Team</p><p>Active Directory analysis inside a training domain.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#advision">View tool</a></div></article>
+          <article class="tool" data-tags="network"><span class="tag">Proposed</span><h3>PacketScope</h3><p class="tool-cat">Network</p><p>Packet analysis for captures you are allowed to inspect.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#packetscope">View tool</a></div></article>
+          <article class="tool" data-tags="blue"><span class="tag">Proposed</span><h3>TraceSIEM</h3><p class="tool-cat">Blue Team</p><p>Security monitoring of training telemetry.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#tracesiem">View tool</a></div></article>
+          <article class="tool" data-tags="blue"><span class="tag">Proposed</span><h3>ThreatHunter</h3><p class="tool-cat">Blue Team</p><p>Structured threat hunting over prepared event data.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#threathunter">View tool</a></div></article>
+          <article class="tool" data-tags="blue"><span class="tag">Proposed</span><h3>RuleForge</h3><p class="tool-cat">Blue Team</p><p>Detection engineering against sample events.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#ruleforge">View tool</a></div></article>
+          <article class="tool" data-tags="forensics"><span class="tag">Proposed</span><h3>ForenSight</h3><p class="tool-cat">Forensics</p><p>Digital forensics workspace for prepared case images.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#forensight">View tool</a></div></article>
+          <article class="tool" data-tags="forensics"><span class="tag">Proposed</span><h3>MemoryScope</h3><p class="tool-cat">Forensics</p><p>Memory forensics for training memory images.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#memoryscope">View tool</a></div></article>
+          <article class="tool" data-tags="forensics"><span class="tag">Proposed</span><h3>MalwareLab</h3><p class="tool-cat">Forensics</p><p>Malware analysis kept inside an isolated workflow.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#malwarelab">View tool</a></div></article>
+          <article class="tool" data-tags="cloud"><span class="tag">Proposed</span><h3>CloudSentinel</h3><p class="tool-cat">Cloud</p><p>Cloud security review of identity, storage, and logging.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#cloudsentinel">View tool</a></div></article>
+          <article class="tool" data-tags="cloud"><span class="tag">Proposed</span><h3>ContainerGuard</h3><p class="tool-cat">Cloud</p><p>Container security review of images and manifests.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#containerguard">View tool</a></div></article>
+          <article class="tool" data-tags="research"><span class="tag">Proposed</span><h3>MobileTrace</h3><p class="tool-cat">Research</p><p>Mobile security review of training application packages.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#mobiletrace">View tool</a></div></article>
+          <article class="tool" data-tags="red"><span class="tag">Proposed</span><h3>CodeShield</h3><p class="tool-cat">Red Team</p><p>Code security review that explains insecure patterns.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#codeshield">View tool</a></div></article>
+          <article class="tool" data-tags="research"><span class="tag">Proposed</span><h3>CryptoScope</h3><p class="tool-cat">Research</p><p>Cryptographic analysis of encodings, hashes, and weak constructions.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#cryptoscope">View tool</a></div></article>
+          <article class="tool" data-tags="research"><span class="tag">Proposed</span><h3>OSINT Navigator</h3><p class="tool-cat">Research</p><p>A structured workspace for ethical open-source investigations.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#osint-navigator">View tool</a></div></article>
+          <article class="tool" data-tags="research"><span class="tag">Proposed</span><h3>RangeControl</h3><p class="tool-cat">Research</p><p>Lab orchestration for future isolated environments.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#rangecontrol">View tool</a></div></article>
+          <article class="tool" data-tags="blue"><span class="tag">Proposed</span><h3>IncidentDesk</h3><p class="tool-cat">Blue Team</p><p>Incident response case handling, timelines, and evidence notes.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#incidentdesk">View tool</a></div></article>
+          <article class="tool" data-tags="red"><span class="tag">Proposed</span><h3>AttackSim</h3><p class="tool-cat">Red Team</p><p>Controlled attack simulation inside the range only.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#attacksim">View tool</a></div></article>
+          <article class="tool" data-tags="network"><span class="tag">Proposed</span><h3>WirelessScope</h3><p class="tool-cat">Network</p><p>Wireless security analysis of training captures.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#wirelessscope">View tool</a></div></article>
+          <article class="tool" data-tags="research"><span class="tag">Proposed</span><h3>ThreatIntel Hub</h3><p class="tool-cat">Research</p><p>Threat intelligence library for indicators and technique mapping.</p><div class="card-foot"><span class="tag tag-warn">In development</span><a class="text-link" href="tools.html#threatintel-hub">View tool</a></div></article>
+        </div>
+        <p class="note">None of these tools are operational. A tool stays marked proposed until its engine is built and integrated.</p>
+      </div>
+    </section>
+
+    <section class="section" id="forensics" aria-labelledby="forensics-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Digital forensics centre</p>
+            <h2 id="forensics-title">Follow the evidence. Uncover the truth.</h2>
+            <p>Learn to identify, preserve, examine and analyse digital evidence through realistic forensic investigations.</p>
+          </div>
+        </div>
+        <div class="preview reveal" aria-label="Forensic workstation preview">
+          <div class="preview-bar">
+            <span class="tag tag-warn">Illustrative case · demo data</span>
+            <span class="fine" style="margin:0">Case ZT-DF-014 is a layout sample, not an investigation.</span>
+          </div>
+          <div class="preview-panel">
+            <div class="forensic">
+              <div class="pane">
+                <h3>Evidence list</h3>
+                <div class="row-line"><span>Disk image</span><span>Sample</span></div>
+                <div class="row-line"><span>Memory dump</span><span>Sample</span></div>
+                <div class="row-line"><span>Packet capture</span><span>Sample</span></div>
+                <div class="row-line"><span>Mailbox export</span><span>Sample</span></div>
+              </div>
+              <div class="pane">
+                <h3>SHA-256 of the text “ZeroTrace preview”</h3>
+                <p class="hash">69b7b49b988d1111faf06f536e323efef8265e31be4d85c050d5ee99e1729ed6</p>
+                <p class="fine">Layout sample only. This is not a hash of case evidence.</p>
+                <h3 style="margin-top:1rem">Timeline</h3>
+                <div class="row-line"><span>T+00</span><span>Image acquired for the exercise</span></div>
+                <div class="row-line"><span>T+12</span><span>Timeline built from sample artefacts</span></div>
+                <div class="row-line"><span>T+20</span><span>Report drafted</span></div>
+              </div>
+              <div class="pane">
+                <h3>Memory &amp; capture</h3>
+                <p>Process list, network connections, and a capture summary will sit here when ForenSight exists.</p>
+                <p class="fine">Report status: not generated</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mini-grid">
+          <article class="range-card"><h3>Computer &amp; disk forensics</h3><p>File systems, deleted data, and timelines from prepared images.</p></article>
+          <article class="range-card"><h3>Memory forensics</h3><p>Processes, connections, and volatile artefacts in training dumps.</p></article>
+          <article class="range-card"><h3>Mobile forensics</h3><p>Extractions and application data from lab devices.</p></article>
+          <article class="range-card"><h3>Network forensics</h3><p>Captures and flows that show how a training incident moved.</p></article>
+          <article class="range-card"><h3>Email &amp; phishing forensics</h3><p>Headers, attachments, and campaign structure in sample mail.</p></article>
+          <article class="range-card"><h3>Malware &amp; cloud forensics</h3><p>Malicious artefacts and cloud audit trails, examined in isolation.</p></article>
+        </div>
+        <p style="margin-top:1.2rem"><a class="btn btn-signal" href="catalog.html#digital-forensics">Explore digital forensics</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="soc" aria-labelledby="soc-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">SOC operations centre</p>
+            <h2 id="soc-title">Think like a SOC analyst.</h2>
+            <p>Build real defensive security skills through alert triage, threat hunting, incident response and detection engineering.</p>
+          </div>
+        </div>
+        <div class="preview reveal">
+          <div class="preview-bar">
+            <span class="tag tag-warn">Demo data · not live infrastructure</span>
+          </div>
+          <div class="preview-panel">
+            <div class="soc-board">
+              <div class="pane">
+                <h3>Security alerts</h3>
+                <div class="alert-row"><span>Demo · repeated sign-in failures</span><span class="sev sev-med">Medium</span></div>
+                <div class="alert-row"><span>Demo · privilege change on a lab host</span><span class="sev sev-high">High</span></div>
+                <div class="alert-row"><span>Demo · rare process on a workstation</span><span class="sev sev-low">Low</span></div>
+                <h3 style="margin-top:1rem">Incident timeline</h3>
+                <div class="row-line"><span>09:14</span><span>Alert opened</span></div>
+                <div class="row-line"><span>09:22</span><span>Analyst assigned in the sample</span></div>
+                <div class="row-line"><span>09:40</span><span>Case note added</span></div>
+              </div>
+              <div class="pane">
+                <h3>Network activity · sample</h3>
+                <div class="bars" aria-hidden="true"><span style="height:40%"></span><span style="height:55%"></span><span style="height:88%"></span><span style="height:46%"></span><span style="height:30%"></span></div>
+                <h3 style="margin-top:1rem">Threat indicators</h3>
+                <p class="hash">Sample indicator · not from a live sensor</p>
+                <h3 style="margin-top:1rem">Detection rules</h3>
+                <p>Rule drafts will be tested in RuleForge. None are deployed.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mini-grid">
+          <article class="range-card"><h3>SOC L1/L2/L3 training</h3><p>From first-line triage to deeper investigation.</p></article>
+          <article class="range-card"><h3>SIEM investigation</h3><p>Search training logs and build a case from the fields.</p></article>
+          <article class="range-card"><h3>Threat hunting</h3><p>Start from a hypothesis when the alerts stay quiet.</p></article>
+          <article class="range-card"><h3>Incident response</h3><p>Move a training case from detection to lessons learned.</p></article>
+          <article class="range-card"><h3>EDR &amp; XDR</h3><p>Endpoint telemetry, process trees, and response concepts.</p></article>
+          <article class="range-card"><h3>Detection engineering</h3><p>Write and review rules against sample events.</p></article>
+        </div>
+        <p style="margin-top:1.2rem"><a class="btn btn-signal" href="catalog.html#soc-operations">Enter SOC academy</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="roadmaps" aria-labelledby="road-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Learning roadmaps</p>
+            <h2 id="road-title">Your journey. Your specialisation.</h2>
+            <p>Six role paths. Durations are study guides, not a promise of a job. Progress tracking starts after accounts exist.</p>
+          </div>
+          <a href="paths.html">All roadmaps</a>
+        </div>
+        <div class="roadmap-grid">
+          <article class="path-block reveal" id="ethical-hacker">
+            <p class="meta-row"><span>Beginner → Advanced</span><span>6–9 months</span><span>7 modules</span></p>
+            <h2>Ethical hacker</h2>
+            <ol class="steps"><li>Foundations</li><li>Networking</li><li>Linux</li><li>Reconnaissance</li><li>Web security</li><li>Pentesting</li><li>Reporting</li></ol>
+            <p class="skill-line">Skills: recon method, authorised web testing, privilege review, professional reporting.</p>
+            <p class="locked-bar fine">Progress appears after sign-in. <a class="text-link" href="/login/">Log in</a> · <a class="text-link" href="paths.html#ethical-hacker">Explore roadmap</a></p>
+          </article>
+          <article class="path-block reveal">
+            <p class="meta-row"><span>Beginner → Intermediate</span><span>5–7 months</span><span>7 modules</span></p>
+            <h2>SOC analyst</h2>
+            <ol class="steps"><li>IT fundamentals</li><li>Networking</li><li>Windows/Linux logs</li><li>SIEM</li><li>Alert triage</li><li>Threat hunting</li><li>Incident response</li></ol>
+            <p class="skill-line">Skills: log analysis, SIEM search, triage, escalation, reporting.</p>
+            <p class="locked-bar fine">Progress appears after sign-in. <a class="text-link" href="paths.html#soc-analyst">Explore roadmap</a></p>
+          </article>
+          <article class="path-block reveal">
+            <p class="meta-row"><span>Intermediate</span><span>6–8 months</span><span>6 modules</span></p>
+            <h2>Digital forensics investigator</h2>
+            <ol class="steps"><li>Foundations</li><li>Evidence preservation</li><li>Disk forensics</li><li>Memory forensics</li><li>Network forensics</li><li>Case reporting</li></ol>
+            <p class="skill-line">Skills: chain of custody, timelines, memory analysis, case documentation.</p>
+            <p class="locked-bar fine"><a class="text-link" href="paths.html#forensics-investigator">Explore roadmap</a></p>
+          </article>
+          <article class="path-block reveal">
+            <p class="meta-row"><span>Intermediate → Advanced</span><span>6–9 months</span><span>7 modules</span></p>
+            <h2>Cloud security engineer</h2>
+            <ol class="steps"><li>Cloud fundamentals</li><li>IAM</li><li>Network security</li><li>Storage security</li><li>Logging</li><li>Container security</li><li>Cloud incident response</li></ol>
+            <p class="skill-line">Skills: least-privilege identity, cloud logging, posture review, cloud response.</p>
+            <p class="locked-bar fine"><a class="text-link" href="paths.html#cloud-security-engineer">Explore roadmap</a></p>
+          </article>
+          <article class="path-block reveal">
+            <p class="meta-row"><span>Advanced</span><span>8–12 months</span><span>6 modules</span></p>
+            <h2>Malware analyst</h2>
+            <ol class="steps"><li>Programming</li><li>Operating systems</li><li>Binary fundamentals</li><li>Static analysis</li><li>Dynamic analysis</li><li>Reverse engineering</li></ol>
+            <p class="skill-line">Skills: reading binaries, isolated analysis, indicator notes, detection ideas.</p>
+            <p class="locked-bar fine"><a class="text-link" href="paths.html#malware-analyst">Explore roadmap</a></p>
+          </article>
+          <article class="path-block reveal">
+            <p class="meta-row"><span>Intermediate → Advanced</span><span>8–12 months</span><span>7 modules</span></p>
+            <h2>Security engineer</h2>
+            <ol class="steps"><li>Programming</li><li>Networking</li><li>Linux</li><li>Secure development</li><li>DevSecOps</li><li>Cloud security</li><li>Security architecture</li></ol>
+            <p class="skill-line">Skills: secure review, pipeline security, threat modelling, architecture.</p>
+            <p class="locked-bar fine"><a class="text-link" href="paths.html#security-engineer">Explore roadmap</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="mentor" aria-labelledby="mentor-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">AI mentor · preview</p>
+            <h2 id="mentor-title">Your intelligent cybersecurity learning companion.</h2>
+            <p>Get guided explanations, technical assistance, learning recommendations and feedback as you develop your cybersecurity skills. No model is connected on this site.</p>
+          </div>
+        </div>
+        <div class="mentor reveal">
+          <div class="prompt-list" aria-label="Sample mentor prompts">
+            <button type="button" data-mentor="ask">Ask a cybersecurity question</button>
+            <button type="button" data-mentor="vuln">Explain a vulnerability</button>
+            <button type="button" data-mentor="lab">Help understand a lab result</button>
+            <button type="button" data-mentor="rule">Review a detection rule</button>
+            <button type="button" data-mentor="report">Improve an investigation report</button>
+            <button type="button" data-mentor="path">Recommend a learning path</button>
+          </div>
+          <form id="mentor-form">
+            <label for="mentor-q">Question
+              <textarea class="field" id="mentor-q" rows="5" placeholder="Ask a concept question. This preview does not send it anywhere."></textarea>
+            </label>
+            <button class="btn btn-signal" type="submit" style="margin-top:0.75rem">Preview a reply</button>
+            <div class="reply" data-mentor-reply hidden>
+              <span class="tag tag-warn">Preview · no model connected</span>
+              <p data-mentor-text style="margin-top:0.6rem"></p>
+            </div>
+          </form>
+        </div>
+        <p style="margin-top:1.2rem"><a class="btn btn-ghost" href="research.html#mentor">Explore AI learning</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="ctf" aria-labelledby="ctf-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">CTF arena · coming soon</p>
+            <h2 id="ctf-title">Test your skills. Solve the challenge.</h2>
+            <p>Challenges will run in isolated, authorised environments. None are open on this website.</p>
+          </div>
+        </div>
+        <div class="mini-grid">
+          <article class="range-card"><span class="tag">Beginner</span><h3>Beginner challenges</h3><p>First flags, with the method written out. Coming soon.</p></article>
+          <article class="range-card"><span class="tag">Intermediate</span><h3>Intermediate challenges</h3><p>Longer cases that ask you to explain the finding. Coming soon.</p></article>
+          <article class="range-card"><span class="tag">Advanced</span><h3>Advanced challenges</h3><p>Harder labs for learners who have finished the foundations. Coming soon.</p></article>
+          <article class="range-card"><h3>Web exploitation</h3><p>Training web apps inside the range. Not public targets.</p></article>
+          <article class="range-card"><h3>Cryptography</h3><p>Encodings, hashes, and weak constructions as puzzles.</p></article>
+          <article class="range-card"><h3>Reverse engineering</h3><p>Binaries prepared for the exercise, analysed in isolation.</p></article>
+          <article class="range-card"><h3>Digital forensics</h3><p>Evidence packages with a question and a report.</p></article>
+          <article class="range-card"><h3>Network security</h3><p>Captures and lab networks you are allowed to inspect.</p></article>
+          <article class="range-card"><h3>Linux challenges</h3><p>Permissions, services, and local security on lab machines.</p></article>
+          <article class="range-card"><h3>Binary exploitation</h3><p>Memory-safety exercises on binaries built for the lab.</p></article>
+        </div>
+        <div class="preview" style="margin-top:1rem">
+          <div class="preview-bar"><span class="tag tag-warn">Sample ranking · not a live leaderboard</span></div>
+          <div class="preview-panel table-wrap">
+            <table class="lb">
+              <thead><tr><th>Rank</th><th>Seat</th><th>Points</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Sample seat A</td><td>—</td><td>Not scored</td></tr>
+                <tr><td>2</td><td>Sample seat B</td><td>—</td><td>Not scored</td></tr>
+                <tr><td>3</td><td>Sample seat C</td><td>—</td><td>Not scored</td></tr>
+              </tbody>
+            </table>
+            <p class="fine">Difficulty, points, category, and completion will show per challenge after the arena exists. These rows are layout only.</p>
+          </div>
+        </div>
+        <p style="margin-top:1.2rem"><a class="btn btn-signal" href="range.html#ctf">Enter CTF arena</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="career" aria-labelledby="career-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Career academy</p>
+            <h2 id="career-title">Turn your knowledge into a career.</h2>
+            <p>Preparation for the work. Completion records, when they exist, will not be described as accredited certifications.</p>
+          </div>
+        </div>
+        <div class="mini-grid">
+          <article class="range-card"><h3>Career roadmaps</h3><p>Role paths with modules and the skills you should be able to show.</p></article>
+          <article class="range-card"><h3>Resume preparation</h3><p>How to describe labs and projects without inflating them.</p></article>
+          <article class="range-card"><h3>Interview preparation</h3><p>Technical questions tied to the path you studied.</p></article>
+          <article class="range-card"><h3>Practical assessments</h3><p>Checks that ask you to investigate, not only to recall a term.</p></article>
+          <article class="range-card"><h3>Portfolio projects</h3><p>Write-ups you can show, scoped to authorised work.</p></article>
+          <article class="range-card"><h3>Skill tracking</h3><p>A record of paths and assessments after accounts open.</p></article>
+        </div>
+        <div class="career-grid" style="margin-top:1rem">
+          <a class="career-card" href="paths.html#soc-analyst"><h3>SOC analyst</h3><p>Triage, hunting, and response.</p></a>
+          <a class="career-card" href="paths.html#ethical-hacker"><h3>Penetration tester</h3><p>Authorised testing and reporting.</p></a>
+          <a class="career-card" href="paths.html#forensics-investigator"><h3>Digital forensic investigator</h3><p>Evidence that survives review.</p></a>
+          <a class="career-card" href="paths.html#cloud-security-engineer"><h3>Cloud security engineer</h3><p>Identity, network, and cloud response.</p></a>
+          <a class="career-card" href="paths.html#malware-analyst"><h3>Security researcher</h3><p>Malware and deeper technical work.</p></a>
+          <a class="career-card" href="paths.html#security-engineer"><h3>Security engineer</h3><p>Build systems that are defensible.</p></a>
+        </div>
+        <p style="margin-top:1.2rem"><a class="btn btn-signal" href="paths.html">Build your career</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="community" aria-labelledby="community-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Community and research</p>
+            <h2 id="community-title">Learn together. Research together.</h2>
+            <p>Discussions, articles, write-ups, and a research library will be listed when they exist. No publication, member count, or contributor total is claimed here.</p>
+          </div>
+        </div>
+        <div class="edit-grid">
+          <article class="edit-card"><span class="tag">Planned</span><h3>Cybersecurity discussions</h3><p>A place to ask about the curriculum. The forum is not open.</p><a class="text-link" href="community.html">Community</a></article>
+          <article class="edit-card"><span class="tag">Planned</span><h3>Technical articles</h3><p>Notes from the academy, published when they are written.</p><a class="text-link" href="blog.html">Blog</a></article>
+          <article class="edit-card"><span class="tag">Empty</span><h3>Research publications</h3><p>The library has no papers yet. Nothing here is cited as published research.</p><a class="text-link" href="research.html">Research library</a></article>
+          <article class="edit-card"><span class="tag">Planned</span><h3>Security write-ups</h3><p>Lab reports and challenge notes, after the range exists.</p><a class="text-link" href="research.html">Write-ups</a></article>
+          <article class="edit-card"><span class="tag">Planned</span><h3>Project showcases</h3><p>Learner projects will be shown with permission, not invented.</p><a class="text-link" href="community.html">Showcases</a></article>
+          <article class="edit-card"><span class="tag">Policy</span><h3>Responsible disclosure</h3><p>How to report a problem with this site once a contact channel is verified.</p><a class="text-link" href="legal.html#disclosure">Read the policy</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="stats" aria-labelledby="stats-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Platform scope</p>
+            <h2 id="stats-title">What this preview actually contains.</h2>
+            <p>These figures describe the project scope. They are not active users, completed labs, or issued certificates.</p>
+          </div>
+        </div>
+        <div class="stat-grid">
+          <article class="stat"><strong>31</strong><span>Cybersecurity departments in the catalog.</span></article>
+          <article class="stat"><strong>24</strong><span>Proposed ZeroTrace tools. None are released.</span></article>
+          <article class="stat"><strong>6</strong><span>Practical lab categories in development.</span></article>
+          <article class="stat"><strong>6</strong><span>Learning paths from foundations to a role.</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing" aria-labelledby="price-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Pricing</p>
+            <h2 id="price-title">Three products. Separate subscriptions.</h2>
+            <p>Individual, team, and campus plans are billed apart. Current prices are published from the catalogue on the pricing page. Checkout is not open from this site, and these plans do not include unlimited virtual machines.</p>
+          </div>
+        </div>
+        <div class="plan-grid">
+          <article class="plan">
+            <span class="tag">Individual</span>
+            <h3>ZeroTrace Academy</h3>
+            <p>A personal membership: Explorer, Core, Pro, and Elite. You manage only your own subscription.</p>
+            <a class="btn btn-ghost" href="pricing.html#individual">View individual plans</a>
+          </article>
+          <article class="plan is-featured">
+            <span class="tag tag-green">Teams</span>
+            <h3>ZeroTrace Teams</h3>
+            <p>Shared learner seats, instructors, group paths, and central billing for one team.</p>
+            <a class="btn btn-signal" href="pricing.html#teams">View team plans</a>
+          </article>
+          <article class="plan">
+            <span class="tag">Campus</span>
+            <h3>ZeroTrace Campus</h3>
+            <p>College administration, classrooms, and institutional billing. This is not a team plan.</p>
+            <a class="btn btn-ghost" href="pricing.html#campus">View campus plans</a>
+          </article>
+        </div>
+        <p class="note">Choosing a plan on this site does not start a subscription. Prices are not fixed in this page; the pricing page reads the configured catalogue.</p>
+        <p style="margin-top:1rem"><a class="btn btn-signal" href="pricing.html">View current prices</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="voices" aria-labelledby="voices-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Testimonials · sample layout</p>
+            <h2 id="voices-title">Voices will go here.</h2>
+            <p>These cards are design placeholders. They are not quotes from learners, employers, or partners. No names, photographs, or company affiliations are shown as genuine.</p>
+          </div>
+        </div>
+        <div class="quote-grid">
+          <article class="quote"><span class="tag tag-warn">Sample placeholder</span><blockquote>A learner quote will be published here only with permission.</blockquote><p>Name and role withheld.</p></article>
+          <article class="quote"><span class="tag tag-warn">Sample placeholder</span><blockquote>A mentor or instructor note will be published here only with permission.</blockquote><p>Name and role withheld.</p></article>
+          <article class="quote"><span class="tag tag-warn">Sample placeholder</span><blockquote>An employer comment will be published here only with permission.</blockquote><p>Organisation withheld.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq" style="padding-top:0" aria-labelledby="faq-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Questions</p>
+            <h2 id="faq-title">Before you join.</h2>
+          </div>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-h1" id="faq-h1-btn">Is ZeroTrace Academy open today?</button></h3>
+            <div class="answer" id="faq-h1" role="region" aria-labelledby="faq-h1-btn" hidden><p>It is a pre-launch preview. Accounts, checkout, the cyber range, the tools, and the mentor are not live. Each one stays labelled until it launches.</p></div>
+          </div>
+          <div class="faq-item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-h2" id="faq-h2-btn">Are the tools ready to use?</button></h3>
+            <div class="answer" id="faq-h2" role="region" aria-labelledby="faq-h2-btn" hidden><p>No. All 24 tools are proposed. None are described as operational until an engine is built and integrated.</p></div>
+          </div>
+          <div class="faq-item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-h3" id="faq-h3-btn">Where does practical testing happen?</button></h3>
+            <div class="answer" id="faq-h3" role="region" aria-labelledby="faq-h3-btn" hidden><p>On isolated systems you own or are explicitly authorised to test. The academy does not point learners at third-party systems, and lab execution will not run on the public website server.</p></div>
+          </div>
+          <div class="faq-item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-h4" id="faq-h4-btn">Do I need experience already?</button></h3>
+            <div class="answer" id="faq-h4" role="region" aria-labelledby="faq-h4-btn" hidden><p>No. Foundations and the beginner paths assume no security job behind you. Each path lists its difficulty.</p></div>
+          </div>
+          <div class="faq-item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-h5" id="faq-h5-btn">Will I receive an accredited certificate?</button></h3>
+            <div class="answer" id="faq-h5" role="region" aria-labelledby="faq-h5-btn" hidden><p>Completion records for paths and assessments are planned. They are not accredited professional certifications, and they will not be described that way.</p></div>
+          </div>
+          <div class="faq-item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-h6" id="faq-h6-btn">Are the prices final?</button></h3>
+            <div class="answer" id="faq-h6" role="region" aria-labelledby="faq-h6-btn" hidden><p>No. Free, Pro, and Elite prices are proposed and may change. Lab time will follow eligibility and fair use. Unlimited virtual machines are not part of the offer.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band" aria-labelledby="final-title">
+      <h2 id="final-title">Your cybersecurity journey starts here.</h2>
+      <p class="lede">Build practical skills. Explore security tools. Investigate threats. Defend systems. Become the professional the cybersecurity world needs.</p>
+      <div class="hero-actions">
+        <a class="btn btn-signal" href="/register/">Join ZeroTrace</a>
+        <a class="btn btn-ghost" href="catalog.html">Explore the platform</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- chrome:footer -->
+  <footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="index.html">
+        <img class="logo" src="assets/logo.png" alt="ZeroTrace Academy">
+      </a>
+      <p>From learner to cybersecurity professional. A learning, tools, and simulation ecosystem for authorised practice. This site is a pre-launch preview.</p>
+    </div>
+    <nav aria-label="Platform">
+      <h2>Platform</h2>
+      <ul>
+        <li><a href="catalog.html">Academy</a></li>
+        <li><a href="catalog.html">Courses</a></li>
+        <li><a href="paths.html">Roadmaps</a></li>
+        <li><a href="range.html">Cyber Range</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="range.html#ctf">CTF Arena</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Departments">
+      <h2>Departments</h2>
+      <ul>
+        <li><a href="catalog.html#ethical-hacking">Ethical Hacking</a></li>
+        <li><a href="catalog.html#soc-operations">SOC Operations</a></li>
+        <li><a href="catalog.html#digital-forensics">Digital Forensics</a></li>
+        <li><a href="catalog.html#cloud-security">Cloud Security</a></li>
+        <li><a href="catalog.html#malware-analysis">Malware Research</a></li>
+        <li><a href="catalog.html#ai-security">AI Security</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Resources">
+      <h2>Resources</h2>
+      <ul>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="research.html">Research Library</a></li>
+        <li><a href="tutorials.html">Tutorials</a></li>
+        <li><a href="docs.html">Documentation</a></li>
+        <li><a href="community.html">Community</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Company">
+      <h2>Company</h2>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Legal">
+      <h2>Legal</h2>
+      <ul>
+        <li><a href="legal.html#privacy">Privacy Policy</a></li>
+        <li><a href="legal.html#terms">Terms and Conditions</a></li>
+        <li><a href="legal.html#aup">Acceptable Use Policy</a></li>
+        <li><a href="legal.html#disclosure">Responsible Disclosure</a></li>
+        <li><a href="legal.html#cookies">Cookie Policy</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap legal-bar">
+    <p>© 2026 ZeroTrace Academy. Preview site. Labs, tools, and plans are proposed until they launch.</p>
+    <p>Offensive practice stays inside isolated environments you are authorised to use.</p>
+  </div>
+</footer>
+  <!-- /chrome:footer -->
+  <script src="js/site.js"></script>
+</body>
+</html>

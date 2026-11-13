@@ -1,0 +1,16 @@
+{% extends "app/shell.html" %}
+{% block title %}Departments — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<h1>Cybersecurity departments</h1>
+<p>These are curriculum departments. A department does not publish a course until the lessons and assessments are ready.</p>
+<ul class="record-list">
+  {% for row in departments %}
+  <li>
+    <div>
+      <strong><a class="text-link" href="/app/departments/{{ row.slug }}/">{{ row.number|stringformat:"02d" }}. {{ row.name }}</a></strong>
+      <p>{{ row.overview }}</p>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

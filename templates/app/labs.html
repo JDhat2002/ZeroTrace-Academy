@@ -1,0 +1,24 @@
+{% extends "app/shell.html" %}
+{% block title %}Practical labs — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<h1>Practical labs</h1>
+<p>Start is checked on the server. Coming soon labs do not create a machine.</p>
+{% if notice %}<p class="alert" role="alert">{{ notice }}</p>{% endif %}
+<ul class="record-list">
+  {% for lab in labs %}
+  <li>
+    <div>
+      <strong>{{ lab.name }}</strong>
+      <p class="fine">{{ lab.category }} · {{ lab.get_difficulty_display }} · {{ lab.duration_minutes }} min · {{ lab.get_status_display }}</p>
+      <p class="fine">Requires {{ lab.required_plan }} · {{ lab.environment }}</p>
+      <p>{{ lab.summary }}</p>
+      <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="lab" value="{{ lab.slug }}">
+        <button class="btn btn-ghost" type="submit">Start lab</button>
+      </form>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

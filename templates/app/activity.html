@@ -1,0 +1,18 @@
+{% extends "app/shell.html" %}
+{% block title %}Activity — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<h1>Recent activity</h1>
+<nav class="account-nav">
+  <a href="/app/activity/">All</a>
+  <a href="/app/activity/?category=learning">Learning</a>
+  <a href="/app/activity/?category=lab">Labs</a>
+  <a href="/app/activity/?category=security">Security</a>
+</nav>
+<ul class="record-list">
+  {% for row in rows %}
+  <li><strong>{{ row.summary }}</strong><p class="fine">{{ row.get_category_display }} · {{ row.created_at|date:"j M Y, H:i" }}{% if row.minutes %} · {{ row.minutes }} min{% endif %}</p></li>
+  {% empty %}
+  <li><p class="empty">No activity is recorded.</p></li>
+  {% endfor %}
+</ul>
+{% endblock %}

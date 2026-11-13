@@ -1,0 +1,16 @@
+{% extends "app/shell.html" %}
+{% block title %}Campus — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<p class="eyebrow">ZeroTrace Campus</p>
+<h1>Institutional centre</h1>
+<p>Campuses you can open. Team subscriptions are a separate product and are not listed here.</p>
+{% if institutions %}
+<ul class="record-list">
+  {% for row in institutions %}
+  <li><div><strong><a class="text-link" href="/app/campus/{{ row.slug }}/">{{ row.name }}</a></strong><p class="fine">{{ row.get_deployment_display }} · {{ row.get_status_display }}</p></div></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="empty">No active ZeroTrace Campus subscription is attached to this account.</p>
+{% endif %}
+{% endblock %}

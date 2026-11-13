@@ -1,0 +1,38 @@
+{% extends "app/shell.html" %}
+{% block title %}{{ assessment.title }} — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<p class="eyebrow">{{ assessment.course.title }}</p>
+<h1>{{ assessment.title }}</h1>
+<p>{{ assessment.instructions }}</p>
+<p class="fine">Pass mark {{ assessment.pass_percent }}%. Attempts allowed: {{ assessment.attempt_limit }}.{% if deadline %} Submit before {{ deadline|date:"j M Y, H:i" }} UTC.{% endif %}</p>
+{% if notice %}<p class="alert" role="status">{{ notice }}</p>{% endif %}
+{% if not attempt %}
+<p class="empty">This attempt is not open.</p>
+{% elif attempt.status == "started" %}
+<form method="post">
+  {% csrf_token %}
+  {% for question in questions %}
+  <fieldset>
+    <legend>{{ question.prompt }}</legend>
+    <p class="fine">{{ question.get_kind_display }} · {{ question.marks }} mark{{ question.marks|pluralize }}</p>
+    {% if question.kind == "mcq" or question.kind == "multi" %}
+      {% for option in question.options %}
+      <label class="checkline"><input type="{% if question.kind == "multi" %}checkbox{% else %}radio{% endif %}" name="q-{{ question.pk }}" value="{{ forloop.counter0 }}"> {{ option.text }}</label>
+      {% endfor %}
+    {% elif question.kind == "bool" %}
+      <label class="checkline"><input type="radio" name="q-{{ question.pk }}" value="true"> True</label>
+      <label class="checkline"><input type="radio" name="q-{{ question.pk }}" value="false"> False</label>
+    {% else %}
+      <textarea class="field" name="q-{{ question.pk }}"></textarea>
+    {% endif %}
+  </fieldset>
+  {% endfor %}
+  <button class="btn btn-signal" type="submit">Submit attempt</button>
+</form>
+{% else %}
+<p>Score {{ attempt.score }}. {% if attempt.passed == True %}Passed.{% elif attempt.passed == False %}Not passed.{% else %}Waiting for an instructor to grade the written answers.{% endif %}</p>
+{% for answer in answers.values %}
+<p class="fine">{{ answer.question.prompt }} · {% if answer.awarded == None %}Not graded{% else %}{{ answer.awarded }}{% endif %}</p>
+{% endfor %}
+{% endif %}
+{% endblock %}

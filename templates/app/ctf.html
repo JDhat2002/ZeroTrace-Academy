@@ -1,0 +1,27 @@
+{% extends "app/shell.html" %}
+{% block title %}CTF Arena — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<h1>CTF Arena</h1>
+<p>Solved challenges come from accepted flags. No competition is scheduled, so the score stays at the recorded count.</p>
+<p class="fine">Solved: {{ solved }}</p>
+{% if notice %}<p class="alert" role="status">{{ notice }}</p>{% endif %}
+{% if challenges %}
+<ul class="record-list">
+  {% for challenge in challenges %}
+  <li>
+    <strong>{{ challenge.title }}</strong>
+    <p class="fine">{{ challenge.category }} · {{ challenge.points }} pts · {{ challenge.get_status_display }}</p>
+    <p>{{ challenge.prompt }}</p>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="challenge" value="{{ challenge.slug }}">
+      <label>Flag <input class="field" name="flag" autocomplete="off"></label>
+      <button class="btn btn-ghost" type="submit">Submit flag</button>
+    </form>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="empty">No challenge is open or scheduled.</p>
+{% endif %}
+{% endblock %}

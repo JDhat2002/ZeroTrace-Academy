@@ -1,0 +1,90 @@
+{% extends "app/shell.html" %}
+{% block title %}{{ course.title }} — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<p class="eyebrow">{{ course.get_status_display }} · {{ course.department }}</p>
+<h1>{{ course.title }}</h1>
+<p>{{ course.summary }}</p>
+<p class="fine">{{ course.get_level_display }} · {{ course.duration_minutes }} minutes outlined · Instructor: {% if course.instructor %}{{ course.instructor }}{% else %}not assigned{% endif %}</p>
+<p class="fine">Progress {{ breakdown.percent }}%. {% if course.certificate_eligible %}Certificate eligible when published and complete.{% else %}Not eligible for a certificate.{% endif %}</p>
+{% if notice %}<p class="ok" role="status">{{ notice }}</p>{% endif %}
+<form method="post" class="row-between">
+  {% csrf_token %}
+  {% if not enrolment %}
+  <button class="btn btn-signal" name="action" value="enrol" type="submit">Enrol</button>
+  {% else %}
+  <button class="btn btn-ghost" name="action" value="save" type="submit">{% if enrolment.saved %}Unsave{% else %}Save{% endif %}</button>
+  {% endif %}
+</form>
+{% for part in breakdown.parts %}
+<p class="fine">{{ part.key }} {{ part.completed }}/{{ part.total }} · weight {{ part.weight }}</p>
+{% endfor %}
+{% if course.outcomes %}
+<h2>Learning outcomes</h2>
+<ul>{% for item in course.outcomes %}<li>{{ item }}</li>{% endfor %}</ul>
+{% endif %}
+{% if course.prerequisites %}<h2>Prerequisites</h2><p>{{ course.prerequisites }}</p>{% endif %}
+{% if course.practical_requirements %}<h2>Practical requirements</h2><p>{{ course.practical_requirements }}</p>{% endif %}
+{% if course.assessment_summary %}<h2>Assessment</h2><p>{{ course.assessment_summary }}</p>{% endif %}
+<p class="fine">{% if review_average %}Rating {{ review_average }} from {{ reviews|length }} review{{ reviews|length|pluralize }}.{% else %}No reviews yet.{% endif %} Membership: {{ course.membership_code }}.</p>
+{% if announcements %}
+<h2>Announcements</h2>
+{% for item in announcements %}<p>{{ item.body }}</p>{% endfor %}
+{% endif %}
+{% if assessments %}
+<h2>Assessments</h2>
+<ul class="record-list">{% for item in assessments %}<li><div><a class="text-link" href="/app/assessments/{{ item.pk }}/">{{ item.title }}</a><p class="fine">Pass mark {{ item.pass_percent }}%</p></div></li>{% endfor %}</ul>
+{% endif %}
+{% if assignments %}
+<h2>Assignments</h2>
+{% for item in assignments %}
+<article class="course-row">
+  <div>
+    <h3>{{ item.title }}</h3>
+    <p>{{ item.instructions }}</p>
+    {% if enrolment %}
+    <form method="post" action="/app/assignments/{{ item.pk }}/submit/" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label>Notes <textarea class="field" name="body"></textarea></label>
+      <label>File <input class="field" type="file" name="file"></label>
+      <button class="btn btn-ghost" type="submit">Submit</button>
+    </form>
+    {% endif %}
+  </div>
+</article>
+{% endfor %}
+{% endif %}
+{% if enrolment %}
+<form method="post" action="/app/courses/{{ course.slug }}/review/">
+  {% csrf_token %}
+  <label>Your review
+    <select class="field" name="rating"><option value="5">5</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1</option></select>
+  </label>
+  <label>Comment <textarea class="field" name="body"></textarea></label>
+  <button class="btn btn-ghost" type="submit">Save review</button>
+</form>
+{% endif %}
+{% for module in course.modules.all %}
+<section>
+  <h2>{{ module.title }}</h2>
+  {% for lesson in module.lessons.all %}
+  <article class="course-row">
+    <div>
+      <h3><a class="text-link" href="/app/courses/{{ course.slug }}/lessons/{{ lesson.pk }}/">{{ lesson.title }}</a></h3>
+      <p>{{ lesson.body }}</p>
+      <p class="fine">{{ lesson.get_kind_display }} · {{ lesson.duration_minutes }} min</p>
+      {% if lesson.pk in done_lessons %}
+      <p class="fine">Recorded</p>
+      {% elif enrolment and lesson.kind != "video" %}
+      <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="complete">
+        <input type="hidden" name="lesson" value="{{ lesson.pk }}">
+        <button class="btn btn-ghost" type="submit">Mark complete</button>
+      </form>
+      {% endif %}
+    </div>
+  </article>
+  {% endfor %}
+</section>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "app/shell.html" %}
+{% block title %}Notifications — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<h1>Notifications</h1>
+<form method="post">{% csrf_token %}<button class="btn btn-ghost" type="submit">Mark all read</button></form>
+{% for row in rows %}
+<article class="course-row">
+  <div>
+    <p class="fine">{{ row.get_category_display }} · {{ row.created_at|date:"j M, H:i" }}{% if not row.read_at %} · Unread{% endif %}</p>
+    <p>{{ row.summary }}</p>
+    {% if not row.read_at %}
+    <form method="post">{% csrf_token %}<input type="hidden" name="id" value="{{ row.pk }}"><button class="btn btn-ghost" type="submit">Mark read</button></form>
+    {% endif %}
+  </div>
+</article>
+{% empty %}
+<p class="empty">No notification is stored.</p>
+{% endfor %}
+{% endblock %}

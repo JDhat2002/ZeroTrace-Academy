@@ -1,0 +1,33 @@
+{% extends "app/shell.html" %}
+{% block title %}Sessions — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+  <div class="auth-card auth-card-wide">
+    <h2>Sessions</h2>
+    <p class="lede">These are the browsers that are still signed in. Signing one out does not reveal a password or a session token.</p>
+    {% if notice %}<p class="ok" role="status">{{ notice }}</p>{% endif %}
+    {% if not sessions %}
+    <p class="lede">No active sessions are on record.</p>
+    {% endif %}
+    <ul class="session-list">
+      {% for row in sessions %}
+      <li>
+        <div>
+          <strong>{% if row.session_key == current %}This device{% else %}Other session{% endif %}</strong>
+          <p class="fine">{{ row.ip_address|default:"Unknown address" }} · {{ row.user_agent|default:"Unknown browser" }}</p>
+          <p class="fine">Last seen {{ row.last_seen|date:"j M Y, H:i" }} UTC</p>
+        </div>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="session_id" value="{{ row.pk }}">
+          <button class="btn btn-ghost" type="submit">Sign out</button>
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="all">
+      <button class="btn btn-signal" type="submit">Sign out of all sessions</button>
+    </form>
+  </div>
+{% endblock %}

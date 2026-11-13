@@ -1,0 +1,23 @@
+{% extends "app/shell.html" %}
+{% block title %}{{ title }} — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<p class="eyebrow">Member workspace</p>
+<h1>{{ title }}</h1>
+<p>{{ intro }}</p>
+{% if extra %}<p class="fine">{{ extra }}</p>{% endif %}
+{% if rows %}
+<ul class="record-list">
+  {% for row in rows %}
+  <li>
+    <div>
+      <strong>{% if row.href %}<a class="text-link" href="{{ row.href }}">{{ row.title }}</a>{% else %}{{ row.title }}{% endif %}</strong>
+      <p class="fine">{{ row.meta }}</p>
+      <p>{{ row.detail }}</p>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="empty">{{ empty }}</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "app/shell.html" %}
+{% block title %}{{ path.title }} — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<h1>{{ path.title }}</h1>
+<p>{{ path.summary }}</p>
+<p class="fine">{{ path.duration_label }}{% if path.certificate_eligible %} · Certificate eligible{% endif %}</p>
+{% if path.prerequisites %}<p>{{ path.prerequisites }}</p>{% endif %}
+{% if path.required_assessments or path.required_projects or path.required_labs %}
+<p class="fine">Required assessments: {{ path.required_assessments|default:"none listed" }}. Required projects: {{ path.required_projects|default:"none listed" }}. Required labs: {{ path.required_labs|default:"none listed" }}.</p>
+{% endif %}
+{% if path.outline %}
+<ol class="step-list">
+  {% for step in path.outline %}
+  <li><span>{{ forloop.counter|stringformat:"02d" }}</span>{{ step }}</li>
+  {% endfor %}
+</ol>
+{% endif %}
+<ol class="record-list">
+  {% for step in path.steps.all %}
+  <li>
+    <strong><a class="text-link" href="/app/courses/{{ step.course.slug }}/">{{ step.course.title }}</a></strong>
+    <p class="fine">{{ step.course.get_status_display }}</p>
+  </li>
+  {% empty %}
+  <li><p class="empty">No course is attached yet.</p></li>
+  {% endfor %}
+</ol>
+{% endblock %}

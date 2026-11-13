@@ -1,0 +1,267 @@
+.app-shell {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  min-height: 100vh;
+}
+
+.app-side {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
+  padding: 1rem 0.9rem 2rem;
+  background: #090f0c;
+  border-right: 1px solid #1b2921;
+}
+
+.app-brand .auth-mark {
+  height: 52px;
+  margin-bottom: 1rem;
+}
+
+.app-nav-label {
+  margin: 1rem 0 0.35rem;
+  color: #00ff75;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.app-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.app-nav a {
+  display: block;
+  padding: 0.38rem 0.55rem;
+  border-radius: 8px;
+  color: #a1aaa4;
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+
+.app-nav a[aria-current="page"],
+.app-nav a:hover {
+  background: #0d1410;
+  color: #f5f7f5;
+}
+
+.app-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1.25rem;
+  border-bottom: 1px solid #1b2921;
+  background: rgba(5, 8, 7, 0.9);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.app-top .nav-toggle {
+  display: none;
+}
+
+.app-workspace {
+  padding: 1.25rem;
+}
+
+.app-workspace h1 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  margin-bottom: 0.4rem;
+}
+
+.welcome,
+.split-board {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.identity,
+.metric,
+.course-row,
+.record-list li {
+  background: #0d1410;
+  border: 1px solid #1b2921;
+  border-radius: 16px;
+}
+
+.identity {
+  padding: 1rem;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.metric {
+  padding: 0.9rem 1rem;
+}
+
+.metric strong {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 1.6rem;
+  color: #00ff75;
+}
+
+.course-row,
+.record-list {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.record-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.course-row,
+.record-list li {
+  display: flex;
+  gap: 0.8rem;
+  padding: 0.9rem;
+  margin-top: 0.7rem;
+}
+
+.course-mark {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #123d29;
+  color: #00ff75;
+  font-family: var(--mono);
+  text-transform: uppercase;
+}
+
+.empty {
+  padding: 1rem;
+  border: 1px dashed #1b2921;
+  border-radius: 14px;
+  color: #a1aaa4;
+}
+
+.bars {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.4rem;
+  align-items: end;
+  height: 120px;
+  margin-top: 1rem;
+}
+
+.bars div {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  height: 100%;
+  gap: 0.3rem;
+}
+
+.bars span {
+  display: block;
+  width: 100%;
+  min-height: 4px;
+  background: #00ff75;
+  border-radius: 6px 6px 0 0;
+}
+
+.bars small {
+  color: #707a73;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+}
+
+.heatmap {
+  display: grid;
+  grid-template-rows: repeat(7, 12px);
+  grid-auto-flow: column;
+  gap: 3px;
+  margin-top: 1rem;
+  overflow-x: auto;
+}
+
+.heat {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background: #1b2921;
+}
+
+.heat-1 { background: #123d29; }
+.heat-2 { background: #00cc66; }
+.heat-3 { background: #00ff75; }
+
+.quota {
+  height: 6px;
+  margin-top: 0.45rem;
+  background: #1b2921;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.section-block {
+  margin-top: 1.6rem;
+}
+
+.checkline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkline input {
+  width: auto;
+}
+
+@media (max-width: 980px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .app-side {
+    position: fixed;
+    z-index: 20;
+    width: min(320px, 88vw);
+    transform: translateX(-105%);
+    transition: transform 0.2s ease;
+  }
+
+  .app-side.is-open {
+    transform: none;
+  }
+
+  .app-top .nav-toggle {
+    display: inline-flex;
+  }
+
+  .welcome,
+  .split-board,
+  .metric-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .welcome,
+  .split-board,
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .app-top {
+    flex-wrap: wrap;
+  }
+}

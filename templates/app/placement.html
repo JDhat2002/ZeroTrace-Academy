@@ -1,0 +1,42 @@
+{% extends "app/shell.html" %}
+{% block title %}Placement — Foundations{% endblock %}
+{% block workspace %}
+<p class="eyebrow"><a class="text-link" href="/app/foundations/">Foundations</a></p>
+<h1>Where should you start?</h1>
+<p>Tell us what you already know, then answer eight short questions. A high result can record the early levels as already understood. Ethics, terminology, the beginner labs, the capstone, and the final exam stay required.</p>
+{% if notice %}<p class="alert" role="status">{{ notice }}</p>{% endif %}
+{% if placement %}
+<p class="fine">Last result: {{ placement.diagnostic_score }} / {{ placement.diagnostic_total }}. Recommended start: level {{ placement.start_level }}.</p>
+{% endif %}
+<form method="post" class="stack-form">
+  {% csrf_token %}
+  <fieldset>
+    <legend>Computers and operating systems</legend>
+    <label class="checkline"><input type="radio" name="computer" value="none" required> I have not studied how computers work</label>
+    <label class="checkline"><input type="radio" name="computer" value="some"> I can use one, but the parts are still fuzzy</label>
+    <label class="checkline"><input type="radio" name="computer" value="comfortable"> I am comfortable with files, users, and settings</label>
+  </fieldset>
+  <fieldset>
+    <legend>Programming</legend>
+    <label class="checkline"><input type="radio" name="programming" value="none" required> I have not written a program</label>
+    <label class="checkline"><input type="radio" name="programming" value="some"> I have tried a little</label>
+    <label class="checkline"><input type="radio" name="programming" value="comfortable"> I can write small programs</label>
+  </fieldset>
+  <fieldset>
+    <legend>Networking</legend>
+    <label class="checkline"><input type="radio" name="networking" value="none" required> I do not know how networks move data</label>
+    <label class="checkline"><input type="radio" name="networking" value="some"> I recognise addresses and Wi-Fi</label>
+    <label class="checkline"><input type="radio" name="networking" value="comfortable"> I can explain addresses, DNS, and gateways</label>
+  </fieldset>
+  {% for index, question in questions %}
+  <fieldset>
+    <legend>{{ question.prompt }}</legend>
+    {% for option in question.options %}
+    <label class="checkline"><input type="radio" name="q{{ index }}" value="{{ forloop.counter0 }}" required> {{ option }}</label>
+    {% endfor %}
+  </fieldset>
+  {% endfor %}
+  <label class="checkline"><input type="checkbox" name="apply" value="yes"> Record the earlier levels as already understood</label>
+  <button class="btn btn-signal" type="submit">Save starting point</button>
+</form>
+{% endblock %}

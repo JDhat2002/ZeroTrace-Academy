@@ -1,0 +1,12 @@
+{% extends "app/shell.html" %}
+{% block title %}{{ tool.name }} — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<p class="eyebrow">{{ tool.get_status_display }}</p>
+<h1>{{ tool.name }}</h1>
+<p>{{ tool.summary }}</p>
+<p class="fine">{{ tool.category }} · Version {% if tool.version %}{{ tool.version }}{% else %}not released{% endif %} · Requires {{ tool.required_plan }}</p>
+<p>{{ tool.documentation }}</p>
+<ul>
+  {% for item in tool.capabilities %}<li>{{ item }}</li>{% endfor %}
+</ul>
+{% endblock %}

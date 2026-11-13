@@ -1,0 +1,17 @@
+{% extends "app/shell.html" %}
+{% block title %}Career — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<h1>Career dashboard</h1>
+<p>This tracks study progress only. It is not a placement service and it does not guarantee employment.</p>
+<section class="metric-grid">
+  <article class="metric"><p class="fine">Paths in the catalogue</p><strong>{{ paths|length }}</strong></article>
+  <article class="metric"><p class="fine">Certificates issued</p><strong>{{ metrics.certificates }}</strong></article>
+  <article class="metric"><p class="fine">Courses completed</p><strong>{{ metrics.courses_completed }}</strong></article>
+</section>
+<p class="fine">Goal: {{ request.user.preference.get_objective_display|default:"Not set" }} · Experience: {{ request.user.preference.get_experience_level_display|default:"Not set" }}</p>
+<ul class="record-list">
+  {% for path in paths %}
+  <li><a class="text-link" href="/app/paths/{{ path.slug }}/">{{ path.title }}</a><p class="fine">{{ path.duration_label }}</p></li>
+  {% endfor %}
+</ul>
+{% endblock %}

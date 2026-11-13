@@ -1,0 +1,12 @@
+{% extends "app/shell.html" %}
+{% block title %}Learning calendar — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<h1>Learning calendar</h1>
+<p>Each cell is a day with recorded study minutes. Empty cells are days with no record.</p>
+<p class="fine">This week {{ metrics.week_minutes }} minutes · This month {{ metrics.month_minutes }} minutes</p>
+<div class="heatmap" aria-label="Daily study minutes">
+  {% for cell in cells %}
+  <span class="heat heat-{{ cell.level }}" title="{{ cell.date }} · {{ cell.minutes }} minutes"></span>
+  {% endfor %}
+</div>
+{% endblock %}

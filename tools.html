@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tools · ZeroTrace Academy</title>
+  <meta name="description" content="Twenty-four proposed ZeroTrace tools for network, web, defensive, forensic, and cloud training. None are released yet.">
+  <meta name="theme-color" content="#050807">
+  <link rel="icon" href="assets/favicon-mark.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header">
+<div class="lang-switch" id="study-languages">
+    <button type="button" class="lang-toggle" aria-expanded="false" aria-controls="lang-menu" aria-haspopup="listbox">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 12h16M12 4c2.2 2.4 3.3 5.1 3.3 8s-1.1 5.6-3.3 8c-2.2-2.4-3.3-5.1-3.3-8s1.1-5.6 3.3-8z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      <span data-lang-label>English</span>
+      <span class="sr-only">Choose a language</span>
+    </button>
+    <div class="lang-menu" id="lang-menu" role="listbox" hidden>
+      <button type="button" class="lang-option" role="option" data-lang="en" data-name="English" data-native="English">English <span>English</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="zh" data-name="Mandarin Chinese" data-native="中文">中文 <span>Mandarin Chinese</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="hi" data-name="Hindi" data-native="हिन्दी">हिन्दी <span>Hindi</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="es" data-name="Spanish" data-native="Español">Español <span>Spanish</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="fr" data-name="French" data-native="Français">Français <span>French</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="ar" data-name="Arabic" data-native="العربية">العربية <span>Arabic</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="bn" data-name="Bengali" data-native="বাংলা">বাংলা <span>Bengali</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="pt" data-name="Portuguese" data-native="Português">Português <span>Portuguese</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="ru" data-name="Russian" data-native="Русский">Русский <span>Russian</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="ur" data-name="Urdu" data-native="اردو">اردو <span>Urdu</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="id" data-name="Indonesian" data-native="Indonesia">Bahasa Indonesia <span>Indonesian</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="de" data-name="German" data-native="Deutsch">Deutsch <span>German</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="ja" data-name="Japanese" data-native="日本語">日本語 <span>Japanese</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="pcm" data-name="Nigerian Pidgin" data-native="Naijá">Naijá <span>Nigerian Pidgin</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="mr" data-name="Marathi" data-native="मराठी">मराठी <span>Marathi</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="te" data-name="Telugu" data-native="తెలుగు">తెలుగు <span>Telugu</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="tr" data-name="Turkish" data-native="Türkçe">Türkçe <span>Turkish</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="ta" data-name="Tamil" data-native="தமிழ்">தமிழ் <span>Tamil</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="yue" data-name="Yue Chinese" data-native="粵語">粵語 <span>Yue Chinese</span></button>
+      <button type="button" class="lang-option" role="option" data-lang="vi" data-name="Vietnamese" data-native="Việt">Tiếng Việt <span>Vietnamese</span></button>
+    </div>
+  </div>
+    <a class="brand" href="index.html">
+    <img class="logo" src="assets/logo.png" alt="ZeroTrace Academy">
+  </a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+    <span class="sr-only">Open menu</span>
+    <span class="burger" aria-hidden="true"></span>
+  </button>
+  <div class="nav-cluster" id="site-nav">
+    <nav class="primary-nav" aria-label="Primary">
+      <div class="nav-item">
+        <button class="nav-drop" type="button" aria-expanded="false" aria-controls="menu-academy" data-nav="catalog.html">
+          Academy
+          <svg class="caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+        <div class="dropdown" id="menu-academy">
+          <a href="catalog.html">All courses</a>
+          <a href="paths.html">Learning paths</a>
+          <a href="catalog.html#ethical-hacking">Ethical hacking</a>
+          <a href="catalog.html#soc-operations">SOC analyst</a>
+          <a href="catalog.html#digital-forensics">Digital forensics</a>
+          <a href="catalog.html#cloud-security">Cloud security</a>
+        </div>
+      </div>
+      <a href="paths.html" data-nav="paths.html">Roadmaps</a>
+      <div class="nav-item">
+        <button class="nav-drop" type="button" aria-expanded="false" aria-controls="menu-range" data-nav="range.html">
+          Cyber Range
+          <svg class="caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+        <div class="dropdown" id="menu-range">
+          <a href="range.html#virtual-machines">Virtual labs</a>
+          <a href="range.html#ctf">CTF arena</a>
+          <a href="range.html#red-blue">Attack &amp; defence</a>
+          <a href="range.html#soc">SOC simulation</a>
+          <a href="range.html#forensics">Forensic investigations</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-drop" type="button" aria-expanded="false" aria-controls="menu-tools" data-nav="tools.html">
+          Tools
+          <svg class="caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+        <div class="dropdown" id="menu-tools">
+          <a href="tools.html">All tools</a>
+          <a href="tools.html?filter=network">Network security</a>
+          <a href="tools.html?filter=web">Web security</a>
+          <a href="tools.html?filter=blue">SOC tools</a>
+          <a href="tools.html?filter=forensics">Forensics tools</a>
+          <a href="tools.html?filter=cloud">Cloud security</a>
+        </div>
+      </div>
+      <a href="research.html" data-nav="research.html">Research</a>
+      <a href="pricing.html" data-nav="pricing.html">Pricing</a>
+    </nav>
+    <div class="nav-end">
+      <a class="nav-login" href="/login/" data-nav="login">Log in</a>
+      <a class="btn btn-signal" href="/register/">Get Started</a>
+    </div>
+  </div>
+</header>
+
+  <main id="main">
+    <div class="wrap page-hero">
+      <p class="kicker">Toolkit · Proposed</p>
+      <h1>Named, scoped, not shipped.</h1>
+      <p class="lede">These 24 tools are in planning or development. They are for authorised training work. We will not call one available until it is released.</p>
+    </div>
+
+    <section class="section" style="padding-top: 0">
+      <div class="wrap">
+        <div class="filters" role="toolbar" aria-label="Filter tools">
+          <button type="button" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" data-filter="network" aria-pressed="false">Network</button>
+          <button type="button" data-filter="web" aria-pressed="false">Web &amp; API</button>
+          <button type="button" data-filter="red" aria-pressed="false">Red Team</button>
+          <button type="button" data-filter="blue" aria-pressed="false">Blue Team</button>
+          <button type="button" data-filter="forensics" aria-pressed="false">Forensics</button>
+          <button type="button" data-filter="cloud" aria-pressed="false">Cloud</button>
+          <button type="button" data-filter="research" aria-pressed="false">Research</button>
+        </div>
+        <p class="count" data-count>Showing 24 of 24 proposed tools</p>
+        <div class="tool-grid">
+          <article class="tool" id="tracescan" data-tags="network red">
+            <span class="tag">Proposed</span>
+            <h3>TraceScan</h3>
+            <p class="tool-cat">Network discovery</p>
+            <p>Host and service discovery for networks you are authorised to assess.</p>
+          </article>
+          <article class="tool" id="tracemap" data-tags="network blue">
+            <span class="tag">Proposed</span>
+            <h3>TraceMap</h3>
+            <p class="tool-cat">Network visualisation</p>
+            <p>Turn discovery results into an interactive, explorable network topology.</p>
+          </article>
+          <article class="tool" id="webprobe" data-tags="web red">
+            <span class="tag">Proposed</span>
+            <h3>WebProbe</h3>
+            <p class="tool-cat">Web app testing</p>
+            <p>A guided web testing workflow mapped to the OWASP Top 10.</p>
+          </article>
+          <article class="tool" id="api-sentinel" data-tags="web">
+            <span class="tag">Proposed</span>
+            <h3>API Sentinel</h3>
+            <p class="tool-cat">API security</p>
+            <p>Inspect API specifications and traffic for authorisation and data-exposure flaws.</p>
+          </article>
+          <article class="tool" id="vulnmatrix" data-tags="blue research">
+            <span class="tag">Proposed</span>
+            <h3>VulnMatrix</h3>
+            <p class="tool-cat">Vulnerability management</p>
+            <p>Track, prioritise, and report findings with severity and remediation context.</p>
+          </article>
+          <article class="tool" id="advision" data-tags="red blue">
+            <span class="tag">Proposed</span>
+            <h3>ADVision</h3>
+            <p class="tool-cat">Active Directory</p>
+            <p>Visualise Active Directory relationships and risky privilege paths.</p>
+          </article>
+          <article class="tool" id="packetscope" data-tags="network forensics">
+            <span class="tag">Proposed</span>
+            <h3>PacketScope</h3>
+            <p class="tool-cat">Packet analysis</p>
+            <p>Browser-friendly inspection of packet captures made for training.</p>
+          </article>
+          <article class="tool" id="tracesiem" data-tags="blue">
+            <span class="tag">Proposed</span>
+            <h3>TraceSIEM</h3>
+            <p class="tool-cat">Security monitoring</p>
+            <p>A training SIEM for searching logs, building dashboards, and triaging alerts.</p>
+          </article>
+          <article class="tool" id="threathunter" data-tags="blue">
+            <span class="tag">Proposed</span>
+            <h3>ThreatHunter</h3>
+            <p class="tool-cat">Threat hunting</p>
+            <p>Hypothesis-driven hunting notebooks over prepared telemetry.</p>
+          </article>
+          <article class="tool" id="ruleforge" data-tags="blue research">
+            <span class="tag">Proposed</span>
+            <h3>RuleForge</h3>
+            <p class="tool-cat">Detection engineering</p>
+            <p>Write, test, and tune detection rules against sample event data.</p>
+          </article>
+          <article class="tool" id="forensight" data-tags="forensics">
+            <span class="tag">Proposed</span>
+            <h3>ForenSight</h3>
+            <p class="tool-cat">Digital forensics</p>
+            <p>Case-based disk image examination with timeline and artefact views.</p>
+          </article>
+          <article class="tool" id="memoryscope" data-tags="forensics">
+            <span class="tag">Proposed</span>
+            <h3>MemoryScope</h3>
+            <p class="tool-cat">Memory forensics</p>
+            <p>Explore memory images for processes, connections, and injected code.</p>
+          </article>
+          <article class="tool" id="malwarelab" data-tags="forensics research">
+            <span class="tag">Proposed</span>
+            <h3>MalwareLab</h3>
+            <p class="tool-cat">Malware analysis</p>
+            <p>An isolated workflow for static and behavioural analysis of samples.</p>
+          </article>
+          <article class="tool" id="cloudsentinel" data-tags="cloud blue">
+            <span class="tag">Proposed</span>
+            <h3>CloudSentinel</h3>
+            <p class="tool-cat">Cloud security</p>
+            <p>Review cloud configurations for identity, storage, and logging risks.</p>
+          </article>
+          <article class="tool" id="containerguard" data-tags="cloud">
+            <span class="tag">Proposed</span>
+            <h3>ContainerGuard</h3>
+            <p class="tool-cat">Container security</p>
+            <p>Scan images and manifests for vulnerable packages and unsafe settings.</p>
+          </article>
+          <article class="tool" id="mobiletrace" data-tags="red forensics">
+            <span class="tag">Proposed</span>
+            <h3>MobileTrace</h3>
+            <p class="tool-cat">Mobile security</p>
+            <p>Inspect mobile app packages for permissions, secrets, and insecure storage.</p>
+          </article>
+          <article class="tool" id="codeshield" data-tags="web research">
+            <span class="tag">Proposed</span>
+            <h3>CodeShield</h3>
+            <p class="tool-cat">Code security</p>
+            <p>Static analysis that explains insecure code patterns as you learn.</p>
+          </article>
+          <article class="tool" id="cryptoscope" data-tags="research">
+            <span class="tag">Proposed</span>
+            <h3>CryptoScope</h3>
+            <p class="tool-cat">Cryptographic analysis</p>
+            <p>Identify encodings, hashes, and weak cryptographic constructions.</p>
+          </article>
+          <article class="tool" id="osint-navigator" data-tags="red research">
+            <span class="tag">Proposed</span>
+            <h3>OSINT Navigator</h3>
+            <p class="tool-cat">OSINT</p>
+            <p>A structured workspace for ethical open-source intelligence investigations.</p>
+          </article>
+          <article class="tool" id="rangecontrol" data-tags="research">
+            <span class="tag">Proposed</span>
+            <h3>RangeControl</h3>
+            <p class="tool-cat">Lab orchestration</p>
+            <p>Provision and reset isolated cyber-range environments per learner.</p>
+          </article>
+          <article class="tool" id="incidentdesk" data-tags="blue forensics">
+            <span class="tag">Proposed</span>
+            <h3>IncidentDesk</h3>
+            <p class="tool-cat">Incident response</p>
+            <p>Case management for incident timelines, tasks, and evidence.</p>
+          </article>
+          <article class="tool" id="attacksim" data-tags="red blue">
+            <span class="tag">Proposed</span>
+            <h3>AttackSim</h3>
+            <p class="tool-cat">Controlled simulation</p>
+            <p>Replay scripted adversary techniques inside isolated lab networks only.</p>
+          </article>
+          <article class="tool" id="wirelessscope" data-tags="network red">
+            <span class="tag">Proposed</span>
+            <h3>WirelessScope</h3>
+            <p class="tool-cat">Wireless security</p>
+            <p>Analyse wireless captures and configurations in training scenarios.</p>
+          </article>
+          <article class="tool" id="threatintel-hub" data-tags="blue research">
+            <span class="tag">Proposed</span>
+            <h3>ThreatIntel Hub</h3>
+            <p class="tool-cat">Threat intelligence</p>
+            <p>Aggregate and enrich indicators, mapped to MITRE ATT&amp;CK techniques.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="index.html">
+        <img class="logo" src="assets/logo.png" alt="ZeroTrace Academy">
+      </a>
+      <p>From learner to cybersecurity professional. A learning, tools, and simulation ecosystem for authorised practice. This site is a pre-launch preview.</p>
+    </div>
+    <nav aria-label="Platform">
+      <h2>Platform</h2>
+      <ul>
+        <li><a href="catalog.html">Academy</a></li>
+        <li><a href="catalog.html">Courses</a></li>
+        <li><a href="paths.html">Roadmaps</a></li>
+        <li><a href="range.html">Cyber Range</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="range.html#ctf">CTF Arena</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Departments">
+      <h2>Departments</h2>
+      <ul>
+        <li><a href="catalog.html#ethical-hacking">Ethical Hacking</a></li>
+        <li><a href="catalog.html#soc-operations">SOC Operations</a></li>
+        <li><a href="catalog.html#digital-forensics">Digital Forensics</a></li>
+        <li><a href="catalog.html#cloud-security">Cloud Security</a></li>
+        <li><a href="catalog.html#malware-analysis">Malware Research</a></li>
+        <li><a href="catalog.html#ai-security">AI Security</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Resources">
+      <h2>Resources</h2>
+      <ul>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="research.html">Research Library</a></li>
+        <li><a href="tutorials.html">Tutorials</a></li>
+        <li><a href="docs.html">Documentation</a></li>
+        <li><a href="community.html">Community</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Company">
+      <h2>Company</h2>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Legal">
+      <h2>Legal</h2>
+      <ul>
+        <li><a href="legal.html#privacy">Privacy Policy</a></li>
+        <li><a href="legal.html#terms">Terms and Conditions</a></li>
+        <li><a href="legal.html#aup">Acceptable Use Policy</a></li>
+        <li><a href="legal.html#disclosure">Responsible Disclosure</a></li>
+        <li><a href="legal.html#cookies">Cookie Policy</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap legal-bar">
+    <p>© 2026 ZeroTrace Academy. Preview site. Labs, tools, and plans are proposed until they launch.</p>
+    <p>Offensive practice stays inside isolated environments you are authorised to use.</p>
+  </div>
+</footer>
+  <script src="js/site.js"></script>
+</body>
+</html>

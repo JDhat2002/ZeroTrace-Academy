@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — ZeroTrace Academy{% endblock %}
+{% block body %}
+<main id="main" class="auth-simple">
+  <a href="/"><img class="auth-mark" src="/assets/logo.png" alt="ZeroTrace Academy"></a>
+  {% include "account/_nav.html" %}
+  <div class="auth-card auth-card-wide">
+    <p class="eyebrow">{{ membership_label }} membership</p>
+    <h2>Your workspace</h2>
+    <p class="lede">Paid plans and labs are not live yet. Access checks already run on the server, so a Free account cannot open Pro or Elite features by editing the page.</p>
+    <section class="recommend">
+      <p class="eyebrow">Suggested path</p>
+      <h3>{{ recommendation.title }}</h3>
+      <p>{{ recommendation.reason }}</p>
+      <p class="fine">{{ recommendation.duration }}</p>
+      <a class="text-link" href="{{ recommendation.href }}">Open the roadmap</a>
+    </section>
+    <p class="fine"><a class="text-link" href="/catalog.html">Academy catalogue</a> · <a class="text-link" href="/pricing.html">Proposed plans</a></p>
+  </div>
+</main>
+{% endblock %}

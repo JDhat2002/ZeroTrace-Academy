@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Verify email — ZeroTrace Academy{% endblock %}
+{% block body %}
+<main id="main" class="auth-simple">
+  <a href="/"><img class="auth-mark" src="/assets/logo.png" alt="ZeroTrace Academy"></a>
+  <div class="auth-card">
+    <h2>VERIFY YOUR EMAIL ADDRESS.</h2>
+    {% if state == "success" %}
+    <p class="ok" role="status">Your email is verified. The account is active.</p>
+    <p class="lede">Verification links expire after 24 hours and cannot be reused.</p>
+    {% if user.is_authenticated %}
+    <a class="btn btn-signal" href="/onboarding/">Continue</a>
+    {% else %}
+    <a class="btn btn-signal" href="/login/">Sign in</a>
+    {% endif %}
+    {% elif state == "invalid" %}
+    <p class="alert" role="alert">This link is invalid or has expired.</p>
+    <p class="lede">Request a new link. The previous one no longer works.</p>
+    {% else %}
+    <p class="lede">Open the link we sent, then return here. Links expire in 24 hours and work once. The account stays inactive until that step is finished.</p>
+    {% endif %}
+    {% if notice %}
+    <p class="ok" role="status">{{ notice }}</p>
+    {% endif %}
+    {% if state != "success" %}
+    <form class="auth-form" method="post" data-auth-form>
+      {% csrf_token %}
+      <label for="email">Email address
+        <input class="field" id="email" name="email" type="email" autocomplete="email" required>
+      </label>
+      <button class="btn btn-signal" type="submit" data-submit>Resend verification</button>
+    </form>
+    {% endif %}
+    <p class="fine"><a class="text-link" href="/login/">Back to sign in</a></p>
+  </div>
+</main>
+{% endblock %}

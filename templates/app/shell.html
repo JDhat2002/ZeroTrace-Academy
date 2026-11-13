@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="app-shell">
+  <aside class="app-side" id="app-side">
+    <a class="app-brand" href="/dashboard/"><img class="auth-mark" src="/assets/logo.png" alt="ZeroTrace Academy"></a>
+    {% include "app/nav.html" %}
+  </aside>
+  <div class="app-main">
+    <header class="app-top">
+      <button class="nav-toggle" type="button" data-app-nav aria-controls="app-side" aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <span class="burger" aria-hidden="true"></span>
+      </button>
+      <div>
+        <strong>{{ request.user.full_name }}</strong>
+        <p class="fine">{{ plan_name }}</p>
+        {% if workspaces %}
+        <p class="fine">
+          {% for item in workspaces %}
+          <a class="text-link" href="{{ item.href }}">{{ item.label }}</a>{% if not forloop.last %} · {% endif %}
+          {% endfor %}
+        </p>
+        {% endif %}
+      </div>
+      <a class="text-link" href="/app/notifications/">Notifications{% if unread_notifications %} ({{ unread_notifications }}){% endif %}</a>
+      <a class="text-link" href="/logout/">Sign out</a>
+    </header>
+    <div id="main" class="app-workspace">
+      {% block workspace %}{% endblock %}
+    </div>
+  </div>
+</div>
+{% endblock %}

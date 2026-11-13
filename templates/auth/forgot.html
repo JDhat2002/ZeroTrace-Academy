@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Forgot password — ZeroTrace Academy{% endblock %}
+{% block body %}
+<main id="main" class="auth-simple">
+  <a href="/"><img class="auth-mark" src="/assets/logo.png" alt="ZeroTrace Academy"></a>
+  <div class="auth-card">
+    <p class="eyebrow">Account recovery</p>
+    <h2>Reset your password</h2>
+    {% if sent %}
+    <p class="ok" role="status">{{ neutral }}</p>
+    <p class="lede">If a message arrives, the link expires in 30 minutes and works once.</p>
+    {% else %}
+    <p class="lede">Enter the email on the account. The response is the same whether or not an account exists.</p>
+    <form class="auth-form" method="post" data-auth-form>
+      {% csrf_token %}
+      <label for="email">Email address
+        <input class="field" id="email" name="email" type="email" autocomplete="email" required>
+      </label>
+      <button class="btn btn-signal" type="submit" data-submit>Request reset</button>
+    </form>
+    {% endif %}
+    <p class="fine"><a class="text-link" href="/login/">Back to sign in</a> · <a class="text-link" href="/account/recovery/">Account recovery</a></p>
+  </div>
+</main>
+{% endblock %}

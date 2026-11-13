@@ -1,2 +1,7 @@
-Django>=5.2,<5.3
-psycopg[binary]>=3.2,<4
+Django>=5.1,<5.3
+djangorestframework>=3.15,<3.16
+pyotp>=2.9
+qrcode>=7.4
+Pillow>=10.4
+cryptography>=43
+psycopg[binary]>=3.2

@@ -1,0 +1,23 @@
+{% extends "app/shell.html" %}
+{% block title %}{{ team.name }} learning — ZeroTrace Teams{% endblock %}
+{% block workspace %}
+<p class="eyebrow">ZeroTrace Teams</p>
+<h1>{{ team.name }}</h1>
+<p>Your learner seat. Billing and team administration are not shown here.</p>
+<h2>Learning paths</h2>
+{% if paths %}
+<ul class="record-list">{% for row in paths %}<li><div><strong><a class="text-link" href="/app/paths/{{ row.path.slug }}/">{{ row.path.title }}</a></strong></div></li>{% endfor %}</ul>
+{% else %}<p class="empty">No path is assigned yet.</p>{% endif %}
+<h2>Assigned courses</h2>
+{% if assigned_courses %}
+<ul class="record-list">{% for row in assigned_courses %}<li><div><a class="text-link" href="/app/courses/{{ row.course.slug }}/">{{ row.course.title }}</a></div></li>{% endfor %}</ul>
+{% else %}<p class="empty">No course is assigned yet.</p>{% endif %}
+<h2>Assignments</h2>
+{% if assignments %}
+<ul class="record-list">{% for row in assignments %}<li><div><strong>{{ row.title }}</strong><p>{{ row.brief }}</p></div></li>{% endfor %}</ul>
+{% else %}<p class="empty">No assignment is assigned yet.</p>{% endif %}
+<h2>Competitions</h2>
+{% if competitions %}
+<ul class="record-list">{% for row in competitions %}<li><div><strong>{{ row.name }}</strong></div></li>{% endfor %}</ul>
+{% else %}<p class="empty">No competition is scheduled.</p>{% endif %}
+{% endblock %}

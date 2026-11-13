@@ -1,0 +1,24 @@
+{% extends "app/shell.html" %}
+{% block title %}Learning paths — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<h1>Learning paths</h1>
+<p>These roadmaps describe sequence and estimated time. Completion follows the courses you actually finish.</p>
+{% if request.user.is_staff %}
+<form class="stack-form" method="post" action="/app/paths/create/">
+  {% csrf_token %}
+  <label>New path title <input class="field" name="title" required></label>
+  <label>Summary <textarea class="field" name="summary"></textarea></label>
+  <label>Skills, comma separated <input class="field" name="skills"></label>
+  <button class="btn btn-ghost" type="submit">Save path</button>
+</form>
+{% endif %}
+{% for path in paths %}
+<article class="course-row">
+  <div>
+    <h2><a class="text-link" href="/app/paths/{{ path.slug }}/">{{ path.title }}</a></h2>
+    <p>{{ path.summary }}</p>
+    <p class="fine">{{ path.duration_label }} · {% for skill in path.skills %}{{ skill }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+  </div>
+</article>
+{% endfor %}
+{% endblock %}

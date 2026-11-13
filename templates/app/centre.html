@@ -1,0 +1,22 @@
+{% extends "app/shell.html" %}
+{% block title %}{{ title }} — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<h1>{{ title }}</h1>
+<p>{{ intro }}</p>
+<section class="metric-grid">
+  {% for label, value in stats.items %}
+  <article class="metric"><p class="fine">{{ label }}</p><strong>{{ value }}</strong></article>
+  {% endfor %}
+</section>
+<ul class="record-list">
+  {% for item in items %}
+  <li><strong>{{ item.title }}</strong><p>{{ item.summary }}</p></li>
+  {% endfor %}
+</ul>
+<h2>Your cases</h2>
+{% if cases %}
+<ul class="record-list">{% for case in cases %}<li>{{ case.title }} · {{ case.status }}</li>{% endfor %}</ul>
+{% else %}
+<p class="empty">{{ case_empty }}</p>
+{% endif %}
+{% endblock %}

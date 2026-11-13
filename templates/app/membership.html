@@ -1,0 +1,40 @@
+{% extends "app/shell.html" %}
+{% load membership_tags %}
+{% block title %}Membership Centre — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<p class="eyebrow">Individual</p>
+<h1>Membership Centre</h1>
+<p>This is your personal ZeroTrace Academy membership. Team and campus plans are separate products and are not listed here.</p>
+{% if notice %}<p class="alert" role="status">{{ notice }}</p>{% endif %}
+<p class="fine">Current plan: {{ current.name }}.</p>
+{% if subscription and subscription.contracted_price_inr %}
+<p class="fine">Contracted {{ subscription.get_billing_interval_display|lower }} price: {{ subscription.contracted_price_inr|inr }}. Renewal uses this amount. It is not recalculated from the monthly price.</p>
+{% endif %}
+{% if subscription and subscription.renews_at %}<p class="fine">Renews {{ subscription.renews_at|date:"j M Y" }}.</p>{% endif %}
+<ul class="record-list">
+  {% for plan in plans %}
+  <li>
+    <div>
+      <strong>{{ plan.name }}</strong>
+      <p class="fine">
+        {% if plan.quote_only %}
+        Custom quotation
+        {% else %}
+        {{ plan.price_inr|inr }} / month
+        {% if plan.annual_price_inr is not None %} · {{ plan.annual_price_inr|inr }} / year{% endif %}
+        {% endif %}
+        · {% if plan.checkout_enabled %}Checkout on{% else %}Checkout off{% endif %}
+      </p>
+      <p>{{ plan.summary }}</p>
+      <ul>{% for feature in plan.features %}<li>{{ feature }}</li>{% endfor %}</ul>
+      <form method="post" action="/app/membership/select/">
+        {% csrf_token %}
+        <input type="hidden" name="plan" value="{{ plan.code }}">
+        <button class="btn btn-ghost" type="submit">{% if current.code == plan.code %}Current plan{% else %}Select{% endif %}</button>
+      </form>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+<p class="fine"><a class="text-link" href="/app/billing/">Individual billing</a> · <a class="text-link" href="/app/usage/">Usage and limits</a></p>
+{% endblock %}

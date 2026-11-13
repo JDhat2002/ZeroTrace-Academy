@@ -1,0 +1,26 @@
+{% extends "app/shell.html" %}
+{% block title %}My learning — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<h1>My learning</h1>
+<p>Progress uses the published weights: lessons 40, quizzes 20, labs 25, assignments 15. Types that a course does not include are left out, and the rest are scaled to 100.</p>
+<nav class="account-nav" aria-label="Learning filters">
+  <a href="/app/learning/?tab=all" {% if tab == "all" %}aria-current="page"{% endif %}>All</a>
+  <a href="/app/learning/?tab=progress" {% if tab == "progress" %}aria-current="page"{% endif %}>In progress</a>
+  <a href="/app/learning/?tab=new" {% if tab == "new" %}aria-current="page"{% endif %}>Not started</a>
+  <a href="/app/learning/?tab=completed" {% if tab == "completed" %}aria-current="page"{% endif %}>Completed</a>
+  <a href="/app/learning/?tab=saved" {% if tab == "saved" %}aria-current="page"{% endif %}>Saved</a>
+</nav>
+{% for row in rows %}
+<article class="course-row">
+  <p class="course-mark">{{ row.enrolment.course.department|slice:":2" }}</p>
+  <div>
+    <h2><a class="text-link" href="/app/courses/{{ row.enrolment.course.slug }}/">{{ row.enrolment.course.title }}</a></h2>
+    <p class="fine">{{ row.enrolment.course.department }} · {{ row.enrolment.course.get_level_display }} · {{ row.percent }}%</p>
+    <p class="fine">Enrolled {{ row.enrolment.enrolled_at|date:"j M Y" }} · {% if row.enrolment.course.certificate_eligible %}Certificate possible{% else %}Not certificate eligible{% endif %}</p>
+    <p class="fine">Next: {% if row.next %}{{ row.next.title }}{% else %}None queued{% endif %}</p>
+  </div>
+</article>
+{% empty %}
+<p class="empty">Nothing is in this tab.</p>
+{% endfor %}
+{% endblock %}

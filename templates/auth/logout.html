@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Sign out — ZeroTrace Academy{% endblock %}
+{% block body %}
+<main id="main" class="auth-simple">
+  <div class="auth-card">
+    <h2>Sign out of this session?</h2>
+    <p class="lede">Other devices stay signed in until you revoke them.</p>
+    <form method="post" data-auth-form>
+      {% csrf_token %}
+      <button class="btn btn-signal" type="submit" data-submit>Sign out</button>
+    </form>
+    <p class="fine"><a class="text-link" href="/account/sessions/">Review sessions</a> · <a class="text-link" href="/dashboard/">Stay signed in</a></p>
+  </div>
+</main>
+{% endblock %}

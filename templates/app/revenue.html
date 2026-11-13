@@ -1,0 +1,73 @@
+{% extends "app/shell.html" %}
+{% load membership_tags %}
+{% block title %}Revenue — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<p class="eyebrow">Administration</p>
+<h1>Collected revenue</h1>
+<p>The figure below is money confirmed as collected in the target window, after refunds. Unpaid invoices, failed transactions, cancelled subscriptions, and renewals that have not been paid are not included. This is not a forecast.</p>
+{% if notice %}<p class="alert" role="status">{{ notice }}</p>{% endif %}
+{% if report.target %}
+<p class="fine">Business target: {{ report.target.amount_inr|inr }} collected from {{ report.window_start|date:"j M Y" }} until {{ report.window_end|date:"j M Y" }}. {{ report.target.note }}</p>
+<div class="quota" aria-hidden="true"><span style="width: {{ progress }}%"></span></div>
+<p class="fine">{{ report.lines.all.collected|inr }} collected toward {{ goal_label }} ({{ progress }}%).</p>
+{% endif %}
+
+<section class="metric-grid" aria-label="Collected revenue">
+  <article class="metric"><span>Individual</span><strong>{{ report.lines.individual.collected|inr }}</strong></article>
+  <article class="metric"><span>Team</span><strong>{{ report.lines.team.collected|inr }}</strong></article>
+  <article class="metric"><span>Campus</span><strong>{{ report.lines.campus.collected|inr }}</strong></article>
+  <article class="metric"><span>Workshops and training</span><strong>{{ report.lines.workshops.collected|inr }}</strong></article>
+  <article class="metric"><span>Monthly collections</span><strong>{{ report.lines.monthly.collected|inr }}</strong></article>
+  <article class="metric"><span>Annual collections</span><strong>{{ report.lines.annual.collected|inr }}</strong></article>
+  <article class="metric"><span>Refunds</span><strong>{{ report.lines.all.refunds|inr }}</strong></article>
+  <article class="metric"><span>Taxes</span><strong>{{ report.lines.all.tax|inr }}</strong></article>
+  <article class="metric"><span>Payment fees</span><strong>{{ report.lines.all.fees|inr }}</strong></article>
+  <article class="metric"><span>Outstanding invoices</span><strong>{{ report.outstanding_total|inr }}</strong></article>
+  <article class="metric"><span>Net revenue</span><strong>{{ report.lines.all.net|inr }}</strong></article>
+  <article class="metric"><span>Operating costs</span><strong>{{ report.operating_total|inr }}</strong></article>
+</section>
+<p class="fine">Net revenue is collected cash after refunds, taxes, and payment fees. After recorded operating costs: {{ report.after_costs|inr }}. Outstanding invoices: {{ report.outstanding_count }}. They are not collected revenue.</p>
+<p class="fine">Excluded from collected revenue: {{ report.excluded.pending }} pending transaction{{ report.excluded.pending|pluralize }}, {{ report.excluded.failed }} failed transaction{{ report.excluded.failed|pluralize }}, {{ report.excluded.cancelled_subscriptions }} cancelled subscription{{ report.excluded.cancelled_subscriptions|pluralize }} with no extra renewal counted.</p>
+
+{% if report.target %}
+<section class="section-block">
+  <h2>Target</h2>
+  <form class="stack-form" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="target">
+    {{ target_form.as_p }}
+    <button class="btn btn-ghost" type="submit">Save target</button>
+  </form>
+</section>
+{% endif %}
+
+<section class="section-block">
+  <h2>Operating cost</h2>
+  <form class="stack-form" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="cost">
+    {{ cost_form.as_p }}
+    <button class="btn btn-ghost" type="submit">Record cost</button>
+  </form>
+  {% if report.costs %}
+  <ul class="record-list">
+    {% for cost in report.costs %}
+    <li><div><strong>{{ cost.amount_inr|inr }}</strong><p class="fine">{{ cost.incurred_on }} · {{ cost.note }}</p></div></li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="empty">No operating cost is recorded in this window.</p>
+  {% endif %}
+</section>
+
+<section class="section-block">
+  <h2>Workshop or training already collected</h2>
+  <p>Use this only for money already received. It does not start a subscription and it does not project a renewal.</p>
+  <form class="stack-form" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="training">
+    {{ training_form.as_p }}
+    <button class="btn btn-ghost" type="submit">Record collected payment</button>
+  </form>
+</section>
+{% endblock %}

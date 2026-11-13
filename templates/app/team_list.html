@@ -1,0 +1,16 @@
+{% extends "app/shell.html" %}
+{% block title %}Teams — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<p class="eyebrow">ZeroTrace Teams</p>
+<h1>Team centre</h1>
+<p>Teams you can open. Campus administration is a separate product and is not listed here.</p>
+{% if teams %}
+<ul class="record-list">
+  {% for team in teams %}
+  <li><div><strong><a class="text-link" href="/app/teams/{{ team.slug }}/">{{ team.name }}</a></strong><p class="fine">{{ team.get_status_display }}</p></div></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="empty">No active ZeroTrace Teams subscription is attached to this account.</p>
+{% endif %}
+{% endblock %}

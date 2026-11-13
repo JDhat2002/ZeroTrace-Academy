@@ -1,0 +1,15 @@
+{% extends "app/shell.html" %}
+{% block title %}Usage — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<h1>Usage and limits</h1>
+<p>Allowances come from {{ plan.name }}. Used amounts are summed from recorded usage. Lab minutes, range minutes, VM sessions, and storage are separate. Nothing here is reserved capacity until an environment is connected.</p>
+<ul class="record-list">
+  {% for row in rows %}
+  <li>
+    <strong>{{ row.label }}</strong>
+    <p class="fine">Used {{ row.used }} · Allowance {{ row.allowance }}</p>
+    <div class="quota"><span style="width: {% if row.allowance %}{% widthratio row.used row.allowance 100 %}{% else %}0{% endif %}%"></span></div>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

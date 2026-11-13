@@ -1,0 +1,15 @@
+{% extends "app/shell.html" %}
+{% block title %}Instructor workspace — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<p class="eyebrow">Teaching</p>
+<h1>Instructor workspace</h1>
+<p>Courses, submissions, and attempts assigned to you. This workspace does not open billing or another tenant.</p>
+<h2>Courses</h2>
+<ul class="record-list">{% for course in courses %}<li><div><a class="text-link" href="/app/studio/courses/{{ course.slug }}/">{{ course.title }}</a><p class="fine">{{ course.get_status_display }} · {{ course.enrolments.count }} enrolled</p></div></li>{% empty %}<li><p class="empty">No course is assigned.</p></li>{% endfor %}</ul>
+<h2>Submissions to review</h2>
+<ul class="record-list">{% for row in pending %}<li><div><strong>{{ row.assignment.title }}</strong><p class="fine">{{ row.user.full_name }} · {{ row.get_status_display }}</p><p><a class="text-link" href="/app/assignments/submissions/{{ row.pk }}/review/">Review</a></p></div></li>{% empty %}<li><p class="empty">No submission is waiting.</p></li>{% endfor %}</ul>
+<h2>Assessments to grade</h2>
+<ul class="record-list">{% for row in ungraded %}<li><div><a class="text-link" href="/app/assessments/{{ row.assessment_id }}/">{{ row.assessment.title }}</a><p class="fine">{{ row.user.full_name }}</p></div></li>{% empty %}<li><p class="empty">No subjective attempt is waiting.</p></li>{% endfor %}</ul>
+<h2>Recent lesson comments</h2>
+{% for row in questions %}<p><strong>{{ row.user.full_name }}</strong> on {{ row.lesson.title }}: {{ row.body }}</p>{% empty %}<p class="empty">No question is posted.</p>{% endfor %}
+{% endblock %}

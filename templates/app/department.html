@@ -1,0 +1,40 @@
+{% extends "app/shell.html" %}
+{% block title %}{{ department.name }} — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<p class="eyebrow">Department {{ department.number|stringformat:"02d" }}</p>
+<h1>{{ department.name }}</h1>
+<p>{{ department.overview }}</p>
+<p>{{ department.description }}</p>
+<h2>Learning objectives</h2>
+<ul>{% for item in department.objectives %}<li>{{ item }}</li>{% endfor %}</ul>
+<h2>Topics</h2>
+<ul>{% for item in department.topics %}<li>{{ item }}</li>{% endfor %}</ul>
+{% if department.curriculum.basics %}
+<h2>Start here</h2>
+<p>{{ department.curriculum.basics }}</p>
+<p class="fine">Prerequisite: {{ department.curriculum.prerequisites }}</p>
+<p>{{ department.curriculum.beginner }}</p>
+{% if department.curriculum.terminology %}
+<h2>Required terminology</h2>
+<ul>{% for item in department.curriculum.terminology %}<li>{{ item }}</li>{% endfor %}</ul>
+{% endif %}
+<h2>Guided first practical</h2>
+<p>{{ department.curriculum.first_practical.objective }}</p>
+<ol>{% for step in department.curriculum.first_practical.steps %}<li>{{ step }}</li>{% endfor %}</ol>
+<p class="fine">Expected: {{ department.curriculum.first_practical.expected }} Completion: {{ department.curriculum.first_practical.completion }}</p>
+<h2>Intermediate</h2>
+<ul>{% for item in department.curriculum.intermediate %}<li>{{ item }}</li>{% endfor %}</ul>
+<h2>Advanced</h2>
+<ul>{% for item in department.curriculum.advanced %}<li>{{ item }}</li>{% endfor %}</ul>
+<p class="fine">{{ department.curriculum.assessment }}</p>
+<p><a class="text-link" href="/app/foundations/">ZeroTrace Foundations</a></p>
+{% endif %}
+<h2>Published or preview courses</h2>
+{% if courses %}
+<ul class="record-list">{% for course in courses %}<li><div><a class="text-link" href="/app/courses/{{ course.slug }}/">{{ course.title }}</a><p class="fine">{{ course.get_status_display }} · {{ course.get_level_display }}</p></div></li>{% endfor %}</ul>
+{% else %}<p class="empty">No course is published in this department yet.</p>{% endif %}
+{% if paths %}
+<h2>Learning paths that include a course here</h2>
+<ul>{% for path in paths %}<li><a class="text-link" href="/app/paths/{{ path.slug }}/">{{ path.title }}</a></li>{% endfor %}</ul>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "app/shell.html" %}
+{% block title %}Cyber Range — ZeroTrace Academy{% endblock %}
+{% block workspace %}
+<h1>Cyber Range</h1>
+<p>Hypervisor: not connected. No network is drawn because no machine is authorised for this account.</p>
+<section class="metric-grid">
+  <article class="metric"><p class="fine">Running machines</p><strong>{{ metrics.running_machines }}</strong></article>
+  <article class="metric"><p class="fine">Recorded range minutes</p><strong>{{ metrics.range_minutes }}</strong></article>
+</section>
+<p class="fine">Capacity, quotas, and topology appear only for machines the server has created. Offensive practice stays inside an isolated range when one exists.</p>
+{% if sessions %}
+<ul class="record-list">
+  {% for session in sessions %}
+  <li><strong>{{ session.lab.name }}</strong><p class="fine">{{ session.get_status_display }} · {{ session.detail }}</p></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="empty">No range session is recorded.</p>
+{% endif %}
+{% endblock %}

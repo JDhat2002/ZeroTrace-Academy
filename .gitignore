@@ -1,8 +1,9 @@
 .venv/
-venv/
-node_modules/
 __pycache__/
-*.pyc
+*.py[cod]
 db.sqlite3
-staticfiles/
+media/
+private_submissions/
 .env
+staticfiles/
+.pytest_cache/
